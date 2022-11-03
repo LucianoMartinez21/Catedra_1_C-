@@ -11,3 +11,18 @@ int main(){
     *Creacion Clase Examen
     *
 */
+class User{
+
+};
+class Patients{
+
+};
+class Questions{
+
+};
+class {
+
+};
+class User{
+
+};
