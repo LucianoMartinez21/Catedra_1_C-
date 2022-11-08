@@ -5,3 +5,12 @@ Modificado por Lucho
 Modificado por Luciano
 Modificado por Joaquin
 Modificado de nuevo por Luis
+Modificado en mi pc nuevo Joaquin
+
+================================
+INSTRUCCIONES PARA UTILIZAR
+
+1° 
+2°
+3°
+4°
