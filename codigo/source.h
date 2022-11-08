@@ -55,6 +55,7 @@ class User : public Person{
 private:
     char Password[255];
 public:
+    User();
     bool SetPassword(char[255]);
     //char GetPassword();
 };
@@ -63,12 +64,30 @@ class Surveyed : public Person{
 private:
     char Observation[255];
 public:
+    Surveyed();
     bool SetObservation(char[255]);
     char GetObservation();
 };
 
-
-
+class Test{
+private:
+    int ID, CutPoint, MaxPoint;
+    char Name[30], Observation[255];
+public:
+    Test();
+    //Setters
+    bool SetID(int);
+    bool SetCutPoint(int);
+    bool SetMaxPoint(int);
+    bool SetName(char[30]);
+    bool SetObservation(char[255]);
+    //Getters
+    int GetID();
+    int GetCutPoint();
+    int GetMaxPoint();
+    void GetName();
+    char GetObservation();
+}; 
 
 class Question{
 private:
@@ -76,11 +95,12 @@ private:
     char QuestionText[255], Description[255];
     time_t DeleteAt;
 public:
+    Question();
     //Setters
     bool SetID(int);
     bool SetQuestion(char[255]);
     bool SetDescription(char[255]);
-    void AssignedTest();
+    void AssignedTest(Test);
     //Getters
     int GetID();
     void PrintQuestion();
@@ -95,6 +115,7 @@ private:
     char Text[255], Observation[255];
     time_t DeleteAt;
 public:
+    Answer();
     //Setters
     bool SetID(int);
     bool SetPoint(int);
