@@ -12,13 +12,23 @@ private:
 public:
     person();
     bool SetID(int);
+    int GetID();
     bool SetRun(int);
+    int GetRun();
     bool SetDV(char);
+    char GetDV();
     bool SetNames(char[255]);
+    char GetNames();
     bool SetFather(char[255]);
+    char GetFather();
     bool SetMother(char[255]);
+    char GetMother();
+    void GetNombreCompleto();
     bool SetPassword(char[255]);
+    //char GetPassword();
     bool SetEmail(char[255]);
+    //char GetEmail();
     bool Borrar();
+    void GetDeleteAt();
 };
 #endif
