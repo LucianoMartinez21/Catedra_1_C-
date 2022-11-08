@@ -25,7 +25,7 @@ bool Person::SetDV(char Dv){
     DV = Dv;
 }
 bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[255]){
-    for(int i = 0; i < 255, i++){
+    for(int i = 0; i < 255; i++){
         Names[i] = Name[i];
         this->FatherName[i] = FatherName[i];
         this->MotherName[i] = MotherName[i];
