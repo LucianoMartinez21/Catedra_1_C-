@@ -6,13 +6,16 @@ class Birthday{
 private:
     int Day, Month, Year;
 public:
-    Birthday();
+    Birthday(int, int, int);
+    void GetBirthday();
 };
+
 class Person{
 private:
     int ID, Run, Phone;
     char DV, Names[255], FatherName[255],
     MotherName[255], Email[255];
+    Birthday Birth;
     time_t DeleteAt;
 public:
     Person();
