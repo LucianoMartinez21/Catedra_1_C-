@@ -16,11 +16,11 @@ private:
     int ID, Run, Phone;
     char DV, Names[255], FatherName[255], // DV = Digito verificador
     MotherName[255], Email[255];
-    Birthday Birth;
+    Birthday *Birth;
     enum Genus Gender;
     time_t DeleteAt;
 public:
-    Person();
+    Person(int,int,int);
     
     //Setters
     bool SetID(int);
@@ -33,7 +33,7 @@ public:
     //bool SetMother(char[255]);
     bool SetEmail(char[255]);
     bool SetBirthday(Birthday);
-    bool SetGender(Genus);
+    //bool SetGender(Genus);
 
     //Getters    
     int GetID();
