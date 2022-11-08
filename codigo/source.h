@@ -67,12 +67,24 @@ public:
     char GetObservation();
 };
 
+
+
+
 class Question{
 private:
     int ID;
-    char QuestionText[255];
+    char QuestionText[255], Description[255];
     time_t DeleteAt;
 public:
+    //Setters
+    bool SetID(int);
+    bool SetQuestion(char[255]);
+    bool SetDescription(char[255]);
+    void AssignedTest();
+    //Getters
+    int GetID();
+    void PrintQuestion();
+    void PrintDescription();
     bool Borrar();
     void GetDeleteAt();
 };
@@ -83,8 +95,14 @@ private:
     char Text[255], Observation[255];
     time_t DeleteAt;
 public:
+    //Setters
+    bool SetID(int);
+    bool SetPoint(int);
     void AssignedQuestion(Question);
     bool SetObservation(char[255]);
+    //Getters 
+    int GetID();
+    int GetPoint();
     char GetObservation();
     bool Borrar();
     void GetDeleteAt();
