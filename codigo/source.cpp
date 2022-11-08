@@ -12,18 +12,23 @@ void Birthday::GetBirthday(){
 Person::Person(int Dd, int Mm, int Year){
     Birth = new Birthday(Dd, Mm, Year);
 }
+
 bool Person::SetID(int Id){
     ID = Id;
 }
+
 bool Person::SetRun(int Rut){
     Run = Rut;
 }
+
 bool Person::SetPhone(int Num){
     Phone = Num;
 }
+
 bool Person::SetDV(char Dv){
     DV = Dv;
 }
+
 bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[255]){
     for(int i = 0; i < 255; i++){
         Names[i] = Name[i];
@@ -31,10 +36,30 @@ bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[25
         this->MotherName[i] = MotherName[i];
     }
 }
-bool Person::SetID(int id){
-    ID = id;
+
+bool Person::SetEmail(char Email[255]){
+    for(int i = 0; i < 255; i++)
+        this->Email[i] = Email[i];
 }
 
+int Person::GetID(){
+    return ID;
+}
+void Person::GetRun(){
+    std::cout << Run << "-" << DV << std::endl;
+}
+void Person::GetNames(){
+    std::cout << Names << std::endl;
+}
+void Person::GetFather(){
+    std::cout << FatherName << std::endl;
+}
+void Person::GetMother(){
+    std::cout << MotherName << std::endl;
+}
+void Person::GetFullName(){
+    std::cout << Names << " " << FatherName << " " << MotherName << std::endl;
+}
 //Clase Usuario
 
 //Clase Entrevistado

@@ -32,17 +32,18 @@ public:
     //bool SetFather(char[255]);
     //bool SetMother(char[255]);
     bool SetEmail(char[255]);
-    bool SetBirthday(Birthday);
+    //bool SetBirthday(Birthday);
     //bool SetGender(Genus);
 
     //Getters    
     int GetID();
-    int GetRun();
+    //int GetRun();
     //int GetPhone();
-    char GetDV();
-    char GetNames();
-    char GetFather();
-    char GetMother();
+    //char GetDV();
+    void GetRun();//Lo devuelve con digito verificador
+    void GetNames();
+    void GetFather();
+    void GetMother();
     void GetFullName();
 
     //char GetEmail();
