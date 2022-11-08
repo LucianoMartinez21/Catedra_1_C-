@@ -2,6 +2,7 @@
 #define _SOURCE_H_
 #include <iostream>
 #include <cstdio>
+enum Genus{Male, Female, Other};
 class Birthday{
 private:
     int Day, Month, Year;
@@ -16,27 +17,32 @@ private:
     char DV, Names[255], FatherName[255],
     MotherName[255], Email[255];
     Birthday Birth;
+    enum Genus Gender;
     time_t DeleteAt;
 public:
     Person();
+    
+    //Setters
     bool SetID(int);
-    int GetID();
     bool SetRun(int);
-    int GetRun();
     bool SetPhone(int);
-    //int GetPhone();
     bool SetDV(char);
-    char GetDV();
     bool SetNames(char[255]);
-    char GetNames();
     bool SetFather(char[255]);
-    char GetFather();
     bool SetMother(char[255]);
+    bool SetEmail(char[255]);
+    
+    //Getters    
+    int GetID();
+    int GetRun();
+    //int GetPhone();
+    char GetDV();
+    char GetNames();
+    char GetFather();
     char GetMother();
     void GetNombreCompleto();
     //bool SetPassword(char[255]);
     //char GetPassword();
-    bool SetEmail(char[255]);
     //char GetEmail();
     bool Borrar();
     void GetDeleteAt();
