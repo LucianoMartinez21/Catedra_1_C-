@@ -123,7 +123,8 @@ public:
     //Setters
     bool SetID(int);
     bool SetPoint(int);
-    void AssignedQuestion(Question);
+    bool AssignedQuestion(Question);
+    bool SetText(char[255]);
     bool SetObservation(char[255]);
     //Getters 
     int GetID();

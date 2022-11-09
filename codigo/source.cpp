@@ -165,7 +165,9 @@ void Test::GetObservation(){
 Question::Question(){
     ID = 0;
     FkId = 0;
+    DeleteAt = NULL;
 }
+
 //Setters
 bool Question::SetID(int Id){
     ID = Id;
@@ -181,6 +183,7 @@ bool Question::SetDescription(char Description[255]){
 bool Question::AssignedTest(Test Exam){
     FkId = Exam.GetID();
 }
+
 //Getters
 int Question::GetID(){
     return ID;
@@ -212,5 +215,32 @@ void Question::GetDeleteAt(){
     printf("Delete at: %s\n", buf);
     std::cout << "Delete at: " << buf << std::endl;
 }
+
 // ASSIGNEDTEST(TEST){FKID == TEST.GETID()}
 //Clase Respuesta
+Answer::Answer(){
+    ID = 0;
+    Point = 0;
+    FkId = 0;
+    DeleteAt = NULL;
+}
+
+//Setters
+bool Answer::SetID(int Id){
+    ID = Id;
+}
+bool Answer::SetPoint(int Point){
+    this->Point = Point;
+}
+bool Answer::AssignedQuestion(Question Query){
+    FkId = Query.GetID();
+}
+bool Answer::SetText(char Text[255]){
+    for(int i = 0; i < 255; i++) 
+        this->Text[i] = Text[i];
+}
+bool Answer::SetObservation(char Observation[255]){
+    for(int i = 0; i < 255; i++) 
+        this->Observation[i] = Observation[i];
+}
+//Getters
