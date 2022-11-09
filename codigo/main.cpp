@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+#include <fstream>
+using namespace std;
+fstream UserFile("User/User.txt");
 int main(){
 
 }
@@ -10,19 +13,10 @@ int main(){
     *Creacion Clase Respuesta
     *Creacion Clase Examen
     *
+    * 
+    * 
+    * 
+    * 
+    * 
+    * 
 */
-class User{
-
-};
-class Patients{
-
-};
-class Questions{
-
-};
-class {
-
-};
-class User{
-
-};

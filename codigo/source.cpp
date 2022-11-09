@@ -243,6 +243,7 @@ bool Answer::SetObservation(char Observation[255]){
     for(int i = 0; i < 255; i++) 
         this->Observation[i] = Observation[i];
 }
+
 //Getters
 int Answer::GetID(){
     return ID;
