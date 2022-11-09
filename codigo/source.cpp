@@ -10,11 +10,24 @@ void Birthday::GetBirthday(){
 }
 
 //Clase Persona
+//Constructors
+Person::Person(){
+    ID = 0;
+    Run = 0;
+    Phone = 0;
+    DV = '\0';
+    DeleteAt = NULL;
+    Birth = NULL;
+}
 Person::Person(int Dd, int Mm, int Year){
+    ID = 0;
+    Run = 0;
+    Phone = 0;
+    DV = '\0';// '\0' ese una forma de asignar un caracter nulo
     DeleteAt = NULL;
     Birth = new Birthday(Dd, Mm, Year);
 }
-
+//Setters
 bool Person::SetID(int Id){
     ID = Id;
 }
@@ -43,7 +56,11 @@ bool Person::SetEmail(char Email[255]){
     for(int i = 0; i < 255; i++)
         this->Email[i] = Email[i];
 }
+bool Person::SetBirthday(int Dd, int Mm, int Year){
+    Birth = new Birthday(Dd, Mm, Year);
+}
 
+//Getters
 int Person::GetID(){
     return ID;
 }
@@ -84,7 +101,21 @@ void Person::GetDeleteAt(){
 }
 //Clase Usuario
 User::User(){
-    std::cout << "hola"<< std::endl;
+    //std::cout << "hola"<< std::endl;
+}
+bool User::SetPassword(char Pass[255]){
+    for(int i = 0; i < 255; i++) 
+        Password[i] = Pass[i];
+}
+
+Surveyed::Surveyed(){}
+
+bool Surveyed::SetObservation(char Observation[255]){
+    for(int i = 0; i < 255; i++) 
+        this->Observation[i] = Observation[i];
+}
+void Surveyed::GetObservation(){
+    std::cout << Observation << std::endl;
 }
 //Clase Entrevistado
 
