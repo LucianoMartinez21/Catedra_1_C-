@@ -191,10 +191,10 @@ int Question::GetID(){
 int Question::GetFkId(){
     return FkId;
 }
-void Question::PrintQuestion(){
+void Question::GetQuestion(){
     std::cout << QuestionText << std::endl;
 }
-void Question::PrintDescription(){
+void Question::GetDescription(){
     std::cout << Description << std::endl;
 }
 bool Question::Borrar(){
@@ -244,3 +244,36 @@ bool Answer::SetObservation(char Observation[255]){
         this->Observation[i] = Observation[i];
 }
 //Getters
+int Answer::GetID(){
+    return ID;
+}
+int Answer::GetPoint(){
+    return Point;
+}
+int Answer::GetFkId(){
+    return FkId;
+}
+void Answer::GetObservation(){
+    std::cout << Observation << std::endl;
+}
+void Answer::GetText(){
+    std::cout << Text << std::endl;
+}
+bool Answer::Borrar(){
+    if(DeleteAt != NULL){
+        return false;
+    }else{
+        // Get current time
+        DeleteAt = time(&DeleteAt); 
+        return true;
+    }       
+}
+void Answer::GetDeleteAt(){
+    struct tm ts;
+    char buf[80];
+    ts = *localtime(&DeleteAt);
+    // Format time, "ddd dd/mm/yyyy zzz"
+    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
+    printf("Delete at: %s\n", buf);
+    std::cout << "Delete at: " << buf << std::endl;
+}

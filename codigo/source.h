@@ -107,8 +107,8 @@ public:
     //Getters
     int GetID();
     int GetFkId();
-    void PrintQuestion();
-    void PrintDescription();
+    void GetQuestion();
+    void GetDescription();
     bool Borrar();
     void GetDeleteAt();
 };
@@ -129,7 +129,9 @@ public:
     //Getters 
     int GetID();
     int GetPoint();
-    char GetObservation();
+    int GetFkId();
+    void GetObservation();
+    void GetText();
     bool Borrar();
     void GetDeleteAt();
 };
