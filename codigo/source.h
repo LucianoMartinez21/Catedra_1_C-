@@ -21,6 +21,7 @@ private:
     enum Genus Gender;
     time_t DeleteAt;
 public:
+    Person();
     Person(int,int,int);
     
     //Setters
@@ -33,7 +34,7 @@ public:
     //bool SetFather(char[255]);
     //bool SetMother(char[255]);
     bool SetEmail(char[255]);
-    //bool SetBirthday(Birthday);
+    bool SetBirthday(int, int, int);
     //bool SetGender(Genus);
 
     //Getters    
@@ -68,7 +69,7 @@ private:
 public:
     Surveyed();
     bool SetObservation(char[255]);
-    char GetObservation();
+    void GetObservation();
 };
 
 class Test{
