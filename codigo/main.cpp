@@ -2,6 +2,11 @@
 #include <fstream>
 using namespace std;
 fstream UserFile("User/User.txt");
+fstream SurveyFile("Surveyed/Surveyed.txt");
+fstream TestFile("Test/Test.txt");
+fstream QuestionFile("Question/Question.txt");
+fstream AnswerFile("Answer/Answer.txt");
+string mainDir("/Catedra_1_C-");
 int main(){
 
 }
