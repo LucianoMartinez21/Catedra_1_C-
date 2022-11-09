@@ -8,8 +8,10 @@ Birthday::Birthday(int Dd, int Mm, int Year){
 void Birthday::GetBirthday(){
     std::cout<<Day<<"/"<<Month<<"/"<<Year<<std::endl;
 }
+
 //Clase Persona
 Person::Person(int Dd, int Mm, int Year){
+    DeleteAt = NULL;
     Birth = new Birthday(Dd, Mm, Year);
 }
 
@@ -60,8 +62,30 @@ void Person::GetMother(){
 void Person::GetFullName(){
     std::cout << Names << " " << FatherName << " " << MotherName << std::endl;
 }
-//Clase Usuario
 
+bool Person::Borrar(){
+    if(DeleteAt != NULL){
+        return false;
+    }else{
+        // Get current time
+        DeleteAt = time(&DeleteAt); 
+        return true;
+    }
+       
+}
+void Person::GetDeleteAt(){
+    struct tm ts;
+    char buf[80];
+    ts = *localtime(&DeleteAt);
+    // Format time, "ddd dd/mm/yyyy zzz"
+    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
+    printf("Delete at: %s\n", buf);
+    std::cout << "Delete at: " << buf << std::endl;
+}
+//Clase Usuario
+User::User(){
+    std::cout << "hola"<< std::endl;
+}
 //Clase Entrevistado
 
 //Clase Examen

@@ -2,6 +2,7 @@
 #define _SOURCE_H_
 #include <iostream>
 #include <cstdio>
+#include <time.h>
 enum Genus{Male, Female, Other};
 class Birthday{
 private:
