@@ -87,8 +87,7 @@ bool Person::Borrar(){
         // Get current time
         DeleteAt = time(&DeleteAt); 
         return true;
-    }
-       
+    }       
 }
 void Person::GetDeleteAt(){
     struct tm ts;
@@ -158,8 +157,60 @@ int Test::GetMaxPoint(){
 void Test::GetName(){
     std::cout << Name << std::endl;
 }
-
+void Test::GetObservation(){
+    std::cout << Observation << std::endl;
+}
 
 //Clase Pregunta
-
+Question::Question(){
+    ID = 0;
+    FkId = 0;
+}
+//Setters
+bool Question::SetID(int Id){
+    ID = Id;
+}
+bool Question::SetQuestion(char Question[255]){
+    for(int i = 0; i < 255; i++) 
+        QuestionText[i] = Question[i];
+}
+bool Question::SetDescription(char Description[255]){
+    for(int i = 0; i < 255; i++) 
+        this->Description[i] = Description[i];
+}
+bool Question::AssignedTest(Test Exam){
+    FkId = Exam.GetID();
+}
+//Getters
+int Question::GetID(){
+    return ID;
+}
+int Question::GetFkId(){
+    return FkId;
+}
+void Question::PrintQuestion(){
+    std::cout << QuestionText << std::endl;
+}
+void Question::PrintDescription(){
+    std::cout << Description << std::endl;
+}
+bool Question::Borrar(){
+    if(DeleteAt != NULL){
+        return false;
+    }else{
+        // Get current time
+        DeleteAt = time(&DeleteAt); 
+        return true;
+    }       
+}
+void Question::GetDeleteAt(){
+    struct tm ts;
+    char buf[80];
+    ts = *localtime(&DeleteAt);
+    // Format time, "ddd dd/mm/yyyy zzz"
+    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
+    printf("Delete at: %s\n", buf);
+    std::cout << "Delete at: " << buf << std::endl;
+}
+// ASSIGNEDTEST(TEST){FKID == TEST.GETID()}
 //Clase Respuesta

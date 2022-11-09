@@ -94,7 +94,7 @@ public:
 
 class Question{
 private:
-    int ID;
+    int ID, FkId;
     char QuestionText[255], Description[255];
     time_t DeleteAt;
 public:
@@ -103,9 +103,10 @@ public:
     bool SetID(int);
     bool SetQuestion(char[255]);
     bool SetDescription(char[255]);
-    void AssignedTest(Test);
+    bool AssignedTest(Test);
     //Getters
     int GetID();
+    int GetFkId();
     void PrintQuestion();
     void PrintDescription();
     bool Borrar();
@@ -114,7 +115,7 @@ public:
 
 class Answer{
 private:
-    int ID, Point;
+    int ID, Point, FkId;
     char Text[255], Observation[255];
     time_t DeleteAt;
 public:
