@@ -89,7 +89,7 @@ public:
     int GetCutPoint();
     int GetMaxPoint();
     void GetName();
-    char GetObservation();
+    void GetObservation();
 }; 
 
 class Question{

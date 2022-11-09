@@ -108,6 +108,8 @@ bool User::SetPassword(char Pass[255]){
         Password[i] = Pass[i];
 }
 
+
+//Clase Entrevistado
 Surveyed::Surveyed(){}
 
 bool Surveyed::SetObservation(char Observation[255]){
@@ -117,9 +119,46 @@ bool Surveyed::SetObservation(char Observation[255]){
 void Surveyed::GetObservation(){
     std::cout << Observation << std::endl;
 }
-//Clase Entrevistado
-
 //Clase Examen
+Test::Test(){
+    ID = 0;
+    CutPoint = 0;
+    MaxPoint = 0;
+}
+
+//Setters
+bool Test::SetID(int Id){
+    ID = Id;
+}
+bool Test::SetCutPoint(int Cut){
+    CutPoint = Cut;
+}
+bool Test::SetMaxPoint(int Max){
+    MaxPoint = Max;
+}
+bool Test::SetName(char Name[30]){
+    for(int i = 0; i < 255; i++)
+        this->Name[i] = Name[i];
+}
+bool Test::SetObservation(char Observation[255]){
+    for(int i = 0; i < 255; i++) 
+        this->Observation[i] = Observation[i];
+}
+
+//Getters
+int Test::GetID(){
+    return ID;
+}
+int Test::GetCutPoint(){
+    return CutPoint;
+}
+int Test::GetMaxPoint(){
+    return MaxPoint;
+}
+void Test::GetName(){
+    std::cout << Name << std::endl;
+}
+
 
 //Clase Pregunta
 
