@@ -96,7 +96,20 @@ void Person::GetMother(){
 void Person::GetFullName(){
     std::cout << Names << " " << FatherName << " " << MotherName << std::endl;
 }
-
+void Person::GetGender(){
+    switch (Gender)
+        {
+        case 0:
+            std::cout << "Male" << std::endl;
+            break;
+        case 1:
+            std::cout << "Female" << std::endl;
+            break;
+        case 2:
+            std::cout << "Other" << std::endl;
+            break;
+    }
+}
 bool Person::Borrar(){
     if(DeleteAt != NULL){
         return false;
