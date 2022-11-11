@@ -59,6 +59,23 @@ bool Person::SetEmail(char Email[255]){
 bool Person::SetBirthday(int Dd, int Mm, int Year){
     Birth = new Birthday(Dd, Mm, Year);
 }
+bool Person::SetGender(int Option){
+    switch (Option)
+    {
+    case 0:
+        Gender = Male;
+        break;
+    case 1:
+        Gender = Female;
+        break;
+    case 2:
+        Gender = Other;
+        break;
+    default:
+        std::cout << "Ingrese la opcion correcta" << std::endl;
+        break;
+    }
+}
 
 //Getters
 int Person::GetID(){
@@ -212,7 +229,7 @@ void Question::GetDeleteAt(){
     ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
     strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    printf("Delete at: %s\n", buf);
+    //printf("Delete at: %s\n", buf);
     std::cout << "Delete at: " << buf << std::endl;
 }
 

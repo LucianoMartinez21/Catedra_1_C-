@@ -35,7 +35,7 @@ public:
     //bool SetMother(char[255]);
     bool SetEmail(char[255]);
     bool SetBirthday(int, int, int);
-    //bool SetGender(Genus);
+    bool SetGender(int);
 
     //Getters    
     int GetID();
@@ -47,7 +47,6 @@ public:
     void GetFather();
     void GetMother();
     void GetFullName();
-
     //char GetEmail();
     bool Borrar();
     void GetDeleteAt();
