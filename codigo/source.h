@@ -2,6 +2,7 @@
 #define _SOURCE_H_
 #include <iostream>
 #include <cstdio>
+#include <time.h>
 enum Genus{Male, Female, Other};
 class Birthday{
 private:
@@ -16,11 +17,12 @@ private:
     int ID, Run, Phone;
     char DV, Names[255], FatherName[255], // DV = Digito verificador
     MotherName[255], Email[255];
-    Birthday Birth;
+    Birthday *Birth;
     enum Genus Gender;
     time_t DeleteAt;
 public:
     Person();
+    Person(int,int,int);
     
     //Setters
     bool SetID(int);
@@ -32,19 +34,20 @@ public:
     //bool SetFather(char[255]);
     //bool SetMother(char[255]);
     bool SetEmail(char[255]);
-    bool SetBirthday(Birthday);
-    bool SetGender(Genus);
+    bool SetBirthday(int, int, int);
+    bool SetGender(int);
 
     //Getters    
     int GetID();
-    int GetRun();
+    //int GetRun();
     //int GetPhone();
-    char GetDV();
-    char GetNames();
-    char GetFather();
-    char GetMother();
+    //char GetDV();
+    void GetRun();//Lo devuelve con digito verificador
+    void GetNames();
+    void GetFather();
+    void GetMother();
     void GetFullName();
-
+    void GetGender();
     //char GetEmail();
     bool Borrar();
     void GetDeleteAt();
@@ -66,7 +69,7 @@ private:
 public:
     Surveyed();
     bool SetObservation(char[255]);
-    char GetObservation();
+    void GetObservation();
 };
 
 class Test{
@@ -86,12 +89,12 @@ public:
     int GetCutPoint();
     int GetMaxPoint();
     void GetName();
-    char GetObservation();
+    void GetObservation();
 }; 
 
 class Question{
 private:
-    int ID;
+    int ID, FkId;
     char QuestionText[255], Description[255];
     time_t DeleteAt;
 public:
@@ -100,18 +103,19 @@ public:
     bool SetID(int);
     bool SetQuestion(char[255]);
     bool SetDescription(char[255]);
-    void AssignedTest(Test);
+    bool AssignedTest(Test);
     //Getters
     int GetID();
-    void PrintQuestion();
-    void PrintDescription();
+    int GetFkId();
+    void GetQuestion();
+    void GetDescription();
     bool Borrar();
     void GetDeleteAt();
 };
 
 class Answer{
 private:
-    int ID, Point;
+    int ID, Point, FkId;
     char Text[255], Observation[255];
     time_t DeleteAt;
 public:
@@ -119,12 +123,15 @@ public:
     //Setters
     bool SetID(int);
     bool SetPoint(int);
-    void AssignedQuestion(Question);
+    bool AssignedQuestion(Question);
+    bool SetText(char[255]);
     bool SetObservation(char[255]);
     //Getters 
     int GetID();
     int GetPoint();
-    char GetObservation();
+    int GetFkId();
+    void GetObservation();
+    void GetText();
     bool Borrar();
     void GetDeleteAt();
 };
