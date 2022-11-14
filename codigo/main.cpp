@@ -36,6 +36,7 @@ void Menu(int Election){
             Email[255], Password[255];
             int Run, Day, Month, Year, GenderNumber, Phone;
             Pollster.SetID(IdCouter);
+
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
             cout << "\nIngrese su Apellido Paterno: ";
@@ -43,12 +44,15 @@ void Menu(int Election){
             cout << "\nIngrese su Apellido Materno: ";
             scanf("%s", MotherName);
             Pollster.SetFullName(Name, FatherName, MotherName);
+
             cout << "\nIngrese su Run (sin el digito verificador): ";
             cin >> Run;
             Pollster.SetRun(Run);
+
             cout << "\nIngrese su digito verificador: ";
             scanf("%c", Dv);
             Pollster.SetDV(Dv);
+
             cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
             cin >> Day;
             cout << "\nMes:";
@@ -56,24 +60,38 @@ void Menu(int Election){
             cout << "\nAño:";
             cin >> Year;
             Pollster.SetBirthday(Day, Month, Year);
+
             cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
             while (GenderNumber != 1 && GenderNumber != 2 && GenderNumber != 3)
             {
                 cin >> GenderNumber;
                 Pollster.SetGender(GenderNumber);
             }
+
             cout << "\nIngrese su Correo: ";
             scanf("%s", Email);
             Pollster.SetEmail(Email);
+
             cout << "\nIngrese su Telefóno: ";
             cin >> Phone;
             Pollster.SetPhone(Phone);
+
             cout << "\nIngrese su Contraseña: ";
             cin >> Phone;
             Pollster.SetPhone(Phone);
+
             cout << "\nIngrese su Contraseña: ";
             scanf("%s", Password);
-            
+            Pollster.SetPassword(Password);
+
+            UserFile << "/////////////" << endl;
+            UserFile << "Id: " << IdCouter << endl;
+            UserFile << "Nombre: " << Name << endl;
+            UserFile << "Apellido Paterno: " << FatherName << endl;
+            UserFile << "Apellido Materno: " << MotherName << endl;
+            UserFile << "Run: " << Run << "-" << Dv << endl;
+            UserFile << "Fecha de Nacimiento: " << Day << "/" << Month << "/" << Year << endl;
+            UserFile << "Genero"
             break;
         case 2:
             break;

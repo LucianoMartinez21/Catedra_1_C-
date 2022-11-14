@@ -91,17 +91,17 @@ void Person::GetMother(){
 void Person::GetFullName(){
     std::cout << Names << " " << FatherName << " " << MotherName << std::endl;
 }
-void Person::GetGender(){
+char* Person::GetGender(){
     switch (Gender)
         {
         case 0:
-            std::cout << "Male" << std::endl;
+            return const_cast<char*>("Male");
             break;
         case 1:
-            std::cout << "Female" << std::endl;
+            return const_cast<char*>("Female");
             break;
         case 2:
-            std::cout << "Other" << std::endl;
+            return const_cast<char*>("Other");
             break;
     }
 }
