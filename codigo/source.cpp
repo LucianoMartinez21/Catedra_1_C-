@@ -57,13 +57,13 @@ bool Person::SetBirthday(int Dd, int Mm, int Year){
 bool Person::SetGender(int Option){
     switch (Option)
     {
-    case 0:
+    case 1:
         Gender = Male;
         break;
-    case 1:
+    case 2:
         Gender = Female;
         break;
-    case 2:
+    case 3:
         Gender = Other;
         break;
     default:
@@ -104,6 +104,9 @@ void Person::GetGender(){
             std::cout << "Other" << std::endl;
             break;
     }
+}
+void Person::GetBirthday(){
+    Birth->GetBirthday();
 }
 bool Person::Borrar(){
     if(DeleteAt != NULL){

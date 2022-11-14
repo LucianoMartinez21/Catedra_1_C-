@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include "source.h"
+#include <locale.h>
 using namespace std;
 //Functions
 void Menu(int);
@@ -16,6 +17,7 @@ int Option, IdCouter;
 void IdVerifier();
 int main(){
     IdVerifier();
+    setlocale(LC_ALL, "spanish");
     while (true)
     {
         cout << "=====Programa de Encuestas=====\n1) Crear Cuenta"<<
@@ -31,21 +33,36 @@ void Menu(int Election){
         case 1:
             User Pollster = User(); // pollster = Encuestador
             char Name[255], FatherName[255], MotherName[255], Dv;
-            int Run;
+            int Run, Day, Month, Year, GenderNumber;
             Pollster.SetID(IdCouter);
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
-            cout << "Ingrese su Apellido Paterno: ";
+            cout << "\nIngrese su Apellido Paterno: ";
             scanf("%s", FatherName);
-            cout << "Ingrese su Apellido Materno: ";
+            cout << "\nIngrese su Apellido Materno: ";
             scanf("%s", MotherName);
             Pollster.SetFullName(Name, FatherName, MotherName);
-            cout << "Ingrese su Run (sin el digito verificador): ";
+            cout << "\nIngrese su Run (sin el digito verificador): ";
             cin >> Run;
             Pollster.SetRun(Run);
-            cout << "Ingrese su digito verificador: ";
-            scanf("%s", Dv);
+            cout << "\nIngrese su digito verificador: ";
+            scanf("%c", Dv);
             Pollster.SetDV(Dv);
+            cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
+            cin >> Day;
+            cout << "\nMes:";
+            cin >> Month;
+            cout << "\nAño:";
+            cin >> Year;
+            Pollster.SetBirthday(Day, Month, Year);
+            cout << "\nElija su genero: \n1)Hombre\n2)Mujer\n3)Otros";
+            while (GenderNumber != 1 && GenderNumber != 2 && GenderNumber != 3)
+            {
+                Pollster.SetGender(GenderNumber);
+            }
+            
+            
+
             break;
         case 2:
             break;
