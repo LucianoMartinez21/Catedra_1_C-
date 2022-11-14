@@ -47,7 +47,7 @@ public:
     void GetFather();
     void GetMother();
     void GetFullName();
-    void GetGender();
+    char* GetGender();
     void GetBirthday();
     //char GetEmail();
     bool Borrar();
