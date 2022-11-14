@@ -32,8 +32,9 @@ void Menu(int Election){
     switch (Election){
         case 1:
             User Pollster = User(); // pollster = Encuestador
-            char Name[255], FatherName[255], MotherName[255], Dv;
-            int Run, Day, Month, Year, GenderNumber;
+            char Name[255], FatherName[255], MotherName[255], Dv,
+            Email[255], Password[255];
+            int Run, Day, Month, Year, GenderNumber, Phone;
             Pollster.SetID(IdCouter);
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
@@ -55,14 +56,24 @@ void Menu(int Election){
             cout << "\nAño:";
             cin >> Year;
             Pollster.SetBirthday(Day, Month, Year);
-            cout << "\nElija su genero: \n1)Hombre\n2)Mujer\n3)Otros";
+            cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
             while (GenderNumber != 1 && GenderNumber != 2 && GenderNumber != 3)
             {
+                cin >> GenderNumber;
                 Pollster.SetGender(GenderNumber);
             }
+            cout << "\nIngrese su Correo: ";
+            scanf("%s", Email);
+            Pollster.SetEmail(Email);
+            cout << "\nIngrese su Telefóno: ";
+            cin >> Phone;
+            Pollster.SetPhone(Phone);
+            cout << "\nIngrese su Contraseña: ";
+            cin >> Phone;
+            Pollster.SetPhone(Phone);
+            cout << "\nIngrese su Contraseña: ";
+            scanf("%s", Password);
             
-            
-
             break;
         case 2:
             break;
