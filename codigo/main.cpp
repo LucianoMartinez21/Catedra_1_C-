@@ -30,7 +30,8 @@ void Menu(int Election){
     switch (Election){
         case 1:
             User Pollster = User(); // pollster = Encuestador
-            char Name[255], FatherName[255], MotherName[255];
+            char Name[255], FatherName[255], MotherName[255], Dv;
+            int Run;
             Pollster.SetID(IdCouter);
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
@@ -40,7 +41,11 @@ void Menu(int Election){
             scanf("%s", MotherName);
             Pollster.SetFullName(Name, FatherName, MotherName);
             cout << "Ingrese su Run (sin el digito verificador): ";
-            
+            cin >> Run;
+            Pollster.SetRun(Run);
+            cout << "Ingrese su digito verificador: ";
+            scanf("%s", Dv);
+            Pollster.SetDV(Dv);
             break;
         case 2:
             break;
