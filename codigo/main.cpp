@@ -28,16 +28,16 @@ int main(){
         << endl;
         cin >> Option;
         Menu(Option);
-    }   
+    }
 }
 
 void Menu(int Election){
     char Name[255], FatherName[255], MotherName[255], *Dv,
     Email[255], Password[255];
-    int Run, Day, Month, Year, GenderNumber, Phone; 
-    User Pollster = User(); // pollster = Encuestador  
-    switch (Election){                 
-        case 1:            
+    int Run, Day, Month, Year, GenderNumber, Phone;
+    User Pollster = User(); // pollster = Encuestador
+    switch (Election){
+        case 1:
             Pollster.SetID(IdCouter);
 
             cout << "Ingrese su nombre: ";
@@ -104,8 +104,12 @@ void Menu(int Election){
                 scanf("%s", Password);
                 if(strcmp(Email, Pollster.GetEmail()) == 0 && strcmp(Password,Pollster.GetPassword())){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
-                    "1)Crear perfil de entrevistado\n" << 
+                    "1)Crear perfil de entrevistado\n" <<
                     "2)Crear test\n" << "3)Crear preguntas" << endl;
+                    while (Election != 1 && Election != 2 && Election != 3){
+                        cin >> Election;
+                        TestMenu(Election);
+                    }
                     /* Objetivos
                         +crear perfil de entrevistado
                         +crear test
@@ -114,13 +118,13 @@ void Menu(int Election){
                         +crear preguntas y que se puede elegir a que test puede entrar
                         +realizar encuesta
                             -Se crea constantemente respuestas hasta que el limite de preguntas del test termina
-                    
+                        +terminar de hacer la funcion IdVerifier
                     */
                     break;
                 }else{
                     cout << "Ingrese los datos correctos" << endl;
                 }
-            }           
+            }
             break;
         case 3:
             cout << "Bye bye!" << endl;
@@ -136,5 +140,19 @@ void IdVerifier(){
         IdCouter = 1;
     }else{
         //Aqui seria el buscador en el archivo de texto
+    }
+}
+void TestMenu(int Election){
+    switch (Election)
+    {
+    case 1:
+        /* code */
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    default:
+        break;
     }
 }
