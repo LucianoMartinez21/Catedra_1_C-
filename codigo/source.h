@@ -50,7 +50,7 @@ public:
     char* GetFullName();
     char* GetGender();
     char* GetBirthday();
-    //char GetEmail();
+    char* GetEmail();
     bool Borrar();
     void GetDeleteAt();
 
@@ -62,7 +62,7 @@ private:
 public:
     User();
     bool SetPassword(char[255]);
-    //char GetPassword();
+    char* GetPassword();
 };
 
 class Surveyed : public Person{

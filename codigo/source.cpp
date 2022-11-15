@@ -127,6 +127,9 @@ char* Person::GetGender(){
 char* Person::GetBirthday(){
     return Birth->GetBirthday();
 }
+char* Person::GetEmail(){
+    return Email;
+}
 bool Person::Borrar(){
     if(DeleteAt != NULL){
         return false;
@@ -154,6 +157,10 @@ bool User::SetPassword(char Pass[255]){
         Password[i] = Pass[i];
 }
 
+//Getters
+char* User::GetPassword(){
+    return Password;
+}
 
 //Clase Entrevistado
 Surveyed::Surveyed(){}
