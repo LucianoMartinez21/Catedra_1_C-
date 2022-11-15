@@ -76,20 +76,33 @@ bool Person::SetGender(int Option){
 int Person::GetID(){
     return ID;
 }
-void Person::GetRun(){
-    std::cout << Run << "-" << DV << std::endl;
+char* Person::GetRun(){
+    //std::cout << Run << "-" << DV << std::endl;
+    char RunAux[30];
+    sprintf(RunAux, "%d", Run);
+    //RunAux + "-" + DV
+    strcat(RunAux,"-"+DV);
+    return RunAux;
 }
-void Person::GetNames(){
-    std::cout << Names << std::endl;
+char* Person::GetNames(){
+    return Names;
+    //std::cout << Names << std::endl;
 }
-void Person::GetFather(){
-    std::cout << FatherName << std::endl;
+char* Person::GetFather(){
+
+    return FatherName;
 }
-void Person::GetMother(){
-    std::cout << MotherName << std::endl;
+char* Person::GetMother(){
+    return MotherName;
 }
-void Person::GetFullName(){
-    std::cout << Names << " " << FatherName << " " << MotherName << std::endl;
+char* Person::GetFullName(){
+    char FullName[255*3]; // Un desperdicio de espacio para un desliz
+    strcat(FullName, Names);
+    strcat(FullName, " ");
+    strcat(FullName, FatherName);
+    strcat(FullName, " ");
+    strcat(FullName, MotherName);
+    return FullName;
 }
 char* Person::GetGender(){
     switch (Gender)
@@ -143,8 +156,9 @@ bool Surveyed::SetObservation(char Observation[255]){
     for(int i = 0; i < 255; i++) 
         this->Observation[i] = Observation[i];
 }
-void Surveyed::GetObservation(){
-    std::cout << Observation << std::endl;
+char* Surveyed::GetObservation(){
+    return Observation;
+    //std::cout << Observation << std::endl;
 }
 //Clase Examen
 Test::Test(){
@@ -182,11 +196,12 @@ int Test::GetCutPoint(){
 int Test::GetMaxPoint(){
     return MaxPoint;
 }
-void Test::GetName(){
-    std::cout << Name << std::endl;
+char* Test::GetName(){
+    //std::cout << Name << std::endl;
+    return Name;
 }
-void Test::GetObservation(){
-    std::cout << Observation << std::endl;
+char* Test::GetObservation(){
+    return Observation;
 }
 
 //Clase Pregunta
@@ -219,11 +234,13 @@ int Question::GetID(){
 int Question::GetFkId(){
     return FkId;
 }
-void Question::GetQuestion(){
-    std::cout << QuestionText << std::endl;
+char* Question::GetQuestion(){
+    //std::cout << QuestionText << std::endl;
+    return QuestionText;
 }
-void Question::GetDescription(){
-    std::cout << Description << std::endl;
+char* Question::GetDescription(){
+    //std::cout << Description << std::endl;
+    return Description;
 }
 bool Question::Borrar(){
     if(DeleteAt != NULL){
@@ -282,11 +299,12 @@ int Answer::GetPoint(){
 int Answer::GetFkId(){
     return FkId;
 }
-void Answer::GetObservation(){
-    std::cout << Observation << std::endl;
+char* Answer::GetObservation(){
+    return Observation;
 }
-void Answer::GetText(){
-    std::cout << Text << std::endl;
+char* Answer::GetText(){
+    //std::cout << Text << std::endl;
+    return Text;
 }
 bool Answer::Borrar(){
     if(DeleteAt != NULL){

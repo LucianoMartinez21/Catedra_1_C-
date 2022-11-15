@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstdio>
 #include <time.h>
+#include <stdio.h>
+#include <string.h>
 enum Genus{Male, Female, Other};
 class Birthday{
 private:
@@ -42,11 +44,11 @@ public:
     //int GetRun();
     //int GetPhone();
     //char GetDV();
-    void GetRun();//Lo devuelve con digito verificador
-    void GetNames();
-    void GetFather();
-    void GetMother();
-    void GetFullName();
+    char* GetRun();//Lo devuelve con digito verificador
+    char* GetNames();
+    char* GetFather();
+    char* GetMother();
+    char* GetFullName();
     char* GetGender();
     void GetBirthday();
     //char GetEmail();
@@ -70,7 +72,7 @@ private:
 public:
     Surveyed();
     bool SetObservation(char[255]);
-    void GetObservation();
+    char* GetObservation();
 };
 
 class Test{
@@ -89,8 +91,8 @@ public:
     int GetID();
     int GetCutPoint();
     int GetMaxPoint();
-    void GetName();
-    void GetObservation();
+    char* GetName();
+    char* GetObservation();
 }; 
 
 class Question{
@@ -108,8 +110,8 @@ public:
     //Getters
     int GetID();
     int GetFkId();
-    void GetQuestion();
-    void GetDescription();
+    char* GetQuestion();
+    char* GetDescription();
     bool Borrar();
     void GetDeleteAt();
 };
@@ -131,8 +133,8 @@ public:
     int GetID();
     int GetPoint();
     int GetFkId();
-    void GetObservation();
-    void GetText();
+    char* GetObservation();
+    char* GetText();
     bool Borrar();
     void GetDeleteAt();
 };

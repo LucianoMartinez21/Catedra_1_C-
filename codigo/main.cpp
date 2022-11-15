@@ -77,10 +77,6 @@ void Menu(int Election){
             Pollster.SetPhone(Phone);
 
             cout << "\nIngrese su Contraseña: ";
-            cin >> Phone;
-            Pollster.SetPhone(Phone);
-
-            cout << "\nIngrese su Contraseña: ";
             scanf("%s", Password);
             Pollster.SetPassword(Password);
 
@@ -91,7 +87,9 @@ void Menu(int Election){
             UserFile << "Apellido Materno: " << MotherName << endl;
             UserFile << "Run: " << Run << "-" << Dv << endl;
             UserFile << "Fecha de Nacimiento: " << Day << "/" << Month << "/" << Year << endl;
-            UserFile << "Genero"
+            UserFile << "Genero: " << Pollster.GetGender() << endl;
+            UserFile << "Correo: " << Email << endl;
+
             break;
         case 2:
             break;
