@@ -5,8 +5,13 @@ Birthday::Birthday(int Dd, int Mm, int Year){
     Month = Mm;
     this->Year = Year;
 }
-void Birthday::GetBirthday(){
-    std::cout<<Day<<"/"<<Month<<"/"<<Year<<std::endl;
+char* Birthday::GetBirthday(){
+    char RunAux[30];
+    sprintf(RunAux, "%d", Day);
+    strcat(RunAux,"/"+sprintf(RunAux, "%d", Month));
+    strcat(RunAux,"/"+sprintf(RunAux, "%d", Year));
+    return RunAux;
+    //std::cout<<Day<<"/"<<Month<<"/"<<Year<<std::endl;
 }
 
 //Clase Persona
@@ -37,7 +42,7 @@ bool Person::SetRun(int Rut){
 bool Person::SetPhone(int Num){
     Phone = Num;
 }
-bool Person::SetDV(char Dv){
+bool Person::SetDV(char *Dv){
     DV = Dv;
 }
 bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[255]){
@@ -76,12 +81,11 @@ bool Person::SetGender(int Option){
 int Person::GetID(){
     return ID;
 }
+char RunAux[30]; //Pegado con cinta americana
 char* Person::GetRun(){
-    //std::cout << Run << "-" << DV << std::endl;
-    char RunAux[30];
     sprintf(RunAux, "%d", Run);
-    //RunAux + "-" + DV
-    strcat(RunAux,"-"+DV);
+    strcat(RunAux,"-");
+    strcat(RunAux, DV);
     return RunAux;
 }
 char* Person::GetNames(){
