@@ -16,6 +16,8 @@ fstream AnswerFile("Answer/Answer.txt");
 string MainDir("/Catedra_1_C-");
 int Option, IdCouter;
 void IdVerifier();
+void Menu(int);
+void TestMenu(int);
 int main(){
     IdVerifier();
     setlocale(LC_ALL, "spanish");
@@ -34,11 +36,8 @@ void Menu(int Election){
     Email[255], Password[255];
     int Run, Day, Month, Year, GenderNumber, Phone; 
     User Pollster = User(); // pollster = Encuestador  
-    switch (Election){
-                 
-        case 1:
-            
-            
+    switch (Election){                 
+        case 1:            
             Pollster.SetID(IdCouter);
 
             cout << "Ingrese su nombre: ";
@@ -104,8 +103,22 @@ void Menu(int Election){
                 cout << "\nIngrese su Contraseña: ";
                 scanf("%s", Password);
                 if(strcmp(Email, Pollster.GetEmail()) == 0 && strcmp(Password,Pollster.GetPassword())){
-
+                    cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
+                    "1)Crear perfil de entrevistado\n" << 
+                    "2)Crear test\n" << "3)Crear preguntas" << endl;
+                    /* Objetivos
+                        +crear perfil de entrevistado
+                        +crear test
+                            -crear el propio test
+                            -añadir preguntas
+                        +crear preguntas y que se puede elegir a que test puede entrar
+                        +realizar encuesta
+                            -Se crea constantemente respuestas hasta que el limite de preguntas del test termina
+                    
+                    */
                     break;
+                }else{
+                    cout << "Ingrese los datos correctos" << endl;
                 }
             }           
             break;
@@ -125,18 +138,3 @@ void IdVerifier(){
         //Aqui seria el buscador en el archivo de texto
     }
 }
-/* Objetivos
-    *Creacion Clase Usuario
-    *Creacion Clase Pacientes
-    *Creacion Clase Preguntas
-    *Creacion Clase Encuesta
-    *Creacion Clase Respuesta
-    *Creacion Clase Examen
-    *
-    * 
-    * 
-    * 
-    * 
-    * 
-    * 
-*/
