@@ -30,11 +30,11 @@ int main(){
         Menu(Option);
     }
 }
-
+char Name[255], FatherName[255], MotherName[255], *Dv,
+    Email[255];
+int Run, Day, Month, Year, GenderNumber, Phone;
 void Menu(int Election){
-    char Name[255], FatherName[255], MotherName[255], *Dv,
-    Email[255], Password[255];
-    int Run, Day, Month, Year, GenderNumber, Phone;
+    char Password[255];
     User Pollster = User(); // pollster = Encuestador
     switch (Election){
         case 1:
@@ -65,7 +65,7 @@ void Menu(int Election){
             Pollster.SetBirthday(Day, Month, Year);
 
             cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
-            while (GenderNumber != 1 && GenderNumber != 2 && GenderNumber != 3)
+            while (GenderNumber < 1 && GenderNumber > 3)
             {
                 cin >> GenderNumber;
                 Pollster.SetGender(GenderNumber);
@@ -106,7 +106,7 @@ void Menu(int Election){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
                     "1)Crear perfil de entrevistado\n" <<
                     "2)Crear test\n" << "3)Crear preguntas" << endl;
-                    while (Election != 1 && Election != 2 && Election != 3){
+                    while (Election < 1 && Election > 3){
                         cin >> Election;
                         TestMenu(Election);
                     }
@@ -143,10 +143,61 @@ void IdVerifier(){
     }
 }
 void TestMenu(int Election){
+    Surveyed SurveyedPerson = Surveyed();
     switch (Election)
     {
-    case 1:
-        /* code */
+    case 1: // crear perfil de encuestado
+        SurveyedPerson.SetID(IdCouter);
+
+        cout << "Ingrese su nombre: ";
+        scanf("%s", Name);
+        cout << "\nIngrese su Apellido Paterno: ";
+        scanf("%s", FatherName);
+        cout << "\nIngrese su Apellido Materno: ";
+        scanf("%s", MotherName);
+        SurveyedPerson.SetFullName(Name, FatherName, MotherName);
+
+        cout << "\nIngrese su Run (sin el digito verificador): ";
+        cin >> Run;
+        SurveyedPerson.SetRun(Run);
+
+        cout << "\nIngrese su digito verificador: ";
+        scanf("%c", Dv);
+        SurveyedPerson.SetDV(Dv);
+
+        cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
+        cin >> Day;
+        cout << "\nMes:";
+        cin >> Month;
+        cout << "\nAño:";
+        cin >> Year;
+        SurveyedPerson.SetBirthday(Day, Month, Year);
+
+        cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
+        while (GenderNumber < 1 && GenderNumber > 3)
+        {
+            cin >> GenderNumber;
+            SurveyedPerson.SetGender(GenderNumber);
+        }
+
+        cout << "\nIngrese su Correo: ";
+        scanf("%s", Email);
+        SurveyedPerson.SetEmail(Email);
+
+        cout << "\nIngrese su Telefóno: ";
+        cin >> Phone;
+        SurveyedPerson.SetPhone(Phone);
+
+        SurveyFile << "/////////////" << endl;
+        SurveyFile << "Id: " << SurveyedPerson.GetID() << endl;
+        SurveyFile << "Nombre: " << Name << endl;
+        SurveyFile << "Apellido Paterno: " << FatherName << endl;
+        SurveyFile << "Apellido Materno: " << MotherName << endl;
+        SurveyFile << "Run: " << SurveyedPerson.GetRun() << endl;
+        SurveyFile << "Fecha de Nacimiento: " << SurveyedPerson.GetBirthday() << endl;
+        SurveyFile << "Genero: " << SurveyedPerson.GetGender() << endl;
+        SurveyFile << "Correo: " << Email << endl;
+        SurveyFile << "Telefóno: " << Phone << endl;
         break;
     case 2:
         break;
