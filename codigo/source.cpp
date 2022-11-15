@@ -5,13 +5,16 @@ Birthday::Birthday(int Dd, int Mm, int Year){
     Month = Mm;
     this->Year = Year;
 }
+char AuxStr1[10], AuxStr2[10], AuxStr3[10]; // Mas cinta americana
 char* Birthday::GetBirthday(){
-    char RunAux[30];
-    sprintf(RunAux, "%d", Day);
-    strcat(RunAux,"/"+sprintf(RunAux, "%d", Month));
-    strcat(RunAux,"/"+sprintf(RunAux, "%d", Year));
-    return RunAux;
-    //std::cout<<Day<<"/"<<Month<<"/"<<Year<<std::endl;
+    sprintf(AuxStr1, "%d", Day);
+    sprintf(AuxStr2, "%d", Month);
+    sprintf(AuxStr3, "%d", Year);
+    strcat(AuxStr1,"/");
+    strcat(AuxStr1, AuxStr2);
+    strcat(AuxStr1,"/");
+    strcat(AuxStr1, AuxStr3);
+    return AuxStr1;
 }
 
 //Clase Persona
