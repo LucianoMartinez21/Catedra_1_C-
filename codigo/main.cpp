@@ -15,7 +15,11 @@ fstream QuestionFile("Question/Question.txt");
 fstream AnswerFile("Answer/Answer.txt");
 string MainDir("/Catedra_1_C-");
 int Option, IdCouter;
-void IdVerifier();
+int IdVerifier(User);
+int IdVerifier(Surveyed);
+int IdVerifier(Test);
+int IdVerifier(Question);
+int IdVerifier(Answer);
 void Menu(int);
 void TestMenu(int);
 int main(){
@@ -133,7 +137,7 @@ void Menu(int Election){
     }
 }
 
-void IdVerifier(){
+int IdVerifier(){
     string AuxiliarString;
     getline(UserFile, AuxiliarString);
     if(IdCouter == NULL && AuxiliarString.length() == 0){
