@@ -41,7 +41,6 @@ public:
 
     //Getters    
     int GetID();
-    //int GetRun();
     //int GetPhone();
     //char GetDV();
     char* GetRun();//Lo devuelve con digito verificador
@@ -50,7 +49,7 @@ public:
     char* GetMother();
     char* GetFullName();
     char* GetGender();
-    void GetBirthday();
+    char* GetBirthday();
     //char GetEmail();
     bool Borrar();
     void GetDeleteAt();

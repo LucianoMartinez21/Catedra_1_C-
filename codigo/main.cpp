@@ -3,6 +3,7 @@
 #include "source.h"
 #include <locale.h>
 using namespace std;
+
 //Functions
 void Menu(int);
 /*PascalCase*/
@@ -21,9 +22,9 @@ int main(){
     while (true)
     {
         cout << "=====Programa de Encuestas=====\n1) Crear Cuenta"<<
-        "\n2) Iniciar Secion" << "\n3) Salir"
+        "\n2) Iniciar Sesion" << "\n3) Salir"
         << endl;
-        cin >> Option; 
+        cin >> Option;
         Menu(Option);
     }   
 }
@@ -32,7 +33,7 @@ void Menu(int Election){
     switch (Election){
         case 1:
             User Pollster = User(); // pollster = Encuestador
-            char Name[255], FatherName[255], MotherName[255], Dv,
+            char Name[255], FatherName[255], MotherName[255], *Dv,
             Email[255], Password[255];
             int Run, Day, Month, Year, GenderNumber, Phone;
             Pollster.SetID(IdCouter);
@@ -81,12 +82,12 @@ void Menu(int Election){
             Pollster.SetPassword(Password);
 
             UserFile << "/////////////" << endl;
-            UserFile << "Id: " << IdCouter << endl;
+            UserFile << "Id: " << Pollster.GetID() << endl;
             UserFile << "Nombre: " << Name << endl;
             UserFile << "Apellido Paterno: " << FatherName << endl;
             UserFile << "Apellido Materno: " << MotherName << endl;
-            UserFile << "Run: " << Run << "-" << Dv << endl;
-            UserFile << "Fecha de Nacimiento: " << Day << "/" << Month << "/" << Year << endl;
+            UserFile << "Run: " << Pollster.GetRun() << endl;
+            UserFile << "Fecha de Nacimiento: " << Pollster.GetBirthday() << endl;
             UserFile << "Genero: " << Pollster.GetGender() << endl;
             UserFile << "Correo: " << Email << endl;
 

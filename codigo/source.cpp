@@ -96,7 +96,6 @@ char* Person::GetNames(){
     //std::cout << Names << std::endl;
 }
 char* Person::GetFather(){
-
     return FatherName;
 }
 char* Person::GetMother(){
@@ -125,8 +124,8 @@ char* Person::GetGender(){
             break;
     }
 }
-void Person::GetBirthday(){
-    Birth->GetBirthday();
+char* Person::GetBirthday(){
+    return Birth->GetBirthday();
 }
 bool Person::Borrar(){
     if(DeleteAt != NULL){
@@ -143,7 +142,7 @@ void Person::GetDeleteAt(){
     ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
     strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    printf("Delete at: %s\n", buf);
+    //printf("Delete at: %s\n", buf);
     std::cout << "Delete at: " << buf << std::endl;
 }
 //Clase Usuario
@@ -185,7 +184,7 @@ bool Test::SetMaxPoint(int Max){
     MaxPoint = Max;
 }
 bool Test::SetName(char Name[30]){
-    for(int i = 0; i < 255; i++)
+    for(int i = 0; i < 30; i++)
         this->Name[i] = Name[i];
 }
 bool Test::SetObservation(char Observation[255]){
