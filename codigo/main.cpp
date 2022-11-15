@@ -147,24 +147,25 @@ void TestMenu(int Election){
     {
     case 1: // crear perfil de encuestado
         //SurveyedPerson.SetID(IdCouter);
+        IdVerifier(SurveyedPerson);
 
-        cout << "Ingrese su nombre: ";
+        cout << "Ingrese el nombre del entrevistado: ";
         scanf("%s", Name);
-        cout << "\nIngrese su Apellido Paterno: ";
+        cout << "\nIngrese el Apellido Paterno del entrevistado: ";
         scanf("%s", FatherName);
-        cout << "\nIngrese su Apellido Materno: ";
+        cout << "\nIngrese el Apellido Materno del entrevistado: ";
         scanf("%s", MotherName);
         SurveyedPerson.SetFullName(Name, FatherName, MotherName);
 
-        cout << "\nIngrese su Run (sin el digito verificador): ";
+        cout << "\nIngrese el Run del entrevistado(sin el digito verificador): ";
         cin >> Run;
         SurveyedPerson.SetRun(Run);
 
-        cout << "\nIngrese su digito verificador: ";
+        cout << "\nIngrese el digito verificador del entrevistado: ";
         scanf("%c", Dv);
         SurveyedPerson.SetDV(Dv);
 
-        cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
+        cout << "\nIngrese la Fecha de Nacimiento del entrevistado: \nDia:";
         cin >> Day;
         cout << "\nMes:";
         cin >> Month;
