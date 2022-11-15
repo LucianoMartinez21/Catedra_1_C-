@@ -24,6 +24,7 @@ string Searcher(fstream&, string);
 void Menu(int);
 void TestMenu(int);
 string StrAux;
+
 int main(){
     setlocale(LC_ALL, "spanish");
     while (true)
@@ -35,16 +36,19 @@ int main(){
         Menu(Option);
     }
 }
+
 char Name[255], FatherName[255], MotherName[255], *Dv,
     Email[255];
 int Run, Day, Month, Year, GenderNumber, Phone;
+
 void Menu(int Election){
+
     char Password[255];
     User Pollster = User(); // pollster = Encuestador
     switch (Election){
         case 1:
-            Pollster.SetID(IdCouter);
-
+            //Pollster.SetID(IdCouter);
+            IdVerifier(Pollster);
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
             cout << "\nIngrese su Apellido Paterno: ";
@@ -142,7 +146,7 @@ void TestMenu(int Election){
     switch (Election)
     {
     case 1: // crear perfil de encuestado
-        SurveyedPerson.SetID(IdCouter);
+        //SurveyedPerson.SetID(IdCouter);
 
         cout << "Ingrese su nombre: ";
         scanf("%s", Name);
@@ -203,56 +207,54 @@ void TestMenu(int Election){
     }
 }
 
-
-void IdVerifier(User){
-    string AuxiliarString;
+string AuxiliarString;
+void IdVerifier(User AuxUser){
     getline(UserFile, AuxiliarString);
-    if(IdCouter == NULL && AuxiliarString.length() == 0){
+    if(IdCouter == NULL || AuxiliarString.length() == 0){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(UserFile, "Id:"));
     }
+    AuxUser.SetID(IdCouter);
 }
-void IdVerifier(Surveyed){
-    string AuxiliarString;
+void IdVerifier(Surveyed AuxSurveyed){
+    
     getline(SurveyFile, AuxiliarString);
     if(IdCouter == NULL || AuxiliarString.length() == 0){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(SurveyFile, "Id:"));
-        //Aqui seria el buscador en el archivo de texto
     }
+    AuxSurveyed.SetID(IdCouter);
 }
-void IdVerifier(Test){
-    string AuxiliarString;
+void IdVerifier(Test AuxTest){
     getline(TestFile, AuxiliarString);
-    if(IdCouter == NULL && AuxiliarString.length() == 0){
+    if(IdCouter == NULL || AuxiliarString.length() == 0){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(TestFile, "Id:"));
-        //Aqui seria el buscador en el archivo de texto
     }
+    AuxTest.SetID(IdCouter);
 }
-void IdVerifier(Question){
-    string AuxiliarString;
+void IdVerifier(Question AuxQuestion){
     getline(QuestionFile, AuxiliarString);
-    if(IdCouter == NULL && AuxiliarString.length() == 0){
+    if(IdCouter == NULL || AuxiliarString.length() == 0){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(QuestionFile, "Id:"));
-        //Aqui seria el buscador en el archivo de texto
     }
+    AuxQuestion.SetID(IdCouter);
 }
-void IdVerifier(Answer){
-    string AuxiliarString;
+void IdVerifier(Answer AuxAnswer){
     getline(AnswerFile, AuxiliarString);
-    if(IdCouter == NULL && AuxiliarString.length() == 0){
+    if(IdCouter == NULL || AuxiliarString.length() == 0){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(AnswerFile, "Id:"));
-        //Aqui seria el buscador en el archivo de texto
     }
+    AuxAnswer.SetID(IdCouter);
 }
+
 string Searcher(fstream &f, string keyWord){
     string aux= "0";
     getline(f, StrAux);
