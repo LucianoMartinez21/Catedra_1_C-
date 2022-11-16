@@ -24,7 +24,7 @@ Person::Person(){
     Run = 0;
     Phone = 0;
     DV = '\0';
-    DeleteAt = NULL;
+    DeleteAt = 0;
     Birth = NULL;
 }
 Person::Person(int Dd, int Mm, int Year){
@@ -32,7 +32,7 @@ Person::Person(int Dd, int Mm, int Year){
     Run = 0;
     Phone = 0;
     DV = '\0';// '\0' ese una forma de asignar un caracter nulo
-    DeleteAt = NULL;
+    DeleteAt = 0;
     Birth = new Birthday(Dd, Mm, Year);
 }
 //Setters
@@ -101,8 +101,8 @@ char* Person::GetFather(){
 char* Person::GetMother(){
     return MotherName;
 }
-char* Person::GetFullName(){
-    char FullName[255*3]; // Un desperdicio de espacio para un desliz
+char FullName[765]; // Un desperdicio de espacio para un desliz
+char* Person::GetFullName(){ 
     strcat(FullName, Names);
     strcat(FullName, " ");
     strcat(FullName, FatherName);
@@ -131,7 +131,7 @@ char* Person::GetEmail(){
     return Email;
 }
 bool Person::Borrar(){
-    if(DeleteAt != NULL){
+    if(DeleteAt != 0){
         return false;
     }else{
         // Get current time
@@ -218,7 +218,7 @@ char* Test::GetObservation(){
     return Observation;
 }
 bool Test::Borrar(){
-    if(DeleteAt != NULL){
+    if(DeleteAt != 0){
         return false;
     }else{
         // Get current time
@@ -238,7 +238,7 @@ void Test::GetDeleteAt(){
 Question::Question(){
     ID = 0;
     FkId = 0;
-    DeleteAt = NULL;
+    DeleteAt = 0;
 }
 
 //Setters
@@ -273,7 +273,7 @@ char* Question::GetDescription(){
     return Description;
 }
 bool Question::Borrar(){
-    if(DeleteAt != NULL){
+    if(DeleteAt != 0){
         return false;
     }else{
         // Get current time
@@ -297,7 +297,7 @@ Answer::Answer(){
     ID = 0;
     Point = 0;
     FkId = 0;
-    DeleteAt = NULL;
+    DeleteAt = 0;
 }
 
 //Setters
@@ -337,7 +337,7 @@ char* Answer::GetText(){
     return Text;
 }
 bool Answer::Borrar(){
-    if(DeleteAt != NULL){
+    if(DeleteAt != 0){
         return false;
     }else{
         // Get current time
