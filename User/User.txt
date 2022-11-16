@@ -1,0 +1,33 @@
+/////////////
+Id: 1
+Nombre: Luciano
+Apellido Paterno: Martinez
+Apellido Materno: Labarthe
+Run: 12345-0
+Fecha de Nacimiento: 9/7/2001
+Genero: Male
+Correo: luciano@mail.com
+Telefóno: 123456
+DeleteAt: 
+/////////////
+Id: 2
+Nombre: Gerson
+Apellido Paterno: Choque
+Apellido Materno: Rodriguez
+Run: 12785-k
+Fecha de Nacimiento: 24/4/2000
+Genero: Male
+Correo: a@b.com
+Telefóno: 789456
+DeleteAt: 
+/////////////
+Id: 3
+Nombre: Juaquin
+Apellido Paterno: Rojas
+Apellido Materno: Ordonez
+Run: 798456-5
+Fecha de Nacimiento: 1/2/2002
+Genero: Male
+Correo: otro@otro.cl
+Telefóno: 7774449
+DeleteAt: 

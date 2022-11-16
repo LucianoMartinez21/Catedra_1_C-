@@ -7,18 +7,18 @@ using namespace std;
 void Menu(int);
 /*PascalCase*/
 //Global Variables
-fstream UserFile("../User.txt", ios::out);
-fstream SurveyFile("../Surveyed/Surveyed.txt", ios::out);
-fstream TestFile("../Test/Test.txt", ios::out);
-fstream QuestionFile("../Question/Question.txt", ios::out);
-fstream AnswerFile("../Answer/Answer.txt", ios::out);
-string MainDir("/Catedra_1_C-");
+fstream UserFile("User/User.txt", ios::out | ios::in | ios::app);
+fstream SurveyFile("Surveyed/Surveyed.txt", ios::out | ios::in | ios::app);
+fstream TestFile("Test/Test.txt", ios::out | ios::in | ios::app);
+fstream QuestionFile("Question/Question.txt", ios::out | ios::in | ios::app);
+fstream AnswerFile("Answer/Answer.txt", ios::out | ios::in | ios::app);
 int IdCouter = 0;
-void IdVerifier(User);
-void IdVerifier(Surveyed);
-void IdVerifier(Test);
-void IdVerifier(Question);
-void IdVerifier(Answer);
+/*
+void IdVerifier(User, fstream&);
+void IdVerifier(Surveyed, fstream&);
+void IdVerifier(Test, fstream&);
+void IdVerifier(Question, fstream&);
+void IdVerifier(Answer, fstream&);*/
 string Searcher(fstream&, string);
 bool EmailChecker(char[255], fstream&);
 void Menu(int);
@@ -48,8 +48,11 @@ void Menu(int Election){
     switch (Election){
         case 1:
             //Pollster.SetID(IdCouter);
-            IdVerifier(Pollster);
+            //IdVerifier(Pollster, UserFile);
+            Aux= "0";
+            IdCouter = stoi(Searcher(UserFile, "Id:"))+1;
             Pollster.SetID(IdCouter);
+
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
             cout << "\nIngrese su Apellido Paterno: ";
@@ -65,7 +68,7 @@ void Menu(int Election){
             cout << "\nIngrese su digito verificador: ";
             //scanf("%c", Dv);
             cin >> Dv;
-            cout << "Funciona" << endl;
+            //cout << "Funciona" << endl;
             Pollster.SetDV(Dv);
 
             cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
@@ -76,7 +79,7 @@ void Menu(int Election){
             cin >> Year;
             Pollster.SetBirthday(Day, Month, Year);
 
-            cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
+            cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros" << endl;
             cin >> GenderNumber;
             Pollster.SetGender(GenderNumber);
             //GenderNumber = 0;
@@ -98,7 +101,6 @@ void Menu(int Election){
             /*cout << "\nIngrese su Contraseña: ";
             scanf("%s", Password);
             Pollster.SetPassword(Password);*/
-
             UserFile << "/////////////" << endl;
             UserFile << "Id: " << Pollster.GetID() << endl;
             UserFile << "Nombre: " << Name << endl;
@@ -166,7 +168,7 @@ void TestMenu(int Election){
     case 1:
         // crear perfil de encuestado
         //SurveyedPerson.SetID(IdCouter);
-        IdVerifier(SurveyedPerson);
+        //IdVerifier(SurveyedPerson, SurveyFile);
 
         cout << "Ingrese el nombre del entrevistado: ";
         scanf("%s", Name);
@@ -220,7 +222,7 @@ void TestMenu(int Election){
         SurveyFile << "DeleteAt: " << endl;
         break;
     case 2:
-        IdVerifier(NewTest);
+        //IdVerifier(NewTest, TestFile);
 
         cout << "Ingrese el titulo del test: ";
         scanf("%s", Name);
@@ -247,7 +249,7 @@ void TestMenu(int Election){
         TestFile << "Observación: " << NewTest.GetObservation() << endl;
 
         while(Election != 0){
-            IdVerifier(NewQuestion);
+            //IdVerifier(NewQuestion, QuestionFile);
             NewQuestion.AssignedTest(NewTest);
 
             cout << "\nIngrese una pregunta";
@@ -271,12 +273,14 @@ void TestMenu(int Election){
 
         break;
     case 3:
-        IdVerifier(NewQuestion);
+        //IdVerifier(NewQuestion, QuestionFile);
         while(!TestFile.eof())
         {
             getline(TestFile,StrAux);
             if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
         }
+        TestFile.clear();
+        TestFile.seekg (0, ios::beg);
         while(Election != 0){
             cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta:" << endl;
             cin >> Election;
@@ -297,12 +301,14 @@ void TestMenu(int Election){
         QuestionFile << "DeleteAt: " << endl;
         break;
     case 4:
-        IdVerifier(NewAnswer);
+        //IdVerifier(NewAnswer, AnswerFile);
         while(!QuestionFile.eof())
         {
             getline(QuestionFile,StrAux);
             if(StrAux.find("Id:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
         }
+        QuestionFile.clear();
+        QuestionFile.seekg (0, ios::beg);
         while(Election != 0){
             cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta:" << endl;
             cin >> Election;
@@ -324,6 +330,8 @@ void TestMenu(int Election){
                 }
             }
         }
+        TestFile.clear();
+        TestFile.seekg (0, ios::beg);
         cout << "\nIngrese una respuesta";
         scanf("%s", QuestionText);
         NewAnswer.SetText(QuestionText);
@@ -355,6 +363,8 @@ void TestMenu(int Election){
             getline(TestFile,StrAux);
             if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
         }
+        TestFile.clear();
+        TestFile.seekg (0, ios::beg);
         cin >> Election;
         NewTest.SetID(Election);
         Aux = "Foreign key Id: "+ to_string(NewTest.GetID()); 
@@ -369,7 +379,7 @@ void TestMenu(int Election){
                         cout << StrAux << endl;
                         /*while (!)
                         {
-                            
+
                         }*/
                         
                     }
@@ -382,67 +392,84 @@ void TestMenu(int Election){
         break;
     }
 }
+/*
 int length;
-void IdVerifier(User AuxUser){
+void IdVerifier(User AuxUser, fstream &File){
     Aux= "0";
-    UserFile.seekg(0,ios::end);
-    length = UserFile.tellg();
-    //cout << "funciona" << endl;
-    //cout << length << endl;
-    if(length == -1){
-        //cout << "funciona" << endl;
+    //cout << stoi(Searcher(File, "Id:")) << endl;
+    length = stoi(Searcher(File, "Id:"));
+    /*
+    File.seekg(0,ios::end);
+    int length = File.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        //cout << "funciona" << endl;
-        IdCouter = stoi(Searcher(UserFile, "Id:")) + 1;
+        IdCouter = stoi(Searcher(File, "Id:")) + 1;
     }
-    //cout << "funciona" << endl;
-    AuxUser.SetID(IdCouter);
+    length = 0;
+    //AuxUser.SetID(IdCouter);
 }
-void IdVerifier(Surveyed AuxSurveyed){
+void IdVerifier(Surveyed AuxSurveyed, fstream &File){
     Aux= "0";
-    SurveyFile.seekg(0,ios::end);
-    int length = SurveyFile.tellg();
-    if(length == -1){
+    //cout << stoi(Searcher(File, "Id:")) << endl;
+    length = stoi(Searcher(File, "Id:"));
+    /*
+    File.seekg(0,ios::end);
+    int length = File.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(SurveyFile, "Id:")) + 1;
+        IdCouter = stoi(Searcher(File, "Id:")) + 1;
     }
-    AuxSurveyed.SetID(IdCouter);
+    length = 0;
+    //AuxSurveyed.SetID(IdCouter);
 }
-void IdVerifier(Test AuxTest){
+void IdVerifier(Test AuxTest, fstream &File){
     Aux= "0";
-    TestFile.seekg(0,ios::end);
-    int length = TestFile.tellg();
-    if(length == -1){
+    //cout << stoi(Searcher(File, "Id:")) << endl;
+    length = stoi(Searcher(File, "Id:"));
+    /*
+    File.seekg(0,ios::end);
+    int length = File.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(TestFile, "Id:")) + 1;
+        IdCouter = stoi(Searcher(File, "Id:")) + 1;
     }
-    AuxTest.SetID(IdCouter);
+    length = 0;
+    //AuxTest.SetID(IdCouter);
 }
-void IdVerifier(Question AuxQuestion){
+void IdVerifier(Question AuxQuestion, fstream &File){
     Aux= "0";
-    QuestionFile.seekg(0,ios::end);
-    int length = QuestionFile.tellg();
-    if(length == -1){
+    //cout << stoi(Searcher(File, "Id:")) << endl;
+    length = stoi(Searcher(File, "Id:"));
+    /*
+    File.seekg(0,ios::end);
+    int length = File.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(QuestionFile, "Id:")) + 1;
+        IdCouter = stoi(Searcher(File, "Id:")) + 1;
     }
-    AuxQuestion.SetID(IdCouter);
+    length = 0;
+    //AuxQuestion.SetID(IdCouter);
 }
-void IdVerifier(Answer AuxAnswer){
+void IdVerifier(Answer AuxAnswer, fstream &File){
     Aux= "0";
-    AnswerFile.seekg(0,ios::end);
-    int length = AnswerFile.tellg();
-    if(length == -1){
+    //cout << stoi(Searcher(File, "Id:")) << endl;
+    length = stoi(Searcher(File, "Id:"));
+    /*
+    File.seekg(0,ios::end);
+    int length = File.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(AnswerFile, "Id:")) + 1;
+        IdCouter = stoi(Searcher(File, "Id:")) + 1;
     }
-    AuxAnswer.SetID(IdCouter);
+    length = 0;
+    //AuxAnswer.SetID(IdCouter);
 }
+*/
 
 bool EmailChecker(char CheckEmail[255], fstream &File){
     while(!File.eof())
@@ -451,24 +478,38 @@ bool EmailChecker(char CheckEmail[255], fstream &File){
         if(StrAux.find("Correo:") != string::npos){
             //cout << StrAux.substr(StrAux.find(" ")+1,StrAux.length());
             if(CheckEmail == StrAux.substr(StrAux.find(" ")+1,StrAux.length())){
+                File.clear();
+                File.seekg (0, ios::beg);
                 return true;
             }
         }
     }
-    if(File.eof()) return false;
+    if(File.eof()){
+        File.clear();
+        File.seekg (0, ios::beg);
+        return false; 
+    } 
+    
 }
 
 string Searcher(fstream &File, string KeyWord){
 
     getline(File, StrAux);
-    for (size_t i = 0; i < StrAux.length(); i++)
-    {
-        if (isdigit(StrAux[i]) == 1){
-            if(StrAux[i] > stoi(Aux)){
-                Aux = StrAux[i];
+    if(StrAux.find(KeyWord) != string::npos){
+        for (size_t i = 0; i < StrAux.length(); i++)
+        {
+            if (isdigit(StrAux[i]) == 1){
+                if(StrAux[i] > stoi(Aux)){
+                    Aux = StrAux[i];
+                    cout << Aux << endl;
+                }
             }
         }
     }
-    if(File.eof()) return Aux;
+    if(File.eof()) {  
+        File.clear();
+        File.seekg (0, ios::beg);
+        return Aux;
+    }
     return Searcher(File, KeyWord);
 }
