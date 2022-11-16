@@ -237,6 +237,26 @@ void TestMenu(int Election){
         
         break;
     case 3:
+        IdVerifier(NewQuestion);
+        while(!TestFile.eof())
+        {
+            getline(TestFile,StrAux);
+            if(StrAux.find("Id:") == string::npos) cout << StrAux << endl;
+        }
+        
+        NewQuestion.AssignedTest(NewTest);
+        cout << "\nIngrese una pregunta";
+        scanf("%s", QuestionText);
+        NewQuestion.SetQuestion(QuestionText);
+        cout << "\nIngrese una descripción a la pregunta";
+        scanf("%s", Description);
+        NewQuestion.SetDescription(Description);
+        QuestionFile << "/////////////" << endl;
+        QuestionFile << "Id: " << NewQuestion.GetID() << endl;
+        QuestionFile << "Foreign key Id: " << NewQuestion.GetFkId() << endl;
+        QuestionFile << "Pregunta: " << NewQuestion.GetQuestion() << endl;
+        QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
+        QuestionFile << "DeleteAt: " << endl;
         break;
     default:
         break;
