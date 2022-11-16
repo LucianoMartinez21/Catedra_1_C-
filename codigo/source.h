@@ -82,10 +82,10 @@ public:
     Test();
     //Setters
     bool SetID(int);
-    bool SetCutPoint(int);
+    bool SetCutPoint(int); // punto de corte donde una persona se clasifica con depreshoun
     bool SetMaxPoint(int);
     bool SetName(char[30]);
-    bool SetObservation(char[255]);
+    bool SetObservation(char[255]); // Se escribe el objetivo o motivo tipo automemoria o observacion interna del objetivo del test
     //Getters
     int GetID();
     int GetCutPoint();

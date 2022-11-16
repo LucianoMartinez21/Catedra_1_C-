@@ -103,6 +103,7 @@ void Menu(int Election){
             UserFile << "Correo: " << Email << endl;
             UserFile << "Telefóno: " << Phone << endl;
             UserFile << "Contraseña: " << Password << endl;
+            UserFile << "DeleteAt: " << endl;
             break;
         case 2:
             while (Email != "0")
@@ -114,20 +115,20 @@ void Menu(int Election){
                 if(strcmp(Email, Pollster.GetEmail()) == 0 && strcmp(Password,Pollster.GetPassword())){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
                     "1)Crear perfil de entrevistado\n" <<
-                    "2)Crear test\n" << "3)Crear preguntas" << endl;
+                    "2)Crear test\n" << "3)Crear preguntas\n" << "4)Realizar test\n" << endl;
                     while (Election < 1 && Election > 3){
                         cin >> Election;
                         TestMenu(Election);
                     }
                     /* Objetivos
-                        +crear perfil de entrevistado
+                        +crear perfil de entrevistado Done
                         +crear test
                             -crear el propio test
                             -añadir preguntas
                         +crear preguntas y que se puede elegir a que test puede entrar
                         +realizar encuesta
                             -Se crea constantemente respuestas hasta que el limite de preguntas del test termina
-                        +terminar de hacer la funcion IdVerifier
+                        +terminar de hacer la funcion IdVerifier Done
                     */
                     break;
                 }else{
@@ -143,6 +144,9 @@ void Menu(int Election){
 }
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
+    Test NewTest = Test();
+    Question NewQuestion = Question();
+    Answer NewAnswer = Answer();
     switch (Election)
     {
     case 1: // crear perfil de encuestado
@@ -198,8 +202,17 @@ void TestMenu(int Election){
         SurveyFile << "Genero: " << SurveyedPerson.GetGender() << endl;
         SurveyFile << "Correo: " << Email << endl;
         SurveyFile << "Telefóno: " << Phone << endl;
+        SurveyFile << "DeleteAt: " << endl;
         break;
     case 2:
+        IdVerifier(NewTest);
+        cout << "Ingrese el titulo del test: ";
+        scanf("%s", Name);
+        NewTest.SetName(Name);
+        cout << "Ingrese la razón del test: ";
+        scanf("%s", Name);
+        NewTest.SetObservation(Name);
+        
         break;
     case 3:
         break;
