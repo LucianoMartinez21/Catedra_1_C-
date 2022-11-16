@@ -1,10 +1,10 @@
 
 
-![](https://user-images.githubusercontent.com/115719198/202081889-6c9f4488-d5d3-4c73-84cf-9b4690a547b9.jpg)
+![logo 3](https://user-images.githubusercontent.com/115719198/202089292-7b1ffd94-0ea0-4486-a5d2-8af57580e7ce.png)
 
 ============================================================================================
 
-<h1 align="center"> :desktop_computer: PROYECTO FUNDAMENTOS DEL LENGUAJE DE LA PROGRAMACION :desktop_computer: </h1>
+<h1 align="center"> :desktop_computer: PROYECTO FUNDAMENTOS DEL LENGUAJE DE LA :desktop_computer:PROGRAMACION </h1>
 
 ============================================================================================
 
@@ -43,11 +43,11 @@
 
 **Indica cómo se puede descargar o acceder al código fuente del proyecto, ya sea proyecto inicial o final**
 
+============================================================================================
+
 ## 🛠️ Abre y ejecuta el proyecto
 
 **Muestra las instrucciones necesarias para abrir y ejecutar el proyecto**
 
-1° 
-2°
-3°
-4°
+============================================================================================
+
