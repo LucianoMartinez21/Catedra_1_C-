@@ -7,12 +7,14 @@ Modificado por Joaquin
 Modificado de nuevo por Luis
 Modificado en mi pc nuevo Joaquin
 
-===============================================================================
-![](../../../../../../Downloads/unap.png)
+===========================================================================
+![LOGO UNAP](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.unap.cl%2Fprontus_unap%2Fsite%2Fdocs%2F20170531%2F20170531101525%2Fcuenta_publica_unap_2020.pdf&psig=AOvVaw2mJl48LCMFGsKD57PTQJqk&ust=1668655983312000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCLDx4vHhsfsCFQAAAAAdAAAAABAE)
 
-<h1 align="center"> PROYECTO FUNDAMENTOS DEL LENGUAJE DE LA PROGRAMACION </h1>
+<h1 align="center"> :desktop_computer: PROYECTO FUNDAMENTOS DEL LENGUAJE DE LA PROGRAMACION :desktop_computer: </h1>
 
-##Índice
+===========================================================================
+
+## Índice
 
 *[Índice](#índice)
 
@@ -22,7 +24,7 @@ Modificado en mi pc nuevo Joaquin
 
 *[Características de la aplicación y demostración](#Características-de-la-aplicación-y-demostración)
 
-*[Acceso al proyecto](#acceso-proyecto)
+*[Acceso al proyecto](https://vscode.dev/github/LucianoMartinez21/Catedra_1_C-/blob/1a95dc148c3f1531c8e2a9d35366887fef26d7b5/README.md#L45)
 
 *[Tecnologías utilizadas](#tecnologías-utilizadas)
 
@@ -34,10 +36,11 @@ Modificado en mi pc nuevo Joaquin
 
 *[Conclusión](#conclusión)
 
+===========================================================================
 
-<h4 align="center"> ESTADO DEL PROYECTO: 
-:construction: Proyecto en construcción :construction:
-</h4>
+<p align="left">
+   <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+   </p>
 
 \## 📁 Acceso al proyecto
 
