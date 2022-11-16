@@ -7,13 +7,37 @@ Modificado por Joaquin
 Modificado de nuevo por Luis
 Modificado en mi pc nuevo Joaquin
 
-================================
-<h4 align="center">
+===============================================================================
+![](../../../../../../Downloads/unap.png)
+
+<h1 align="center"> PROYECTO FUNDAMENTOS DEL LENGUAJE DE LA PROGRAMACION </h1>
+
+##Índice
+
+*[Índice](#índice)
+
+*[Estado del proyecto](#Estado-del-proyecto)
+
+*[Descripción del proyecto](#descripción-del-proyecto)
+
+*[Características de la aplicación y demostración](#Características-de-la-aplicación-y-demostración)
+
+*[Acceso al proyecto](#acceso-proyecto)
+
+*[Tecnologías utilizadas](#tecnologías-utilizadas)
+
+*[Personas Contribuyentes](#personas-contribuyentes)
+
+*[Personas-Desarrolladores del Proyecto](#personas-desarrolladores)
+
+*[Licencia](#licencia)
+
+*[Conclusión](#conclusión)
+
+
+<h4 align="center"> ESTADO DEL PROYECTO: 
 :construction: Proyecto en construcción :construction:
 </h4>
-
-<h1 align="center"> INSTRUCCIONES PARA UN CORRECTO FUNCIONAMIENTO </h1>
-
 
 \## 📁 Acceso al proyecto
 
