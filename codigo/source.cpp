@@ -152,6 +152,7 @@ void Person::GetDeleteAt(){
 User::User(){
     //std::cout << "hola"<< std::endl;
 }
+/*
 bool User::SetPassword(char Pass[255]){
     for(int i = 0; i < 255; i++) 
         Password[i] = Pass[i];
@@ -160,7 +161,7 @@ bool User::SetPassword(char Pass[255]){
 //Getters
 char* User::GetPassword(){
     return Password;
-}
+}*/
 
 //Clase Entrevistado
 Surveyed::Surveyed(){}
@@ -216,7 +217,23 @@ char* Test::GetName(){
 char* Test::GetObservation(){
     return Observation;
 }
-
+bool Test::Borrar(){
+    if(DeleteAt != NULL){
+        return false;
+    }else{
+        // Get current time
+        DeleteAt = time(&DeleteAt); 
+        return true;
+    }       
+}
+void Test::GetDeleteAt(){
+    struct tm ts;
+    char buf[80];
+    ts = *localtime(&DeleteAt);
+    // Format time, "ddd dd/mm/yyyy zzz"
+    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
+    std::cout << "Delete at: " << buf << std::endl;
+}
 //Clase Pregunta
 Question::Question(){
     ID = 0;
@@ -334,6 +351,5 @@ void Answer::GetDeleteAt(){
     ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
     strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    printf("Delete at: %s\n", buf);
     std::cout << "Delete at: " << buf << std::endl;
 }

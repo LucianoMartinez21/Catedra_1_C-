@@ -21,6 +21,7 @@ void IdVerifier(Test);
 void IdVerifier(Question);
 void IdVerifier(Answer);
 string Searcher(fstream&, string);
+bool EmailChecker(char[255], fstream&);
 void Menu(int);
 void TestMenu(int);
 string StrAux, Aux;
@@ -89,9 +90,9 @@ void Menu(int Election){
             cin >> Phone;
             Pollster.SetPhone(Phone);
 
-            cout << "\nIngrese su Contraseña: ";
+            /*cout << "\nIngrese su Contraseña: ";
             scanf("%s", Password);
-            Pollster.SetPassword(Password);
+            Pollster.SetPassword(Password);*/
 
             UserFile << "/////////////" << endl;
             UserFile << "Id: " << Pollster.GetID() << endl;
@@ -103,7 +104,7 @@ void Menu(int Election){
             UserFile << "Genero: " << Pollster.GetGender() << endl;
             UserFile << "Correo: " << Email << endl;
             UserFile << "Telefóno: " << Phone << endl;
-            UserFile << "Contraseña: " << Password << endl;
+            //UserFile << "Contraseña: " << Password << endl;
             UserFile << "DeleteAt: " << endl;
             break;
         case 2:
@@ -111,9 +112,11 @@ void Menu(int Election){
             {
                 cout << "\nIngrese su Correo (Digite '0' para cancelar): ";
                 scanf("%s", Email);
+                /*
                 cout << "\nIngrese su Contraseña: ";
-                scanf("%s", Password);
-                if(strcmp(Email, Pollster.GetEmail()) == 0 && strcmp(Password,Pollster.GetPassword())){
+                scanf("%s", Password);*/
+                
+                if(EmailChecker(Email, UserFile) == true){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
                     "1)Crear perfil de entrevistado\n" <<
                     "2)Crear test\n" << "3)Crear preguntas\n" << "4)Realizar test\n" << endl;
@@ -123,10 +126,11 @@ void Menu(int Election){
                     }
                     /* Objetivos
                         +crear perfil de entrevistado Done
-                        +crear test
+                        +crear test Done
                             -crear el propio test
                             -añadir preguntas
-                        +crear preguntas y que se puede elegir a que test puede entrar
+                        +crear preguntas y que se puede elegir a que test puede entrar Done
+                        +Crear las respuestas
                         +realizar encuesta
                             -Se crea constantemente respuestas hasta que el limite de preguntas del test termina
                         +terminar de hacer la funcion IdVerifier Done
@@ -145,6 +149,7 @@ void Menu(int Election){
 }
 
 char QuestionText[255], Description[255]; 
+int MaxPoint;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -209,21 +214,43 @@ void TestMenu(int Election){
         break;
     case 2:
         IdVerifier(NewTest);
+
         cout << "Ingrese el titulo del test: ";
         scanf("%s", Name);
         NewTest.SetName(Name);
+
         cout << "\nIngrese la razón del test: ";
         scanf("%s", Name);
         NewTest.SetObservation(Name);
+
+        cout << "\nIngrese el puntaje máximo del test: ";
+        cin >> MaxPoint;
+        NewTest.SetMaxPoint(MaxPoint);
+
+        float PointModifier;
+        cout << "\nIngrese el porcentaje para ajustar el punto de corte (Ej: 0.5 = 50%): ";
+        cin >> PointModifier;
+        NewTest.SetCutPoint(round(MaxPoint*PointModifier));
+        
+        TestFile << "/////////////" << endl;
+        TestFile << "Id: " << NewTest.GetID() << endl;
+        TestFile << "Titulo: " << NewTest.GetName() << endl;
+        TestFile << "Puntaje Máximo: " << NewTest.GetMaxPoint() << endl;
+        TestFile << "Puntaje de Corte: " << NewTest.GetCutPoint() << endl;
+        TestFile << "Observación: " << NewTest.GetObservation() << endl;
+
         while(Election != 0){
             IdVerifier(NewQuestion);
             NewQuestion.AssignedTest(NewTest);
+
             cout << "\nIngrese una pregunta";
             scanf("%s", QuestionText);
             NewQuestion.SetQuestion(QuestionText);
+
             cout << "\nIngrese una descripción a la pregunta";
             scanf("%s", Description);
             NewQuestion.SetDescription(Description);
+
             QuestionFile << "/////////////" << endl;
             QuestionFile << "Id: " << NewQuestion.GetID() << endl;
             QuestionFile << "Foreign key Id: " << NewQuestion.GetFkId() << endl;
@@ -241,9 +268,14 @@ void TestMenu(int Election){
         while(!TestFile.eof())
         {
             getline(TestFile,StrAux);
-            if(StrAux.find("Id:") == string::npos) cout << StrAux << endl;
+            if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
         }
-        
+        while(Election != 0){
+            cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta:" << endl;
+            cin >> Election;
+            NewTest.SetID(Election);
+            Election = 0;
+        }
         NewQuestion.AssignedTest(NewTest);
         cout << "\nIngrese una pregunta";
         scanf("%s", QuestionText);
@@ -319,9 +351,23 @@ void IdVerifier(Answer AuxAnswer){
     AuxAnswer.SetID(IdCouter);
 }
 
-string Searcher(fstream &f, string keyWord){
+bool EmailChecker(char CheckEmail[255], fstream &File){
+    while(!File.eof())
+    {
+        getline(UserFile,StrAux);
+        if(StrAux.find("Correo:") != string::npos){
+            //cout << StrAux.substr(StrAux.find(" ")+1,StrAux.length());
+            if(CheckEmail == StrAux.substr(StrAux.find(" ")+1,StrAux.length())){
+                return true;
+            }
+        }
+    }
+    if(File.eof()) return false;
+}
+
+string Searcher(fstream &File, string KeyWord){
     
-    getline(f, StrAux);
+    getline(File, StrAux);
     for (size_t i = 0; i < StrAux.length(); i++)
     {
         if (isdigit(StrAux[i]) == 1){
@@ -330,6 +376,6 @@ string Searcher(fstream &f, string keyWord){
             }
         }
     }
-    if(f.eof()) return Aux;
-    return Searcher(f, keyWord);
+    if(File.eof()) return Aux;
+    return Searcher(File, KeyWord);
 }

@@ -58,11 +58,11 @@ public:
 
 class User : public Person{
 private:
-    char Password[255];
+    //char Password[255];
 public:
     User();
-    bool SetPassword(char[255]);
-    char* GetPassword();
+    //bool SetPassword(char[255]);
+    //char* GetPassword();
 };
 
 class Surveyed : public Person{
@@ -78,6 +78,7 @@ class Test{
 private:
     int ID, CutPoint, MaxPoint;
     char Name[30], Observation[255];
+    time_t DeleteAt;
 public:
     Test();
     //Setters
@@ -92,6 +93,8 @@ public:
     int GetMaxPoint();
     char* GetName();
     char* GetObservation();
+    bool Borrar();
+    void GetDeleteAt();
 }; 
 
 class Question{
