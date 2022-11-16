@@ -7,11 +7,11 @@ using namespace std;
 void Menu(int);
 /*PascalCase*/
 //Global Variables
-fstream UserFile(".\\User\\User.txt");
-fstream SurveyFile(".\\Surveyed\\Surveyed.txt");
-fstream TestFile(".\\Test\\Test.txt");
-fstream QuestionFile(".\\Question\\Question.txt");
-fstream AnswerFile(".\\Answer\\Answer.txt");
+fstream UserFile("../User.txt", ios::out);
+fstream SurveyFile("../Surveyed/Surveyed.txt", ios::out);
+fstream TestFile("../Test/Test.txt", ios::out);
+fstream QuestionFile("../Question/Question.txt", ios::out);
+fstream AnswerFile("../Answer/Answer.txt", ios::out);
 string MainDir("/Catedra_1_C-");
 int IdCouter = 0;
 void IdVerifier(User);
@@ -38,7 +38,7 @@ int main(){
 }
 
 
-char Name[255], FatherName[255], MotherName[255], *Dv,
+char Name[255], FatherName[255], MotherName[255], Dv,
     Email[255];
 int Run, Day, Month, Year, GenderNumber, Phone;
 
@@ -63,23 +63,29 @@ void Menu(int Election){
             Pollster.SetRun(Run);
 
             cout << "\nIngrese su digito verificador: ";
-            scanf("%c", Dv);
+            //scanf("%c", Dv);
+            cin >> Dv;
+            cout << "Funciona" << endl;
             Pollster.SetDV(Dv);
 
             cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
             cin >> Day;
             cout << "\nMes:";
             cin >> Month;
-            cout << "\nAño:";
+            cout << "\nYear:";
             cin >> Year;
             Pollster.SetBirthday(Day, Month, Year);
 
             cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
+            cin >> GenderNumber;
+            Pollster.SetGender(GenderNumber);
+            //GenderNumber = 0;
+            /*
             while (GenderNumber < 1 && GenderNumber > 3)
             {
                 cin >> GenderNumber;
                 Pollster.SetGender(GenderNumber);
-            }
+            }*/
 
             cout << "\nIngrese su Correo: ";
             scanf("%s", Email);
@@ -105,6 +111,7 @@ void Menu(int Election){
             UserFile << "Telefóno: " << Phone << endl;
             //UserFile << "Contraseña: " << Password << endl;
             UserFile << "DeleteAt: " << endl;
+            cout << "Registro completado!" << endl;
             break;
         case 2:
             while (Email != "0")

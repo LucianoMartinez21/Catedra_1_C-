@@ -17,7 +17,7 @@ public:
 class Person{
 private:
     int ID, Run, Phone;
-    char *DV, Names[255], FatherName[255], // DV = Digito verificador
+    char DV, Names[255], FatherName[255], // DV = Digito verificador
     MotherName[255], Email[255];
     Birthday *Birth;
     enum Genus Gender;
@@ -30,7 +30,7 @@ public:
     bool SetID(int);
     bool SetRun(int);
     bool SetPhone(int);
-    bool SetDV(char*);
+    bool SetDV(char);
     bool SetFullName(char[255], char[255], char[255]);
     //bool SetNames(char[255]);
     //bool SetFather(char[255]);

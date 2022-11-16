@@ -30,7 +30,7 @@ Person::Person(int Dd, int Mm, int Year){
     ID = 0;
     Run = 0;
     Phone = 0;
-    DV = '\0';// '\0' ese una forma de asignar un caracter nulo
+    //DV = '\0';// '\0' ese una forma de asignar un caracter nulo
     DeleteAt = 0;
     Birth = new Birthday(Dd, Mm, Year);
 }
@@ -44,7 +44,7 @@ bool Person::SetRun(int Rut){
 bool Person::SetPhone(int Num){
     Phone = Num;
 }
-bool Person::SetDV(char *Dv){
+bool Person::SetDV(char Dv){
     DV = Dv;
 }
 bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[255]){
@@ -87,7 +87,8 @@ char RunAux[30]; //Pegado con cinta americana
 char* Person::GetRun(){
     sprintf(RunAux, "%d", Run);
     strcat(RunAux,"-");
-    strcat(RunAux, DV);
+    //strcat(RunAux, DV);
+    strncat(RunAux, &DV, 1);
     return RunAux;
 }
 char* Person::GetNames(){
