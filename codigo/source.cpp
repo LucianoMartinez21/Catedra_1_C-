@@ -5,8 +5,16 @@ Birthday::Birthday(int Dd, int Mm, int Year){
     Month = Mm;
     this->Year = Year;
 }
-void Birthday::GetBirthday(){
-    std::cout<<Day<<"/"<<Month<<"/"<<Year<<std::endl;
+char AuxStr1[10], AuxStr2[10], AuxStr3[10]; // Mas cinta americana
+char* Birthday::GetBirthday(){
+    sprintf(AuxStr1, "%d", Day);
+    sprintf(AuxStr2, "%d", Month);
+    sprintf(AuxStr3, "%d", Year);
+    strcat(AuxStr1,"/");
+    strcat(AuxStr1, AuxStr2);
+    strcat(AuxStr1,"/");
+    strcat(AuxStr1, AuxStr3);
+    return AuxStr1;
 }
 
 //Clase Persona
@@ -37,7 +45,7 @@ bool Person::SetRun(int Rut){
 bool Person::SetPhone(int Num){
     Phone = Num;
 }
-bool Person::SetDV(char Dv){
+bool Person::SetDV(char *Dv){
     DV = Dv;
 }
 bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[255]){
@@ -57,13 +65,13 @@ bool Person::SetBirthday(int Dd, int Mm, int Year){
 bool Person::SetGender(int Option){
     switch (Option)
     {
-    case 0:
+    case 1:
         Gender = Male;
         break;
-    case 1:
+    case 2:
         Gender = Female;
         break;
-    case 2:
+    case 3:
         Gender = Other;
         break;
     default:
@@ -76,34 +84,51 @@ bool Person::SetGender(int Option){
 int Person::GetID(){
     return ID;
 }
-void Person::GetRun(){
-    std::cout << Run << "-" << DV << std::endl;
+char RunAux[30]; //Pegado con cinta americana
+char* Person::GetRun(){
+    sprintf(RunAux, "%d", Run);
+    strcat(RunAux,"-");
+    strcat(RunAux, DV);
+    return RunAux;
 }
-void Person::GetNames(){
-    std::cout << Names << std::endl;
+char* Person::GetNames(){
+    return Names;
+    //std::cout << Names << std::endl;
 }
-void Person::GetFather(){
-    std::cout << FatherName << std::endl;
+char* Person::GetFather(){
+    return FatherName;
 }
-void Person::GetMother(){
-    std::cout << MotherName << std::endl;
+char* Person::GetMother(){
+    return MotherName;
 }
-void Person::GetFullName(){
-    std::cout << Names << " " << FatherName << " " << MotherName << std::endl;
+char* Person::GetFullName(){
+    char FullName[255*3]; // Un desperdicio de espacio para un desliz
+    strcat(FullName, Names);
+    strcat(FullName, " ");
+    strcat(FullName, FatherName);
+    strcat(FullName, " ");
+    strcat(FullName, MotherName);
+    return FullName;
 }
-void Person::GetGender(){
+char* Person::GetGender(){
     switch (Gender)
         {
         case 0:
-            std::cout << "Male" << std::endl;
+            return const_cast<char*>("Male");
             break;
         case 1:
-            std::cout << "Female" << std::endl;
+            return const_cast<char*>("Female");
             break;
         case 2:
-            std::cout << "Other" << std::endl;
+            return const_cast<char*>("Other");
             break;
     }
+}
+char* Person::GetBirthday(){
+    return Birth->GetBirthday();
+}
+char* Person::GetEmail(){
+    return Email;
 }
 bool Person::Borrar(){
     if(DeleteAt != NULL){
@@ -120,7 +145,7 @@ void Person::GetDeleteAt(){
     ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
     strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    printf("Delete at: %s\n", buf);
+    //printf("Delete at: %s\n", buf);
     std::cout << "Delete at: " << buf << std::endl;
 }
 //Clase Usuario
@@ -132,6 +157,10 @@ bool User::SetPassword(char Pass[255]){
         Password[i] = Pass[i];
 }
 
+//Getters
+char* User::GetPassword(){
+    return Password;
+}
 
 //Clase Entrevistado
 Surveyed::Surveyed(){}
@@ -140,8 +169,9 @@ bool Surveyed::SetObservation(char Observation[255]){
     for(int i = 0; i < 255; i++) 
         this->Observation[i] = Observation[i];
 }
-void Surveyed::GetObservation(){
-    std::cout << Observation << std::endl;
+char* Surveyed::GetObservation(){
+    return Observation;
+    //std::cout << Observation << std::endl;
 }
 //Clase Examen
 Test::Test(){
@@ -161,7 +191,7 @@ bool Test::SetMaxPoint(int Max){
     MaxPoint = Max;
 }
 bool Test::SetName(char Name[30]){
-    for(int i = 0; i < 255; i++)
+    for(int i = 0; i < 30; i++)
         this->Name[i] = Name[i];
 }
 bool Test::SetObservation(char Observation[255]){
@@ -179,11 +209,12 @@ int Test::GetCutPoint(){
 int Test::GetMaxPoint(){
     return MaxPoint;
 }
-void Test::GetName(){
-    std::cout << Name << std::endl;
+char* Test::GetName(){
+    //std::cout << Name << std::endl;
+    return Name;
 }
-void Test::GetObservation(){
-    std::cout << Observation << std::endl;
+char* Test::GetObservation(){
+    return Observation;
 }
 
 //Clase Pregunta
@@ -216,11 +247,13 @@ int Question::GetID(){
 int Question::GetFkId(){
     return FkId;
 }
-void Question::GetQuestion(){
-    std::cout << QuestionText << std::endl;
+char* Question::GetQuestion(){
+    //std::cout << QuestionText << std::endl;
+    return QuestionText;
 }
-void Question::GetDescription(){
-    std::cout << Description << std::endl;
+char* Question::GetDescription(){
+    //std::cout << Description << std::endl;
+    return Description;
 }
 bool Question::Borrar(){
     if(DeleteAt != NULL){
@@ -279,11 +312,12 @@ int Answer::GetPoint(){
 int Answer::GetFkId(){
     return FkId;
 }
-void Answer::GetObservation(){
-    std::cout << Observation << std::endl;
+char* Answer::GetObservation(){
+    return Observation;
 }
-void Answer::GetText(){
-    std::cout << Text << std::endl;
+char* Answer::GetText(){
+    //std::cout << Text << std::endl;
+    return Text;
 }
 bool Answer::Borrar(){
     if(DeleteAt != NULL){

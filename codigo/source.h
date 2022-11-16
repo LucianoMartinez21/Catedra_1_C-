@@ -3,19 +3,21 @@
 #include <iostream>
 #include <cstdio>
 #include <time.h>
+#include <stdio.h>
+#include <string.h>
 enum Genus{Male, Female, Other};
 class Birthday{
 private:
     int Day, Month, Year;
 public:
     Birthday(int, int, int);
-    void GetBirthday();
+    char* GetBirthday();
 };
 
 class Person{
 private:
     int ID, Run, Phone;
-    char DV, Names[255], FatherName[255], // DV = Digito verificador
+    char *DV, Names[255], FatherName[255], // DV = Digito verificador
     MotherName[255], Email[255];
     Birthday *Birth;
     enum Genus Gender;
@@ -28,7 +30,7 @@ public:
     bool SetID(int);
     bool SetRun(int);
     bool SetPhone(int);
-    bool SetDV(char);
+    bool SetDV(char*);
     bool SetFullName(char[255], char[255], char[255]);
     //bool SetNames(char[255]);
     //bool SetFather(char[255]);
@@ -39,16 +41,16 @@ public:
 
     //Getters    
     int GetID();
-    //int GetRun();
     //int GetPhone();
     //char GetDV();
-    void GetRun();//Lo devuelve con digito verificador
-    void GetNames();
-    void GetFather();
-    void GetMother();
-    void GetFullName();
-    void GetGender();
-    //char GetEmail();
+    char* GetRun();//Lo devuelve con digito verificador
+    char* GetNames();
+    char* GetFather();
+    char* GetMother();
+    char* GetFullName();
+    char* GetGender();
+    char* GetBirthday();
+    char* GetEmail();
     bool Borrar();
     void GetDeleteAt();
 
@@ -60,7 +62,7 @@ private:
 public:
     User();
     bool SetPassword(char[255]);
-    //char GetPassword();
+    char* GetPassword();
 };
 
 class Surveyed : public Person{
@@ -69,7 +71,7 @@ private:
 public:
     Surveyed();
     bool SetObservation(char[255]);
-    void GetObservation();
+    char* GetObservation();
 };
 
 class Test{
@@ -80,16 +82,16 @@ public:
     Test();
     //Setters
     bool SetID(int);
-    bool SetCutPoint(int);
+    bool SetCutPoint(int); // punto de corte donde una persona se clasifica con depreshoun
     bool SetMaxPoint(int);
     bool SetName(char[30]);
-    bool SetObservation(char[255]);
+    bool SetObservation(char[255]); // Se escribe el objetivo o motivo tipo automemoria o observacion interna del objetivo del test
     //Getters
     int GetID();
     int GetCutPoint();
     int GetMaxPoint();
-    void GetName();
-    void GetObservation();
+    char* GetName();
+    char* GetObservation();
 }; 
 
 class Question{
@@ -107,15 +109,15 @@ public:
     //Getters
     int GetID();
     int GetFkId();
-    void GetQuestion();
-    void GetDescription();
+    char* GetQuestion();
+    char* GetDescription();
     bool Borrar();
     void GetDeleteAt();
 };
 
 class Answer{
 private:
-    int ID, Point, FkId;
+    int ID, Point, FkId; // True False, Desagro medianamente ni fu fa medianamente pos agrado
     char Text[255], Observation[255];
     time_t DeleteAt;
 public:
@@ -130,8 +132,8 @@ public:
     int GetID();
     int GetPoint();
     int GetFkId();
-    void GetObservation();
-    void GetText();
+    char* GetObservation();
+    char* GetText();
     bool Borrar();
     void GetDeleteAt();
 };
