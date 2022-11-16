@@ -78,6 +78,7 @@ class Test{
 private:
     int ID, CutPoint, MaxPoint;
     char Name[30], Observation[255];
+    time_t DeleteAt;
 public:
     Test();
     //Setters
@@ -92,6 +93,8 @@ public:
     int GetMaxPoint();
     char* GetName();
     char* GetObservation();
+    bool Borrar();
+    void GetDeleteAt();
 }; 
 
 class Question{
