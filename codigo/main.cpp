@@ -149,7 +149,7 @@ void Menu(int Election){
 }
 
 char QuestionText[255], Description[255];
-int MaxPoint, Point;
+int MaxPoint, Point, TopPoint;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -303,25 +303,44 @@ void TestMenu(int Election){
             if(Election != 0) NewQuestion.SetID(Election);
         }
         NewAnswer.AssignedQuestion(NewQuestion);
+
+        Aux = "Id: "+ to_string(NewQuestion.GetFkId()); 
+        while(!TestFile.eof())
+        {
+            getline(TestFile,StrAux);
+            if(StrAux.find("Id:") != string::npos && StrAux == Aux){
+                while (!StrAux.find("/////////////") != string::npos)
+                {
+                    getline(TestFile,StrAux);
+                    if(StrAux.find("Puntaje Máximo:") != string::npos){
+                        MaxPoint = stoi(Searcher(TestFile, StrAux));
+                    }
+                }
+            }
+        }
         cout << "\nIngrese una respuesta";
         scanf("%s", QuestionText);
         NewAnswer.SetText(QuestionText);
+
         cout << "\nIngrese una observacion a la respuesta";
         scanf("%s", Description);
         NewAnswer.SetObservation(Description);
+
         cout << "\nIngrese el puntaje: ";
         cin >> Point;
-        if(NewQuestion.GetFkId() == stoi(Searcher(AnswerFile, "Id:")))
-        {
-            while(!TestFile.eof())
-            {
-                getline(QuestionFile,StrAux);
-                if(StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
-            }
+        if(MaxPoint > TopPoint){
+            TopPoint += Point;
+            NewAnswer.SetPoint(Point);
+        }else{
+            NewAnswer.SetPoint(MaxPoint-TopPoint);
         }
-
-        NewAnswer.SetPoint(Point);
-
+        AnswerFile << "/////////////" << endl;
+        AnswerFile << "Id: " << NewAnswer.GetID() << endl;
+        AnswerFile << "Foreign key Id: " << NewAnswer.GetFkId() << endl;
+        AnswerFile << "Puntaje: " << NewAnswer.GetPoint() << endl;
+        AnswerFile << "Respuesta: " << NewAnswer.GetText() << endl;
+        AnswerFile << "Observacion: " << NewAnswer.GetObservation() << endl;
+        AnswerFile << "DeleteAt: " << endl;
     default:
         break;
     }
