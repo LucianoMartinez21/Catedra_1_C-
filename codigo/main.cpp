@@ -145,6 +145,7 @@ void Menu(int Election){
 }
 
 char QuestionText[255], Description[255]; 
+int MaxPoint;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -209,12 +210,31 @@ void TestMenu(int Election){
         break;
     case 2:
         IdVerifier(NewTest);
+
         cout << "Ingrese el titulo del test: ";
         scanf("%s", Name);
         NewTest.SetName(Name);
+
         cout << "\nIngrese la razón del test: ";
         scanf("%s", Name);
         NewTest.SetObservation(Name);
+
+        cout << "\nIngrese el puntaje máximo del test: ";
+        cin >> MaxPoint;
+        NewTest.SetMaxPoint(MaxPoint);
+
+        float PointModifier;
+        cout << "\nIngrese el porcentaje para ajustar el punto de corte (Ej: 0.5 = 50%): ";
+        cin >> PointModifier;
+        NewTest.SetCutPoint(round(MaxPoint*PointModifier));
+        
+        TestFile << "/////////////" << endl;
+        TestFile << "Id: " << NewTest.GetID() << endl;
+        TestFile << "Titulo: " << NewTest.GetName() << endl;
+        TestFile << "Puntaje Máximo: " << NewTest.GetMaxPoint() << endl;
+        TestFile << "Puntaje de Corte: " << NewTest.GetCutPoint() << endl;
+        TestFile << "Observación: " << NewTest.GetObservation() << endl;
+        
         while(Election != 0){
             IdVerifier(NewQuestion);
             NewQuestion.AssignedTest(NewTest);
@@ -241,9 +261,14 @@ void TestMenu(int Election){
         while(!TestFile.eof())
         {
             getline(TestFile,StrAux);
-            if(StrAux.find("Id:") == string::npos) cout << StrAux << endl;
+            if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
         }
-        
+        while(Election != 0){
+            cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta:" << endl;
+            cin >> Election;
+            NewTest.SetID(Election);
+            Election = 0;
+        }
         NewQuestion.AssignedTest(NewTest);
         cout << "\nIngrese una pregunta";
         scanf("%s", QuestionText);
