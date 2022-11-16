@@ -119,7 +119,8 @@ void Menu(int Election){
                 if(EmailChecker(Email, UserFile) == true){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
                     "1)Crear perfil de entrevistado\n" <<
-                    "2)Crear test\n" << "3)Crear preguntas\n" << "4)Realizar test\n" << endl;
+                    "2)Crear test\n" << "3)Crear preguntas\n" << "4)Crear Preguntas\n"<<
+                    "5)Realizar test\n" << endl;
                     while (Election < 1 && Election > 4){
                         cin >> Election;
                         TestMenu(Election);
@@ -130,9 +131,8 @@ void Menu(int Election){
                             -crear el propio test
                             -añadir preguntas
                         +crear preguntas y que se puede elegir a que test puede entrar Done
-                        +Crear las respuestas
+                        +Crear las respuestas Done
                         +realizar encuesta
-                            -Se crea constantemente respuestas hasta que el limite de preguntas del test termina
                         +terminar de hacer la funcion IdVerifier Done
                     */
                     break;
@@ -341,7 +341,38 @@ void TestMenu(int Election){
         AnswerFile << "Respuesta: " << NewAnswer.GetText() << endl;
         AnswerFile << "Observacion: " << NewAnswer.GetObservation() << endl;
         AnswerFile << "DeleteAt: " << endl;
+        break;
+    case 5:
+        cout << "Seleccione la prueba a realizar" << endl;
+        while(!TestFile.eof())
+        {
+            getline(TestFile,StrAux);
+            if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
+        }
+        cin >> Election;
+        NewTest.SetID(Election);
+        Aux = "Foreign key Id: "+ to_string(NewTest.GetID()); 
+        while(!QuestionFile.eof())
+        {
+            getline(QuestionFile,StrAux);
+            if(StrAux.find("Foreign key Id:") != string::npos && StrAux == Aux) {
+                while (!StrAux.find("/////////////") != string::npos)
+                {
+                    getline(QuestionFile,StrAux);
+                    if(StrAux.find("Pregunta:") != string::npos){
+                        cout << StrAux << endl;
+                        /*while (!)
+                        {
+                            
+                        }*/
+                        
+                    }
+                } 
+            }
+        }
+        break;
     default:
+        cout << "Ingrese una opcion correcta" << endl;
         break;
     }
 }
