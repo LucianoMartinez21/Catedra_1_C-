@@ -58,11 +58,11 @@ public:
 
 class User : public Person{
 private:
-    char Password[255];
+    //char Password[255];
 public:
     User();
-    bool SetPassword(char[255]);
-    char* GetPassword();
+    //bool SetPassword(char[255]);
+    //char* GetPassword();
 };
 
 class Surveyed : public Person{

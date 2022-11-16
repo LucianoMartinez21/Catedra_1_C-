@@ -152,6 +152,7 @@ void Person::GetDeleteAt(){
 User::User(){
     //std::cout << "hola"<< std::endl;
 }
+/*
 bool User::SetPassword(char Pass[255]){
     for(int i = 0; i < 255; i++) 
         Password[i] = Pass[i];
@@ -160,7 +161,7 @@ bool User::SetPassword(char Pass[255]){
 //Getters
 char* User::GetPassword(){
     return Password;
-}
+}*/
 
 //Clase Entrevistado
 Surveyed::Surveyed(){}
