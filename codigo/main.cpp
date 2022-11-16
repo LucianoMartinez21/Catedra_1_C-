@@ -1,20 +1,19 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include "source.h"
-#include <locale.h>
 using namespace std;
 
 //Functions
 void Menu(int);
 /*PascalCase*/
 //Global Variables
-fstream UserFile("User/User.txt");
-fstream SurveyFile("Surveyed/Surveyed.txt");
-fstream TestFile("Test/Test.txt");
-fstream QuestionFile("Question/Question.txt");
-fstream AnswerFile("Answer/Answer.txt");
+fstream UserFile(".\\User\\User.txt");
+fstream SurveyFile(".\\Surveyed\\Surveyed.txt");
+fstream TestFile(".\\Test\\Test.txt");
+fstream QuestionFile(".\\Question\\Question.txt");
+fstream AnswerFile(".\\Answer\\Answer.txt");
 string MainDir("/Catedra_1_C-");
-int Option, IdCouter;
+int IdCouter = 0;
 void IdVerifier(User);
 void IdVerifier(Surveyed);
 void IdVerifier(Test);
@@ -27,7 +26,7 @@ void TestMenu(int);
 string StrAux, Aux;
 
 int main(){
-    setlocale(LC_ALL, "spanish");
+    int Option;
     while (true)
     {
         cout << "=====Programa de Encuestas=====\n1) Crear Cuenta"<<
@@ -44,13 +43,13 @@ char Name[255], FatherName[255], MotherName[255], *Dv,
 int Run, Day, Month, Year, GenderNumber, Phone;
 
 void Menu(int Election){
-
     char Password[255];
     User Pollster = User(); // pollster = Encuestador
     switch (Election){
         case 1:
             //Pollster.SetID(IdCouter);
             IdVerifier(Pollster);
+            Pollster.SetID(IdCouter);
             cout << "Ingrese su nombre: ";
             scanf("%s", Name);
             cout << "\nIngrese su Apellido Paterno: ";
@@ -295,7 +294,7 @@ void TestMenu(int Election){
         while(!QuestionFile.eof())
         {
             getline(QuestionFile,StrAux);
-            if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
+            if(StrAux.find("Id:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
         }
         while(Election != 0){
             cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta:" << endl;
@@ -376,23 +375,28 @@ void TestMenu(int Election){
         break;
     }
 }
-
+int length;
 void IdVerifier(User AuxUser){
     Aux= "0";
     UserFile.seekg(0,ios::end);
-    int length = UserFile.tellg();
-    if(length == 0){
+    length = UserFile.tellg();
+    //cout << "funciona" << endl;
+    //cout << length << endl;
+    if(length == -1){
+        //cout << "funciona" << endl;
         IdCouter = 1;
     }else{
+        //cout << "funciona" << endl;
         IdCouter = stoi(Searcher(UserFile, "Id:")) + 1;
     }
+    //cout << "funciona" << endl;
     AuxUser.SetID(IdCouter);
 }
 void IdVerifier(Surveyed AuxSurveyed){
     Aux= "0";
     SurveyFile.seekg(0,ios::end);
     int length = SurveyFile.tellg();
-    if(length == 0){
+    if(length == -1){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(SurveyFile, "Id:")) + 1;
@@ -403,7 +407,7 @@ void IdVerifier(Test AuxTest){
     Aux= "0";
     TestFile.seekg(0,ios::end);
     int length = TestFile.tellg();
-    if(length == 0){
+    if(length == -1){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(TestFile, "Id:")) + 1;
@@ -414,7 +418,7 @@ void IdVerifier(Question AuxQuestion){
     Aux= "0";
     QuestionFile.seekg(0,ios::end);
     int length = QuestionFile.tellg();
-    if(length == 0){
+    if(length == -1){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(QuestionFile, "Id:")) + 1;
@@ -425,7 +429,7 @@ void IdVerifier(Answer AuxAnswer){
     Aux= "0";
     AnswerFile.seekg(0,ios::end);
     int length = AnswerFile.tellg();
-    if(length == 0){
+    if(length == -1){
         IdCouter = 1;
     }else{
         IdCouter = stoi(Searcher(AnswerFile, "Id:")) + 1;

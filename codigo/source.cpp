@@ -20,7 +20,6 @@ char* Birthday::GetBirthday(){
 //Clase Persona
 //Constructors
 Person::Person(){
-    ID = 0;
     Run = 0;
     Phone = 0;
     DV = '\0';
