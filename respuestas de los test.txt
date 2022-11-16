@@ -6,8 +6,16 @@ RESPUESTAS:                    PUNTAJE MAX: 10
 2                             SUGERIMOS TRATAMIENTO. (TIENES UNA ALTA PROBABILIDAD DE TENER DEPRESION)
 5                             TRATATE. (SI TIENES ESOS PENSAMIENTOS DEBES TRATARLOS) 
 10                            NECESITAS. AYUDA (BUSCA AYUDA PROFESIONAL)                
----------------------------------------------            
+---------------------------------------------     
 
+----------------TEST 2-----------------------
+RESPUESTAS:                    PUNTAJE MAX: 50
 
+10                            PUEDE SER UN MAL DIA.
+20                            TENDENCIA A DEPRESION.
+30                            INICIOS DE DEPRESION.
+40                            DEPRESION .
+50                            DEPRESION GRAVE.
 
+-----------------------------------------------    
 
