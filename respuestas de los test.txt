@@ -19,3 +19,26 @@ RESPUESTAS:                    PUNTAJE MAX: 50
 
 -----------------------------------------------    
 
+
+/////////////
+Id: 0
+Nombre: a
+Apellido Paterno: a
+Apellido Materno: a
+Run: 123-0
+Fecha de Nacimiento: 1/1/1
+Genero: Male
+Correo: a@a
+Telefóno: 12345
+DeleteAt: 
+/////////////
+Id: 0
+Nombre: Luciano
+Apellido Paterno: Martine
+Apellido Materno: Labarthe
+Run: 12345-0
+Fecha de Nacimiento: 9/7/2001
+Genero: Male
+Correo: luciano@mail.com
+Telefóno: 12345
+DeleteAt: 
