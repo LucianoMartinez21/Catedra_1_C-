@@ -120,7 +120,7 @@ void Menu(int Election){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
                     "1)Crear perfil de entrevistado\n" <<
                     "2)Crear test\n" << "3)Crear preguntas\n" << "4)Realizar test\n" << endl;
-                    while (Election < 1 && Election > 3){
+                    while (Election < 1 && Election > 4){
                         cin >> Election;
                         TestMenu(Election);
                     }
@@ -149,7 +149,7 @@ void Menu(int Election){
 }
 
 char QuestionText[255], Description[255]; 
-int MaxPoint;
+int MaxPoint, Point;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -157,7 +157,8 @@ void TestMenu(int Election){
     Answer NewAnswer = Answer();
     switch (Election)
     {
-    case 1: // crear perfil de encuestado
+    case 1: 
+        // crear perfil de encuestado
         //SurveyedPerson.SetID(IdCouter);
         IdVerifier(SurveyedPerson);
 
@@ -273,8 +274,7 @@ void TestMenu(int Election){
         while(Election != 0){
             cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta:" << endl;
             cin >> Election;
-            NewTest.SetID(Election);
-            Election = 0;
+            if(Election != 0) NewTest.SetID(Election);
         }
         NewQuestion.AssignedTest(NewTest);
         cout << "\nIngrese una pregunta";
@@ -290,6 +290,28 @@ void TestMenu(int Election){
         QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
         QuestionFile << "DeleteAt: " << endl;
         break;
+    case 4:
+        IdVerifier(NewAnswer);
+        while(!QuestionFile.eof())
+        {
+            getline(QuestionFile,StrAux);
+            if(StrAux.find("Id:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
+        }
+        while(Election != 0){
+            cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta:" << endl;
+            cin >> Election;
+            if(Election != 0) NewQuestion.SetID(Election);
+        }
+        NewAnswer.AssignedQuestion(NewQuestion);
+        cout << "\nIngrese una respuesta";
+        scanf("%s", QuestionText);
+        NewAnswer.SetText(QuestionText);
+        cout << "\nIngrese una observacion a la respuesta";
+        scanf("%s", Description);
+        NewAnswer.SetObservation(Description);
+        cout << "\nIngrese el puntaje: ";
+        cin >> Point;
+        NewAnswer.SetPoint(Point);
     default:
         break;
     }
