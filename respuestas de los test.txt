@@ -1,0 +1,13 @@
+----------------TEST 1-----------------------
+RESPUESTAS:                    PUNTAJE MAX: 10
+
+0                             PERFECTO. (NO TIENES PROBLEMAS)
+1                             NECESITAS AYUDA? (EXISTE LA POSIBILIDAD DE QUE QUIERAS TRATAR ALGO)
+2                             SUGERIMOS TRATAMIENTO. (TIENES UNA ALTA PROBABILIDAD DE TENER DEPRESION)
+5                             TRATATE. (SI TIENES ESOS PENSAMIENTOS DEBES TRATARLOS) 
+10                            NECESITAS. AYUDA (BUSCA AYUDA PROFESIONAL)                
+---------------------------------------------            
+
+
+
+
