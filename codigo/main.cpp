@@ -37,6 +37,7 @@ int main(){
     }
 }
 
+
 char Name[255], FatherName[255], MotherName[255], *Dv,
     Email[255];
 int Run, Day, Month, Year, GenderNumber, Phone;
@@ -142,6 +143,8 @@ void Menu(int Election){
             break;
     }
 }
+
+char QuestionText[255], Description[255]; 
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -209,9 +212,28 @@ void TestMenu(int Election){
         cout << "Ingrese el titulo del test: ";
         scanf("%s", Name);
         NewTest.SetName(Name);
-        cout << "Ingrese la razón del test: ";
+        cout << "\nIngrese la razón del test: ";
         scanf("%s", Name);
         NewTest.SetObservation(Name);
+        while(Election != 0){
+            IdVerifier(NewQuestion);
+            NewQuestion.AssignedTest(NewTest);
+            cout << "\nIngrese una pregunta";
+            scanf("%s", QuestionText);
+            NewQuestion.SetQuestion(QuestionText);
+            cout << "\nIngrese una descripción a la pregunta";
+            scanf("%s", Description);
+            NewQuestion.SetDescription(Description);
+            QuestionFile << "/////////////" << endl;
+            QuestionFile << "Id: " << NewQuestion.GetID() << endl;
+            QuestionFile << "Foreign key Id: " << NewQuestion.GetFkId() << endl;
+            QuestionFile << "Pregunta: " << NewQuestion.GetQuestion() << endl;
+            QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
+            QuestionFile << "DeleteAt: " << endl;
+            cout << "¿Desea salir?" << "\nPresione 0 para cerrar" << 
+            "\nPresione cualquier numero para continuar"<< endl;
+            cin >> Election;
+        }
         
         break;
     case 3:
