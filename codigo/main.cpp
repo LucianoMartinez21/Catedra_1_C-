@@ -115,7 +115,7 @@ void Menu(int Election){
                 /*
                 cout << "\nIngrese su Contraseña: ";
                 scanf("%s", Password);*/
-                
+
                 if(EmailChecker(Email, UserFile) == true){
                     cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
                     "1)Crear perfil de entrevistado\n" <<
@@ -148,7 +148,7 @@ void Menu(int Election){
     }
 }
 
-char QuestionText[255], Description[255]; 
+char QuestionText[255], Description[255];
 int MaxPoint, Point;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
@@ -157,7 +157,7 @@ void TestMenu(int Election){
     Answer NewAnswer = Answer();
     switch (Election)
     {
-    case 1: 
+    case 1:
         // crear perfil de encuestado
         //SurveyedPerson.SetID(IdCouter);
         IdVerifier(SurveyedPerson);
@@ -232,7 +232,7 @@ void TestMenu(int Election){
         cout << "\nIngrese el porcentaje para ajustar el punto de corte (Ej: 0.5 = 50%): ";
         cin >> PointModifier;
         NewTest.SetCutPoint(round(MaxPoint*PointModifier));
-        
+
         TestFile << "/////////////" << endl;
         TestFile << "Id: " << NewTest.GetID() << endl;
         TestFile << "Titulo: " << NewTest.GetName() << endl;
@@ -258,11 +258,11 @@ void TestMenu(int Election){
             QuestionFile << "Pregunta: " << NewQuestion.GetQuestion() << endl;
             QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
             QuestionFile << "DeleteAt: " << endl;
-            cout << "¿Desea salir?" << "\nPresione 0 para cerrar" << 
+            cout << "¿Desea salir?" << "\nPresione 0 para cerrar" <<
             "\nPresione cualquier numero para continuar"<< endl;
             cin >> Election;
         }
-        
+
         break;
     case 3:
         IdVerifier(NewQuestion);
@@ -311,7 +311,17 @@ void TestMenu(int Election){
         NewAnswer.SetObservation(Description);
         cout << "\nIngrese el puntaje: ";
         cin >> Point;
+        if(NewQuestion.GetFkId() == stoi(Searcher(AnswerFile, "Id:")))
+        {
+            while(!TestFile.eof())
+            {
+                getline(QuestionFile,StrAux);
+                if(StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
+            }
+        }
+
         NewAnswer.SetPoint(Point);
+
     default:
         break;
     }
@@ -388,7 +398,7 @@ bool EmailChecker(char CheckEmail[255], fstream &File){
 }
 
 string Searcher(fstream &File, string KeyWord){
-    
+
     getline(File, StrAux);
     for (size_t i = 0; i < StrAux.length(); i++)
     {
