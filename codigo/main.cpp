@@ -23,7 +23,7 @@ void IdVerifier(Answer);
 string Searcher(fstream&, string);
 void Menu(int);
 void TestMenu(int);
-string StrAux;
+string StrAux, Aux;
 
 int main(){
     setlocale(LC_ALL, "spanish");
@@ -177,18 +177,18 @@ void TestMenu(int Election){
         cin >> Year;
         SurveyedPerson.SetBirthday(Day, Month, Year);
 
-        cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros";
+        cout << "\nElija el genero del entrevistado:\n1)Hombre\n2)Mujer\n3)Otros";
         while (GenderNumber < 1 && GenderNumber > 3)
         {
             cin >> GenderNumber;
             SurveyedPerson.SetGender(GenderNumber);
         }
 
-        cout << "\nIngrese su Correo: ";
+        cout << "\nIngrese el Correo del entrevistado: ";
         scanf("%s", Email);
         SurveyedPerson.SetEmail(Email);
 
-        cout << "\nIngrese su Telefóno: ";
+        cout << "\nIngrese el Telefóno del entrevistado: ";
         cin >> Phone;
         SurveyedPerson.SetPhone(Phone);
 
@@ -221,65 +221,73 @@ void TestMenu(int Election){
     }
 }
 
-string AuxiliarString;
 void IdVerifier(User AuxUser){
-    getline(UserFile, AuxiliarString);
-    if(IdCouter == NULL || AuxiliarString.length() == 0){
+    Aux= "0";
+    UserFile.seekg(0,ios::end);
+    int length = UserFile.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(UserFile, "Id:"));
+        IdCouter = stoi(Searcher(UserFile, "Id:")) + 1;
     }
     AuxUser.SetID(IdCouter);
 }
 void IdVerifier(Surveyed AuxSurveyed){
-    
-    getline(SurveyFile, AuxiliarString);
-    if(IdCouter == NULL || AuxiliarString.length() == 0){
+    Aux= "0";
+    SurveyFile.seekg(0,ios::end);
+    int length = SurveyFile.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(SurveyFile, "Id:"));
+        IdCouter = stoi(Searcher(SurveyFile, "Id:")) + 1;
     }
     AuxSurveyed.SetID(IdCouter);
 }
 void IdVerifier(Test AuxTest){
-    getline(TestFile, AuxiliarString);
-    if(IdCouter == NULL || AuxiliarString.length() == 0){
+    Aux= "0";
+    TestFile.seekg(0,ios::end);
+    int length = TestFile.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(TestFile, "Id:"));
+        IdCouter = stoi(Searcher(TestFile, "Id:")) + 1;
     }
     AuxTest.SetID(IdCouter);
 }
 void IdVerifier(Question AuxQuestion){
-    getline(QuestionFile, AuxiliarString);
-    if(IdCouter == NULL || AuxiliarString.length() == 0){
+    Aux= "0";
+    QuestionFile.seekg(0,ios::end);
+    int length = QuestionFile.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(QuestionFile, "Id:"));
+        IdCouter = stoi(Searcher(QuestionFile, "Id:")) + 1;
     }
     AuxQuestion.SetID(IdCouter);
 }
 void IdVerifier(Answer AuxAnswer){
-    getline(AnswerFile, AuxiliarString);
-    if(IdCouter == NULL || AuxiliarString.length() == 0){
+    Aux= "0";
+    AnswerFile.seekg(0,ios::end);
+    int length = AnswerFile.tellg();
+    if(length == 0){
         IdCouter = 1;
     }else{
-        IdCouter = stoi(Searcher(AnswerFile, "Id:"));
+        IdCouter = stoi(Searcher(AnswerFile, "Id:")) + 1;
     }
     AuxAnswer.SetID(IdCouter);
 }
 
 string Searcher(fstream &f, string keyWord){
-    string aux= "0";
+    
     getline(f, StrAux);
     for (size_t i = 0; i < StrAux.length(); i++)
     {
         if (isdigit(StrAux[i]) == 1){
-            if(StrAux[i] > stoi(aux)){
-                aux = StrAux[i];
+            if(StrAux[i] > stoi(Aux)){
+                Aux = StrAux[i];
             }
         }
     }
-    if(f.eof()) return aux;
+    if(f.eof()) return Aux;
     return Searcher(f, keyWord);
 }

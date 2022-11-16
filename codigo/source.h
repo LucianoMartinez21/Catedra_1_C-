@@ -117,7 +117,7 @@ public:
 
 class Answer{
 private:
-    int ID, Point, FkId;
+    int ID, Point, FkId; // True False, Desagro medianamente ni fu fa medianamente pos agrado
     char Text[255], Observation[255];
     time_t DeleteAt;
 public:
