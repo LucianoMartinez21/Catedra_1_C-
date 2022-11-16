@@ -1,7 +1,7 @@
 
-<div align="center">
+<div align="right">
 
-![unap 3](https://user-images.githubusercontent.com/115719198/202291336-368340ad-d5cd-43a2-a45a-c01babc9964a.jpg)
+![logog 5](https://user-images.githubusercontent.com/115719198/202303523-74b4ebb5-00fc-4399-b36d-6237bf823633.png)
 
   </div>
 
@@ -34,7 +34,20 @@
 
 <div align="center">
 
+:anger::anger::anger::anger::anger:
+
+
+  </div>
+
+<div align="center">
+
 <img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+
+  </div>
+  
+<div align="center">
+
+:anger::anger::anger::anger::anger:
 
   </div>
 
