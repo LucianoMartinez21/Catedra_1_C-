@@ -1,5 +1,5 @@
 
-<div align="right">
+<div align="center">
 
 ![logog 5](https://user-images.githubusercontent.com/115719198/202303523-74b4ebb5-00fc-4399-b36d-6237bf823633.png)
 
@@ -81,7 +81,24 @@ Para poder hacer un correcto del manejo de nuestro proyecto debera realizar una 
 
 3°- Ademas debera descargar en instalar c++, el cual es Mingw el que tambien su link se encuentra en el apartado de [Tecnologías utilizadas](#tecnologías-utilizadas)
 
-4°-  
+4°- Dentro de Mingw debera instalar 2 apartados que se enseñaran en la siguiente imagen
+
+![mig](https://user-images.githubusercontent.com/115719198/202334583-a2c7907d-425a-4a1a-a04a-33d8702a53cb.png)
+
+5°- Continuando debe copiar la siguiente direccion "C:\MinGW\bin"
+
+6°- Luego debera ir a "Editar variables de entorno", luego a "variables de entorno"
+
+![mingw2](https://user-images.githubusercontent.com/115719198/202335789-aa948fbd-0067-4d83-b700-594472b0b19c.png)
+ 
+7°- Y dentro de "variables de entorno" debera seleccionar la variable "Path" y "Editar"
+
+![mingw3](https://user-images.githubusercontent.com/115719198/202336177-bc021c0d-fdcd-4da9-aaad-0ac2a958f97f.png)
+
+8°- y para finalizar debera apretar en "nuevo" y copiar el link previamente guardado("C:\MinGW\bin")
+
+![mingw4](https://user-images.githubusercontent.com/115719198/202336440-c21b1fc2-532b-4ee5-80ff-dc36179f30b9.png)
+
 
 ===========================================================================
 
