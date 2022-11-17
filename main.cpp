@@ -92,9 +92,9 @@ void Menu(int Election){
             cin >> Phone;
             Pollster.SetPhone(Phone);
 
-            /*cout << "\nIngrese su Contraseña: ";
-            scanf("%s", Password);
-            Pollster.SetPassword(Password);*/
+            //cout << "\nIngrese su Contraseña: ";
+            //scanf("%s", Password);
+            //Pollster.SetPassword(Password);
             UserFile << "/////////////" << endl;
             UserFile << "Id: " << Pollster.GetID() << endl;
             UserFile << "Nombre: " << Name << endl;
