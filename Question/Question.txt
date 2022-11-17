@@ -1,0 +1,6 @@
+/////////////
+Id: 1
+Foreign key Id: 1
+Pregunta: Se_ha_sentido_con_poca_energia_ultimamente?
+Descripcion: Pregunta_sacada_de_ABC_revista_cientifica.
+DeleteAt: 

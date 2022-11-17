@@ -31,3 +31,14 @@ Genero: Male
 Correo: otro@otro.cl
 Telefóno: 7774449
 DeleteAt: 
+/////////////
+Id: 4
+Nombre: Fernando
+Apellido Paterno: Carmino
+Apellido Materno: Rodriguez
+Run: 7785422-0
+Fecha de Nacimiento: 22/11/1990
+Genero: Male
+Correo: fernandoCarmino@gmail.com
+Telefóno: 123456789
+DeleteAt: 

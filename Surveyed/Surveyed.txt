@@ -1,0 +1,11 @@
+/////////////
+Id: 1
+Nombre: a
+Apellido Paterno: b
+Apellido Materno: c
+Run: 12378-9
+Fecha de Nacimiento: 8/5/1950
+Genero: Other
+Correo: a@b.com
+Telefóno: 7894561
+DeleteAt:
