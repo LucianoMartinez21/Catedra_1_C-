@@ -4,9 +4,7 @@
 using namespace std;
 
 //Functions
-void Menu(int);
 /*PascalCase*/
-//Global Variables
 fstream UserFile("User/User.txt", ios::out | ios::in | ios::app);
 fstream SurveyFile("Surveyed/Surveyed.txt", ios::out | ios::in | ios::app);
 fstream TestFile("Test/Test.txt", ios::out | ios::in | ios::app);
@@ -17,6 +15,7 @@ string Searcher(fstream&, string);
 bool EmailChecker(char[255], fstream&);
 void Menu(int);
 void TestMenu(int);
+//Global Variables
 string StrAux, Aux, Aux2;
 
 int main(){
