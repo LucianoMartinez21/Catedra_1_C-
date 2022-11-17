@@ -120,9 +120,9 @@ void Menu(int Election){
                 scanf("%s", Password);*/
 
                 if(EmailChecker(Email, UserFile) == true){
-                    
+                    cout << "¡Sesion Iniciada!\n";
                     while (Option != 6){
-                        cout << "¡Sesion Iniciada!\n" << "=====Programa de Encuestas=====\n" <<
+                        cout << "=====Programa de Encuestas=====\n" <<
                         "1)Crear perfil de entrevistado\n" <<
                         "2)Crear test\n" << "3)Crear preguntas\n" << "4)Crear respuestas\n"<<
                         "5)Realizar test\n" << "6)Salir a menu principal" << endl;
@@ -266,7 +266,7 @@ void TestMenu(int Election){
             NewQuestion.SetDescription(Description);
 
             QuestionFile << "/////////////" << endl;
-            QuestionFile << "Id: " << NewQuestion.GetID() << endl;
+            QuestionFile << "ID: " << NewQuestion.GetID() << endl;
             QuestionFile << "Foreign key Id: " << NewQuestion.GetFkId() << endl;
             QuestionFile << "Pregunta: " << NewQuestion.GetQuestion() << endl;
             QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
@@ -291,21 +291,19 @@ void TestMenu(int Election){
         TestFile.clear();
         TestFile.seekg (0, ios::beg);
 
-        while(Election != 0){
-            cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta: " << endl;
-            cin >> Election;
-            if(Election != 0) NewTest.SetID(Election);
-        }
+        cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta: " << endl;
+        cin >> Election;
+        NewTest.SetID(Election);
         NewQuestion.AssignedTest(NewTest);
         
         cout << "\nIngrese una pregunta: ";
         scanf("%s", QuestionText);
         NewQuestion.SetQuestion(QuestionText);
-        cout << "\nIngrese una descripción a la pregunta: ";
+        cout << "\nIngrese una descripcion a la pregunta: ";
         scanf("%s", Description);
         NewQuestion.SetDescription(Description);
         QuestionFile << "/////////////" << endl;
-        QuestionFile << "Id: " << NewQuestion.GetID() << endl;
+        QuestionFile << "ID: " << NewQuestion.GetID() << endl;
         QuestionFile << "Foreign key Id: " << NewQuestion.GetFkId() << endl;
         QuestionFile << "Pregunta: " << NewQuestion.GetQuestion() << endl;
         QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
@@ -314,27 +312,26 @@ void TestMenu(int Election){
     case 4:
         //IdVerifier(NewAnswer, AnswerFile);
         Aux= "0";
-        IdCouter = stoi(Searcher(AnswerFile, "Id:"))+1;
+        IdCouter = stoi(Searcher(AnswerFile, "ID:"))+1;
         NewAnswer.SetID(IdCouter);
         while(!QuestionFile.eof())
         {
             getline(QuestionFile,StrAux);
-            if(StrAux.find("Id:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
+            if(StrAux.find("ID:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
         }
         QuestionFile.clear();
         QuestionFile.seekg (0, ios::beg);
-        while(Election != 0){
-            cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta: " << endl;
-            cin >> Election;
-            if(Election != 0) NewQuestion.SetID(Election);
-        }
+
+        cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta: ";
+        cin >> Election;
+        NewQuestion.SetID(Election);
         NewAnswer.AssignedQuestion(NewQuestion);
 
-        Aux = "Id: "+ to_string(NewQuestion.GetFkId()); 
+        Aux = "ID: "+ to_string(NewQuestion.GetFkId()); 
         while(!TestFile.eof())
         {
             getline(TestFile,StrAux);
-            if(StrAux.find("Id:") != string::npos && StrAux == Aux){
+            if(StrAux.find("ID:") != string::npos && StrAux == Aux){
                 while (!StrAux.find("/////////////") != string::npos)
                 {
                     getline(TestFile,StrAux);
@@ -356,14 +353,14 @@ void TestMenu(int Election){
 
         cout << "\nIngrese el puntaje: ";
         cin >> Point;
+        TopPoint += Point;
         if(MaxPoint > TopPoint){
-            TopPoint += Point;
             NewAnswer.SetPoint(Point);
         }else{
             NewAnswer.SetPoint(MaxPoint-TopPoint);
         }
         AnswerFile << "/////////////" << endl;
-        AnswerFile << "Id: " << NewAnswer.GetID() << endl;
+        AnswerFile << "ID: " << NewAnswer.GetID() << endl;
         AnswerFile << "Foreign key Id: " << NewAnswer.GetFkId() << endl;
         AnswerFile << "Puntaje: " << NewAnswer.GetPoint() << endl;
         AnswerFile << "Respuesta: " << NewAnswer.GetText() << endl;

@@ -1,6 +1,12 @@
 /////////////
-Id: 1
+ID: 1
 Foreign key Id: 1
 Pregunta: Se_ha_sentido_con_poca_energia_ultimamente?
 Descripcion: Pregunta_sacada_de_ABC_revista_cientifica.
+DeleteAt: 
+/////////////
+ID: 2
+Foreign key Id: 1
+Pregunta: Ha_perdido_el_interes_por_las_cosas?
+Descripcion: Pregunta_sacada_de_ABC_revista_cientifica
 DeleteAt: 
