@@ -42,3 +42,14 @@ Genero: Male
 Correo: fernandoCarmino@gmail.com
 Telefóno: 123456789
 DeleteAt: 
+/////////////
+Id: 5
+Nombre: Felipe
+Apellido Paterno: Urrutia
+Apellido Materno: Popo
+Run: 85964-2
+Fecha de Nacimiento: 1/2/2002
+Genero: Other
+Correo: mingw@gmail.com
+Telefóno: 985457541
+DeleteAt: 
