@@ -12,7 +12,7 @@ fstream QuestionFile("Question/Question.txt", ios::out | ios::in | ios::app);
 fstream AnswerFile("Answer/Answer.txt", ios::out | ios::in | ios::app);
 int IdCouter = 0;
 string Searcher(fstream&, string);
-bool EmailChecker(char[255], fstream&);
+bool EmailChecker(string, fstream&);
 void Menu(int);
 void TestMenu(int);
 //Global Variables
@@ -91,7 +91,7 @@ void Menu(int Election){
             cin >> Email;
             Pollster.SetEmail(Email);
 
-            cout << "\nIngrese su Telefóno: ";
+            cout << "\nIngrese su Telefono: ";
             cin >> Phone;
             Pollster.SetPhone(Phone);
 
@@ -363,7 +363,8 @@ void TestMenu(int Election){
         NewAnswer.SetText(QuestionText);
 
         cout << "\nIngrese una observacion a la respuesta: ";
-        scanf("%s", Description);
+        //scanf("%s", Description);
+        cin >> Description;
         NewAnswer.SetObservation(Description);
 
         cout << "\nIngrese el puntaje: ";

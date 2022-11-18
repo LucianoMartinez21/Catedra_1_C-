@@ -53,3 +53,40 @@ Genero: Other
 Correo: mingw@gmail.com
 Telefóno: 985457541
 DeleteAt: 
+/////////////
+Id: 6
+Nombre: Matias
+Apellido Paterno: Diaz
+Apellido Materno: Morelos
+/////////////
+Id: 7
+Nombre: A
+Apellido Paterno: b
+Apellido Materno: c
+/////////////
+Id: 8
+Nombre: a
+Apellido Paterno: a
+Apellido Materno: a
+Run: 
+Fecha de Nacimiento: 1/1/1
+Genero: Male
+Correo: a@b
+Telefóno: 1
+DeleteAt: 
+/////////////
+Id: 1
+Nombre: Luciano
+Apellido Paterno: Martinez
+Apellido Materno: Labarthe
+/////////////
+Id: 2
+Nombre: a
+Apellido Paterno: a
+Apellido Materno: a
+Run: 123-1
+Fecha de Nacimiento: 1/1/1
+Genero: Male
+Correo: a@b
+Telefóno: 123
+DeleteAt: 

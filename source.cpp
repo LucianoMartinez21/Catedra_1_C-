@@ -84,7 +84,7 @@ int Person::GetID(){
 }
 //char RunAux[30]; //Pegado con cinta americana
 std::string Person::GetRun(){
-    return Run + "-" + DV;
+    return std::to_string(Run) + "-" + DV;
     /*
     sprintf(RunAux, "%d", Run);
     strcat(RunAux,"-");
