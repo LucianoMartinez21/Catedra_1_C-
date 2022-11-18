@@ -7,11 +7,8 @@ Birthday::Birthday(int Dd, int Mm, int Year){
 }
 //char AuxStr1[10], AuxStr2[10], AuxStr3[10]; // Mas cinta americana
 std::string Birthday::GetBirthday(){
-    std::string StrNumber;
-    StrNumber = std::to_string(Day) + 
-    "/" + std::to_string(Month) +
+    return std::to_string(Day) + "/" + std::to_string(Month) +
     "/" + std::to_string(Year);
-    return StrNumber;
     /*
     sprintf(AuxStr1, "%d", Day);
     sprintf(AuxStr2, "%d", Month);
@@ -87,9 +84,7 @@ int Person::GetID(){
 }
 //char RunAux[30]; //Pegado con cinta americana
 std::string Person::GetRun(){
-    std::string StrRun;
-    StrRun = Run + "-" + DV;
-    return StrRun;
+    return Run + "-" + DV;
     /*
     sprintf(RunAux, "%d", Run);
     strcat(RunAux,"-");

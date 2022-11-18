@@ -31,12 +31,12 @@ int main(){
 }
 
 
-char Name[255], FatherName[255], MotherName[255], Dv,
-    Email[255];
+string Name, FatherName, MotherName, Email;
+char Dv;
 int Run, Day, Month, Year, GenderNumber, Phone;
 
 void Menu(int Election){
-    char Password[255];
+    //char Password[255];
     User Pollster = User(); // pollster = Encuestador
     switch (Election){
         case 1:
@@ -47,11 +47,14 @@ void Menu(int Election){
             Pollster.SetID(IdCouter);
 
             cout << "Ingrese su nombre: ";
-            scanf("%s", Name);
+            //scanf("%s", Name);
+            cin >> Name;
             cout << "\nIngrese su Apellido Paterno: ";
-            scanf("%s", FatherName);
+            //scanf("%s", FatherName);
+            cin >> FatherName;
             cout << "\nIngrese su Apellido Materno: ";
-            scanf("%s", MotherName);
+            //scanf("%s", MotherName);
+            cin >> MotherName;
             Pollster.SetFullName(Name, FatherName, MotherName);
 
             cout << "\nIngrese su Run (sin el digito verificador): ";
@@ -84,7 +87,8 @@ void Menu(int Election){
             }*/
 
             cout << "\nIngrese su Correo: ";
-            scanf("%s", Email);
+            //scanf("%s", Email);
+            cin >> Email;
             Pollster.SetEmail(Email);
 
             cout << "\nIngrese su Telefóno: ";
@@ -102,7 +106,7 @@ void Menu(int Election){
             UserFile << "Run: " << Pollster.GetRun() << endl;
             UserFile << "Fecha de Nacimiento: " << Pollster.GetBirthday() << endl;
             UserFile << "Genero: " << Pollster.GetGender() << endl;
-            UserFile << "Correo: " << Email << endl;
+            UserFile << "Correo: " << Pollster.GetEmail() << endl;
             UserFile << "Telefóno: " << Phone << endl;
             //UserFile << "Contraseña: " << Password << endl;
             UserFile << "DeleteAt: " << endl;
@@ -153,7 +157,7 @@ void Menu(int Election){
     }
 }
 
-char QuestionText[255], Description[255];
+string QuestionText, Description;
 int MaxPoint, Point, TopPoint;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
@@ -171,11 +175,14 @@ void TestMenu(int Election){
         SurveyedPerson.SetID(IdCouter);
 
         cout << "Ingrese el nombre del entrevistado: ";
-        scanf("%s", Name);
+        //scanf("%s", Name);
+        cin >> Name;
         cout << "\nIngrese el Apellido Paterno del entrevistado: ";
-        scanf("%s", FatherName);
+        //scanf("%s", FatherName);
+        cin >> FatherName;
         cout << "\nIngrese el Apellido Materno del entrevistado: ";
-        scanf("%s", MotherName);
+        //scanf("%s", MotherName);
+        cin >> MotherName;
         SurveyedPerson.SetFullName(Name, FatherName, MotherName);
 
         cout << "\nIngrese el Run del entrevistado(sin el digito verificador): ";
@@ -257,11 +264,13 @@ void TestMenu(int Election){
             NewQuestion.AssignedTest(NewTest);
 
             cout << "\nIngrese una pregunta: ";
-            scanf("%s", QuestionText);
+            //scanf("%s", QuestionText);
+            cin >> QuestionText;
             NewQuestion.SetQuestion(QuestionText);
 
             cout << "\nIngrese una descripcion a la pregunta: ";
-            scanf("%s", Description);
+            //scanf("%s", Description);
+            cin >> Description;
             NewQuestion.SetDescription(Description);
 
             QuestionFile << "/////////////" << endl;
@@ -296,11 +305,15 @@ void TestMenu(int Election){
         NewQuestion.AssignedTest(NewTest);
         
         cout << "\nIngrese una pregunta: ";
-        scanf("%s", QuestionText);
+        //scanf("%s", QuestionText);
+        cin >> QuestionText;
         NewQuestion.SetQuestion(QuestionText);
+
         cout << "\nIngrese una descripcion a la pregunta: ";
-        scanf("%s", Description);
+        //scanf("%s", Description);
+        cin >> Description;
         NewQuestion.SetDescription(Description);
+
         QuestionFile << "/////////////" << endl;
         QuestionFile << "ID: " << NewQuestion.GetID() << endl;
         QuestionFile << "Foreign key Id: " << NewQuestion.GetFkId() << endl;
@@ -313,6 +326,7 @@ void TestMenu(int Election){
         Aux= "0";
         IdCouter = stoi(Searcher(AnswerFile, "ID:"))+1;
         NewAnswer.SetID(IdCouter);
+
         while(!QuestionFile.eof())
         {
             getline(QuestionFile,StrAux);
@@ -342,8 +356,10 @@ void TestMenu(int Election){
         }
         TestFile.clear();
         TestFile.seekg (0, ios::beg);
+
         cout << "\nIngrese una respuesta: ";
-        scanf("%s", QuestionText);
+        //scanf("%s", QuestionText);
+        cin >> QuestionText;
         NewAnswer.SetText(QuestionText);
 
         cout << "\nIngrese una observacion a la respuesta: ";
@@ -420,7 +436,7 @@ void TestMenu(int Election){
     }
 }
 
-bool EmailChecker(char CheckEmail[255], fstream &File){
+bool EmailChecker(string CheckEmail, fstream &File){
     while(!File.eof())
     {
         getline(UserFile,StrAux);
