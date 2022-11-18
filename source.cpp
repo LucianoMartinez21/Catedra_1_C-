@@ -5,16 +5,21 @@ Birthday::Birthday(int Dd, int Mm, int Year){
     Month = Mm;
     this->Year = Year;
 }
-char AuxStr1[10], AuxStr2[10], AuxStr3[10]; // Mas cinta americana
-char* Birthday::GetBirthday(){
+//char AuxStr1[10], AuxStr2[10], AuxStr3[10]; // Mas cinta americana
+std::string Birthday::GetBirthday(){
+    std::string StrNumber;
+    StrNumber = std::to_string(Day) + 
+    "/" + std::to_string(Month) +
+    "/" + std::to_string(Year);
+    return StrNumber;
+    /*
     sprintf(AuxStr1, "%d", Day);
     sprintf(AuxStr2, "%d", Month);
     sprintf(AuxStr3, "%d", Year);
     strcat(AuxStr1,"/");
     strcat(AuxStr1, AuxStr2);
     strcat(AuxStr1,"/");
-    strcat(AuxStr1, AuxStr3);
-    return AuxStr1;
+    strcat(AuxStr1, AuxStr3);*/
 }
 
 //Clase Persona
@@ -47,16 +52,13 @@ bool Person::SetPhone(int Num){
 bool Person::SetDV(char Dv){
     DV = Dv;
 }
-bool Person::SetFullName(char Name[255],char FatherName[255], char MotherName[255]){
-    for(int i = 0; i < 255; i++){
-        Names[i] = Name[i];
-        this->FatherName[i] = FatherName[i];
-        this->MotherName[i] = MotherName[i];
-    }
+bool Person::SetFullName(std::string Name, std::string FatherName, std::string MotherName){
+    Names = Name;
+    this->FatherName = FatherName;
+    this->MotherName = MotherName;
 }
-bool Person::SetEmail(char Email[255]){
-    for(int i = 0; i < 255; i++)
-        this->Email[i] = Email[i];
+bool Person::SetEmail(std::string Email){
+    this->Email = Email;
 }
 bool Person::SetBirthday(int Dd, int Mm, int Year){
     Birth = new Birthday(Dd, Mm, Year);
@@ -83,51 +85,55 @@ bool Person::SetGender(int Option){
 int Person::GetID(){
     return ID;
 }
-char RunAux[30]; //Pegado con cinta americana
-char* Person::GetRun(){
+//char RunAux[30]; //Pegado con cinta americana
+std::string Person::GetRun(){
+    std::string StrRun;
+    StrRun = Run + "-" + DV;
+    return StrRun;
+    /*
     sprintf(RunAux, "%d", Run);
     strcat(RunAux,"-");
     //strcat(RunAux, DV);
-    strncat(RunAux, &DV, 1);
-    return RunAux;
+    strncat(RunAux, &DV, 1);*/
 }
-char* Person::GetNames(){
+std::string Person::GetNames(){
     return Names;
     //std::cout << Names << std::endl;
 }
-char* Person::GetFather(){
+std::string Person::GetFather(){
     return FatherName;
 }
-char* Person::GetMother(){
+std::string Person::GetMother(){
     return MotherName;
 }
-char FullName[765]; // Un desperdicio de espacio para un desliz
-char* Person::GetFullName(){ 
-    strcat(FullName, Names);
+//char FullName[765]; // Un desperdicio de espacio para un desliz
+std::string Person::GetFullName(){ 
+
+    /*strcat(FullName, Names);
     strcat(FullName, " ");
     strcat(FullName, FatherName);
     strcat(FullName, " ");
-    strcat(FullName, MotherName);
-    return FullName;
+    strcat(FullName, MotherName);*/
+    return Names + " " + FatherName + " " + MotherName;
 }
-char* Person::GetGender(){
+std::string Person::GetGender(){
     switch (Gender)
         {
         case 0:
-            return const_cast<char*>("Male");
+            return "Male";
             break;
         case 1:
-            return const_cast<char*>("Female");
+            return "Female";
             break;
         case 2:
-            return const_cast<char*>("Other");
+            return "Other";
             break;
     }
 }
-char* Person::GetBirthday(){
+std::string Person::GetBirthday(){
     return Birth->GetBirthday();
 }
-char* Person::GetEmail(){
+std::string Person::GetEmail(){
     return Email;
 }
 bool Person::Borrar(){
@@ -166,11 +172,10 @@ char* User::GetPassword(){
 //Clase Entrevistado
 Surveyed::Surveyed(){}
 
-bool Surveyed::SetObservation(char Observation[255]){
-    for(int i = 0; i < 255; i++) 
-        this->Observation[i] = Observation[i];
+bool Surveyed::SetObservation(std::string Observation){
+    this->Observation = Observation;
 }
-char* Surveyed::GetObservation(){
+std::string Surveyed::GetObservation(){
     return Observation;
     //std::cout << Observation << std::endl;
 }
@@ -191,13 +196,11 @@ bool Test::SetCutPoint(int Cut){
 bool Test::SetMaxPoint(int Max){
     MaxPoint = Max;
 }
-bool Test::SetName(char Name[30]){
-    for(int i = 0; i < 30; i++)
-        this->Name[i] = Name[i];
+bool Test::SetName(std::string Name){
+    this->Name = Name;
 }
-bool Test::SetObservation(char Observation[255]){
-    for(int i = 0; i < 255; i++) 
-        this->Observation[i] = Observation[i];
+bool Test::SetObservation(std::string Observation){ 
+    this->Observation = Observation;
 }
 
 //Getters
@@ -210,11 +213,11 @@ int Test::GetCutPoint(){
 int Test::GetMaxPoint(){
     return MaxPoint;
 }
-char* Test::GetName(){
+std::string Test::GetName(){
     //std::cout << Name << std::endl;
     return Name;
 }
-char* Test::GetObservation(){
+std::string Test::GetObservation(){
     return Observation;
 }
 bool Test::Borrar(){
@@ -245,13 +248,11 @@ Question::Question(){
 bool Question::SetID(int Id){
     ID = Id;
 }
-bool Question::SetQuestion(char Question[255]){
-    for(int i = 0; i < 255; i++) 
-        QuestionText[i] = Question[i];
+bool Question::SetQuestion(std::string Question){ 
+    QuestionText = Question;
 }
-bool Question::SetDescription(char Description[255]){
-    for(int i = 0; i < 255; i++) 
-        this->Description[i] = Description[i];
+bool Question::SetDescription(std::string Description){
+    this->Description = Description;
 }
 bool Question::AssignedTest(Test Exam){
     FkId = Exam.GetID();
@@ -264,11 +265,11 @@ int Question::GetID(){
 int Question::GetFkId(){
     return FkId;
 }
-char* Question::GetQuestion(){
+std::string Question::GetQuestion(){
     //std::cout << QuestionText << std::endl;
     return QuestionText;
 }
-char* Question::GetDescription(){
+std::string Question::GetDescription(){
     //std::cout << Description << std::endl;
     return Description;
 }
@@ -310,13 +311,11 @@ bool Answer::SetPoint(int Point){
 bool Answer::AssignedQuestion(Question Query){
     FkId = Query.GetID();
 }
-bool Answer::SetText(char Text[255]){
-    for(int i = 0; i < 255; i++) 
-        this->Text[i] = Text[i];
+bool Answer::SetText(std::string Text){ 
+    this->Text = Text;
 }
-bool Answer::SetObservation(char Observation[255]){
-    for(int i = 0; i < 255; i++) 
-        this->Observation[i] = Observation[i];
+bool Answer::SetObservation(std::string Observation){
+    this->Observation = Observation;
 }
 
 //Getters
@@ -329,10 +328,10 @@ int Answer::GetPoint(){
 int Answer::GetFkId(){
     return FkId;
 }
-char* Answer::GetObservation(){
+std::string Answer::GetObservation(){
     return Observation;
 }
-char* Answer::GetText(){
+std::string Answer::GetText(){
     //std::cout << Text << std::endl;
     return Text;
 }

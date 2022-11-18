@@ -5,20 +5,21 @@
 #include <time.h>
 #include <stdio.h>
 #include <string.h>
+//using namespace std;
 enum Genus{Male, Female, Other};
 class Birthday{
 private:
     int Day, Month, Year;
 public:
     Birthday(int, int, int);
-    char* GetBirthday();
+    //char* GetBirthday();
+    std::string GetBirthday();
 };
-
 class Person{
 private:
     int ID, Run, Phone;
-    char DV, Names[255], FatherName[255], // DV = Digito verificador
-    MotherName[255], Email[255];
+    std::string Names, FatherName, MotherName, Email;
+    char DV; // DV = Digito verificador
     Birthday *Birth;
     enum Genus Gender;
     time_t DeleteAt;
@@ -31,11 +32,11 @@ public:
     bool SetRun(int);
     bool SetPhone(int);
     bool SetDV(char);
-    bool SetFullName(char[255], char[255], char[255]);
+    bool SetFullName(std::string, std::string, std::string);
     //bool SetNames(char[255]);
     //bool SetFather(char[255]);
     //bool SetMother(char[255]);
-    bool SetEmail(char[255]);
+    bool SetEmail(std::string);
     bool SetBirthday(int, int, int);
     bool SetGender(int);
 
@@ -43,14 +44,14 @@ public:
     int GetID();
     //int GetPhone();
     //char GetDV();
-    char* GetRun();//Lo devuelve con digito verificador
-    char* GetNames();
-    char* GetFather();
-    char* GetMother();
-    char* GetFullName();
-    char* GetGender();
-    char* GetBirthday();
-    char* GetEmail();
+    std::string GetRun();//Lo devuelve con digito verificador
+    std::string GetNames();
+    std::string GetFather();
+    std::string GetMother();
+    std::string GetFullName();
+    std::string GetGender();
+    std::string GetBirthday();
+    std::string GetEmail();
     bool Borrar();
     void GetDeleteAt();
 
@@ -58,26 +59,26 @@ public:
 
 class User : public Person{
 private:
-    //char Password[255];
+    //std::string Password;
 public:
     User();
-    //bool SetPassword(char[255]);
-    //char* GetPassword();
+    //bool SetPassword(std::string);
+    //std::string GetPassword();
 };
 
 class Surveyed : public Person{
 private:
-    char Observation[255];
+    std::string Observation;
 public:
     Surveyed();
-    bool SetObservation(char[255]);
-    char* GetObservation();
+    bool SetObservation(std::string);
+    std::string GetObservation();
 };
 
 class Test{
 private:
     int ID, CutPoint, MaxPoint;
-    char Name[30], Observation[255];
+    std::string Name, Observation;
     time_t DeleteAt;
 public:
     Test();
@@ -85,14 +86,14 @@ public:
     bool SetID(int);
     bool SetCutPoint(int); // punto de corte donde una persona se clasifica con depreshoun
     bool SetMaxPoint(int);
-    bool SetName(char[30]);
-    bool SetObservation(char[255]); // Se escribe el objetivo o motivo tipo automemoria o observacion interna del objetivo del test
+    bool SetName(std::string);
+    bool SetObservation(std::string); // Se escribe el objetivo o motivo tipo automemoria o observacion interna del objetivo del test
     //Getters
     int GetID();
     int GetCutPoint();
     int GetMaxPoint();
-    char* GetName();
-    char* GetObservation();
+    std::string GetName();
+    std::string GetObservation();
     bool Borrar();
     void GetDeleteAt();
 }; 
@@ -100,20 +101,20 @@ public:
 class Question{
 private:
     int ID, FkId;
-    char QuestionText[255], Description[255];
+    std::string QuestionText, Description;
     time_t DeleteAt;
 public:
     Question();
     //Setters
     bool SetID(int);
-    bool SetQuestion(char[255]);
-    bool SetDescription(char[255]);
+    bool SetQuestion(std::string);
+    bool SetDescription(std::string);
     bool AssignedTest(Test);
     //Getters
     int GetID();
     int GetFkId();
-    char* GetQuestion();
-    char* GetDescription();
+    std::string GetQuestion();
+    std::string GetDescription();
     bool Borrar();
     void GetDeleteAt();
 };
@@ -121,7 +122,7 @@ public:
 class Answer{
 private:
     int ID, Point, FkId; // True False, Desagro medianamente ni fu fa medianamente pos agrado
-    char Text[255], Observation[255];
+    std::string Text, Observation;
     time_t DeleteAt;
 public:
     Answer();
@@ -129,14 +130,14 @@ public:
     bool SetID(int);
     bool SetPoint(int);
     bool AssignedQuestion(Question);
-    bool SetText(char[255]);
-    bool SetObservation(char[255]);
+    bool SetText(std::string);
+    bool SetObservation(std::string);
     //Getters 
     int GetID();
     int GetPoint();
     int GetFkId();
-    char* GetObservation();
-    char* GetText();
+    std::string GetObservation();
+    std::string GetText();
     bool Borrar();
     void GetDeleteAt();
 };
