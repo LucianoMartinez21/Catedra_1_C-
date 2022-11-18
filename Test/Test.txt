@@ -4,3 +4,4 @@ Titulo: Test_Binario
 Puntaje Máximo: 10
 Puntaje de Corte: 2
 Observación: Este_test_solo_usa_respuestas_binarias,_sease_si_y_no_o_verdadero_y_falso
+
