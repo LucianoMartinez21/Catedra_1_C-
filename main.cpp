@@ -43,12 +43,14 @@ int main(){
 
 string Name, FatherName, MotherName, Email;
 char Dv;
-int Run, Day, Month, Year, GenderNumber, Phone;
+int Run, Day, Month, Year, GenderNumber, Phone, IdUser;
 
-void Menu(int Election){
+void Menu(int Election)
+{
     //char Password[255];
     User Pollster = User(); // pollster = Encuestador
-    switch (Election){
+    switch (Election)
+    {
         case 1:
             //Pollster.SetID(IdCouter);
             //IdVerifier(Pollster, UserFile);
@@ -120,6 +122,8 @@ void Menu(int Election){
             //UserFile << "Contraseña: " << Password << endl;
             UserFile << "DeleteAt: " << endl;
             cout << "Registro completado!" << endl;
+            SurveyFile.clear();
+            SurveyFile.seekg (0, ios::beg);
             break;
         case 2:
             while (Election != 0)
@@ -129,13 +133,30 @@ void Menu(int Election){
 
                 getline(cin >> ws, Email);
                 int Option = 0;
+                
+                while(getline(UserFile,StrAux))
+                {
+                    if(StrAux == "Correo: " + Email)
+                        Check = true;
+                    if(Check == true){
+                        if(StrAux.find("ID:") != string::npos){
+                            IdUser = stoi(StrAux.substr(StrAux.find(" ") + 1, StrAux.length())) - 1; 
+                            Check = false;
+                        }
+                    }
+                }
+                Check = false;
+                UserFile.clear();
+                UserFile.seekg (0, ios::beg);
                 /*
                 cout << "\nIngrese su Contraseña: ";
                 scanf("%s", Password);*/
 
-                if(EmailChecker(Email, UserFile) == true){
-                    cout << "¡Sesion Iniciada!\n";
-                    while (Option != 6){
+                if(EmailChecker(Email, UserFile) == true)
+                {
+                    cout << "Sesion Iniciada!\n";
+                    while (Option != 6)
+                    {
                         cout << "=====Programa de Encuestas=====\n" <<
                         "1)Crear perfil de entrevistado\n" <<
                         "2)Crear test\n" << "3)Crear preguntas\n" << "4)Crear respuestas\n"<<
@@ -143,16 +164,6 @@ void Menu(int Election){
                         cin >> Option;
                         TestMenu(Option);
                     }
-                    /* Objetivos
-                        +crear perfil de entrevistado Done
-                        +crear test Done
-                            -crear el propio test
-                            -añadir preguntas
-                        +crear preguntas y que se puede elegir a que test puede entrar Done
-                        +Crear las respuestas Done
-                        +realizar encuesta
-                        +terminar de hacer la funcion IdVerifier Done
-                    */
                     break;
                 }else{
                     cout << "Ingrese los datos correctos" << endl;
@@ -169,8 +180,10 @@ void Menu(int Election){
 }
 
 string QuestionText, Description;
-int MaxPoint, Point, TopPoint=0;
-void TestMenu(int Election){
+int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength;
+void TestMenu(int Election)
+{
+    User UserPerson = User();
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
     Question NewQuestion = Question();
@@ -236,6 +249,8 @@ void TestMenu(int Election){
         SurveyFile << "Correo: " << Email << endl;
         SurveyFile << "Telefono: " << Phone << endl;
         SurveyFile << "DeleteAt: " << endl;
+        SurveyFile.clear();
+        SurveyFile.seekg (0, ios::beg);
         break;
     case 2:
         //IdVerifier(NewTest, TestFile);
@@ -266,8 +281,10 @@ void TestMenu(int Election){
         TestFile << "Puntaje Maximo: " << NewTest.GetMaxPoint() << endl;
         TestFile << "Puntaje de Corte: " << NewTest.GetCutPoint() << endl;
         TestFile << "Observacion: " << NewTest.GetObservation() << endl;
-
-        while(Election != 0){
+        TestFile.clear();
+        TestFile.seekg (0, ios::beg);
+        while(Election != 0)
+        {
             //IdVerifier(NewQuestion, QuestionFile);
             Aux= "0";
             IdCouter = stoi(Searcher(QuestionFile, "ID:"))+1;
@@ -294,18 +311,16 @@ void TestMenu(int Election){
             "\nPresione cualquier numero para continuar"<< endl;
             cin >> Election;
         }
-
+        QuestionFile.clear();
+        QuestionFile.seekg (0, ios::beg);
         break;
     case 3:
         Aux= "0";
         IdCouter = stoi(Searcher(QuestionFile, "ID:"))+1;
         NewQuestion.SetID(IdCouter);
 
-        while(!TestFile.eof())
-        {
-            getline(TestFile,StrAux);
+        while(getline(TestFile,StrAux))
             if(StrAux.find("ID:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
-        }
         TestFile.clear();
         TestFile.seekg (0, ios::beg);
 
@@ -335,11 +350,8 @@ void TestMenu(int Election){
         IdCouter = stoi(Searcher(AnswerFile, "ID:"))+1;
         NewAnswer.SetID(IdCouter);
 
-        while(!QuestionFile.eof())
-        {
-            getline(QuestionFile,StrAux);
+        while(getline(QuestionFile,StrAux))
             if(StrAux.find("ID:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
-        }
         QuestionFile.clear();
         QuestionFile.seekg (0, ios::beg);
 
@@ -347,22 +359,6 @@ void TestMenu(int Election){
         cin >> Election;
         NewQuestion = Recovery(NewQuestion, "ID", Election);
         NewAnswer.AssignedQuestion(NewQuestion);
-
-        while(getline(QuestionFile, StrAux)){
-            if(StrAux == "ID: " + to_string(NewQuestion.GetID())){
-                Check = true;
-            }
-            if(Check == true){
-                if(StrAux.find("key ") != string::npos){
-                    NewTest = Recovery(NewTest, "ID", stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
-                    NewQuestion.AssignedTest(NewTest);
-                    Check = false;
-                }
-            }
-        }
-        Check = false;
-        QuestionFile.clear();
-        QuestionFile.seekg (0, ios::beg);
 
         cout << "\nIngrese una respuesta: ";
         getline(cin >> ws, QuestionText);
@@ -386,15 +382,19 @@ void TestMenu(int Election){
         break;
     case 5:
         cout << "Seleccione la prueba a realizar: " << endl;
-        while(!TestFile.eof())
-        {
-            getline(TestFile,StrAux);
+        while(getline(TestFile,StrAux))
             if(StrAux.find("ID:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
-        }
         TestFile.clear();
         TestFile.seekg (0, ios::beg);
         cin >> Election;
+
         NewTest = Recovery(NewTest, "ID", Election);
+        UserPerson = Recovery(UserPerson, "ID", IdUser);
+        Aux= "0";
+        QuestionLength = stoi(Searcher(QuestionFile, "ID:"));
+        Aux= "0";
+        AnswerLength = stoi(Searcher(AnswerFile, "ID"));
+        cout << QuestionLength << endl;       
 
         break;
     default:
@@ -404,9 +404,8 @@ void TestMenu(int Election){
 }
 
 bool EmailChecker(string CheckEmail, fstream &File){
-    while(!File.eof())
+    while(getline(File, StrAux))
     {
-        getline(UserFile,StrAux);
         if(StrAux.find("Correo:") != string::npos){
             //cout << StrAux.substr(StrAux.find(" ")+1,StrAux.length());
             if(CheckEmail == StrAux.substr(StrAux.find(" ")+1,StrAux.length())){
@@ -462,10 +461,10 @@ User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id",
                     NameAux = StrAux.substr(StrAux.find(" ")+1,StrAux.length());
 
                 else if(StrAux.find("Apellido Paterno:") != string::npos)
-                    FatherAux = StrAux.substr(StrAux.find(" ")+1,StrAux.length());
+                    FatherAux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());
 
                 else if(StrAux.find("Apellido Materno:") != string::npos)
-                    UserRecover.SetFullName(NameAux, FatherAux, StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+                    UserRecover.SetFullName(NameAux, FatherAux, StrAux.substr(StrAux.rfind(" ")+1,StrAux.length()));
                 
                 else if(StrAux.find("Run:") != string::npos)
                 {
@@ -474,7 +473,7 @@ User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id",
 
                 }else if(StrAux.find("Fecha de Nacimiento:") != string::npos)
                 {
-                    NameAux = StrAux.substr(StrAux.find(" ")+1,StrAux.length());
+                    NameAux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());
                     if(NameAux.substr(0, NameAux.find("/")).length() == 2)
                         FatherAux = NameAux.substr(NameAux.find_first_of("/")+1, NameAux.rfind("/")-3);
                     else
@@ -577,13 +576,14 @@ Test Recovery(Test TestRecover, string KeyWord, int NumberKey)
             if(Check == true)
             {
                 if(StrAux.find("Titulo:") != string::npos)
-                    TestRecover.SetName(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+                    TestRecover.SetName(StrAux.substr(StrAux.find(" ") + 1, StrAux.length()));
                 else if(StrAux.find("Maximo:") != string::npos)
-                    TestRecover.SetMaxPoint(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
-                else if(StrAux.find("Corte:") != string::npos)
-                    TestRecover.SetCutPoint(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
+                    TestRecover.SetMaxPoint(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));
+                else if(StrAux.find("de Corte:") != string::npos)
+                    TestRecover.SetCutPoint(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));                    
                 else if(StrAux.find("Observacion:") != string::npos)
-                    TestRecover.SetObservation(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+                    TestRecover.SetObservation(StrAux.substr(StrAux.find(" ") + 1, StrAux.length()));
+                //cout << "hola" << endl;
             }
             
         }else Check = false;
@@ -595,6 +595,7 @@ Test Recovery(Test TestRecover, string KeyWord, int NumberKey)
 }
 Question Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
 {
+    Test AuxTest = Test();
     while (getline(QuestionFile, StrAux))
     {
         if(StrAux != "/////////////")
@@ -609,7 +610,12 @@ Question Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
             if(Check == true)
             {
                 //cout << "c" << endl;
-                if(StrAux.find("Pregunta:") != string::npos)
+                if(StrAux.find("key ") != string::npos)
+                {
+                    AuxTest.SetID(stoi(StrAux.substr(StrAux.rfind(" "), StrAux.length())));
+                    QuestionRecover.AssignedTest(AuxTest);    
+                }                                           
+                else if(StrAux.find("Pregunta:") != string::npos)
                     QuestionRecover.SetQuestion(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
                 else if(StrAux.find("Descripcion:") != string::npos)
                     QuestionRecover.SetDescription(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
@@ -618,7 +624,7 @@ Question Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
         }else Check = false;
     }
     if(QuestionFile.eof()) {
-        return QuestionRecover;
+        //return QuestionRecover;
         //cout << QuestionRecover.GetID() << endl;
         QuestionFile.clear();
         QuestionFile.seekg (0, ios::beg);
@@ -649,6 +655,7 @@ Answer Recovery(Answer AnswerRecover, string KeyWord, int NumberKey)
         }else Check = false;
     }
     if(AnswerFile.eof()) {
+        //return AnswerRecover;
         AnswerFile.clear();
         AnswerFile.seekg (0, ios::beg);
     }

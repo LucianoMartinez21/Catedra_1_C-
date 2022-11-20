@@ -1,5 +1,5 @@
 /////////////
-Id: 1
+ID: 1
 Nombre: Luciano
 Apellido Paterno: Martinez
 Apellido Materno: Labarthe
@@ -10,7 +10,7 @@ Correo: luciano@mail.com
 Telefono: 123456
 DeleteAt: 
 /////////////
-Id: 2
+ID: 2
 Nombre: Gerson
 Apellido Paterno: Choque
 Apellido Materno: Rodriguez
@@ -21,7 +21,7 @@ Correo: a@b.com
 Telefono: 789456
 DeleteAt: 
 /////////////
-Id: 3
+ID: 3
 Nombre: Juaquin
 Apellido Paterno: Rojas
 Apellido Materno: Ordonez
@@ -32,7 +32,7 @@ Correo: otro@otro.cl
 Telefono: 7774449
 DeleteAt: 
 /////////////
-Id: 4
+ID: 4
 Nombre: Fernando
 Apellido Paterno: Carmino
 Apellido Materno: Rodriguez
@@ -43,7 +43,7 @@ Correo: fernandoCarmino@gmail.com
 Telefono: 123456789
 DeleteAt: 
 /////////////
-Id: 5
+ID: 5
 Nombre: Felipe
 Apellido Paterno: Urrutia
 Apellido Materno: Popo
@@ -54,7 +54,7 @@ Correo: mingw@gmail.com
 Telefono: 985457541
 DeleteAt: 
 /////////////
-Id: 8
+ID: 6
 Nombre: a
 Apellido Paterno: a
 Apellido Materno: a
@@ -64,25 +64,4 @@ Genero: Male
 Correo: a@b
 Telefono: 1
 DeleteAt: 
-/////////////
-Id: 2
-Nombre: a
-Apellido Paterno: a
-Apellido Materno: a
-Run: 123-1
-Fecha de Nacimiento: 1/1/1
-Genero: Male
-Correo: a@b
-Telefono: 123
-DeleteAt: 
-/////////////
-ID: 1
-Nombre: Henry
-Apellido Paterno: Martinez
-Apellido Materno: Labarthe
-Run: 178945-0
-Fecha de Nacimiento: 22/2/2000
-Genero: Male
-Correo: henry@mail.com
-Telefono: 7855423
-DeleteAt: 
+
