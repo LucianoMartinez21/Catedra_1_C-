@@ -19,11 +19,11 @@ bool EmailChecker(string, fstream&);
 void Menu(int);
 void TestMenu(int);
 int PointVerifier(fstream&);
-void Recovery(User, string, int);
-void Recovery(Surveyed, string, int);
-void Recovery(Test, string, int);
-void Recovery(Question, string, int);
-void Recovery(Answer, string, int);
+User Recovery(User, string, int);
+Surveyed Recovery(Surveyed, string, int);
+Test Recovery(Test, string, int);
+Question Recovery(Question, string, int);
+Answer Recovery(Answer, string, int);
 //Global Variables
 string StrAux, StrAux2, Aux, Aux2;
 bool check = false;
@@ -299,7 +299,6 @@ void TestMenu(int Election){
 
         break;
     case 3:
-        //IdVerifier(NewQuestion, QuestionFile);
         Aux= "0";
         IdCouter = stoi(Searcher(QuestionFile, "Id:"))+1;
         NewQuestion.SetID(IdCouter);
@@ -314,16 +313,14 @@ void TestMenu(int Election){
 
         cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta: " << endl;
         cin >> Election;
-        NewTest.SetID(Election);
+        Recovery(NewTest, "Id", Election);
         NewQuestion.AssignedTest(NewTest);
-        
+
         cout << "\nIngrese una pregunta: ";
-        //scanf("%s", QuestionText);
         getline(cin >> ws, QuestionText);
         NewQuestion.SetQuestion(QuestionText);
 
         cout << "\nIngrese una descripcion a la pregunta: ";
-        //scanf("%s", Description);
         getline(cin >> ws, Description);
         NewQuestion.SetDescription(Description);
 
@@ -350,59 +347,23 @@ void TestMenu(int Election){
 
         cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta: ";
         cin >> Election;
-        NewQuestion.SetID(Election);
+        NewQuestion = Recovery(NewQuestion, "ID", Election);
         NewAnswer.AssignedQuestion(NewQuestion);
-
-        Aux = "Id: "+ to_string(NewQuestion.GetFkId());
-
-        while(getline(TestFile,StrAux))
-        {
-            cout << "enter" << endl;
-            if(StrAux.find("Id:") != string::npos && StrAux == Aux){
-                Check = true;
-            }
-            if(StrAux.find("Puntaje Maximo:") != string::npos && Check == true){
-                MaxPoint = stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));//stoi(Searcher(TestFile, StrAux));
-                cout << MaxPoint << endl;
-            }
-        }
-        TestFile.clear();
-        TestFile.seekg (0, ios::beg);
+        cout << NewQuestion.GetID() << endl;
+        cout << NewQuestion.GetQuestion() << endl;
 
         cout << "\nIngrese una respuesta: ";
-        //scanf("%s", QuestionText);
+
         getline(cin >> ws, QuestionText);
         NewAnswer.SetText(QuestionText);
 
         cout << "\nIngrese una observacion a la respuesta: ";
-        //scanf("%s", Description);
         getline(cin >> ws, Description);
         NewAnswer.SetObservation(Description);
 
         cout << "\nIngrese el puntaje: ";
         cin >> Point;
         TopPoint += Point;
-        /*
-        if(TopPoint == 0){
-            //TopPoint += 
-            Aux = "ID: "+ to_string(NewAnswer.GetID()); 
-            while(!AnswerFile.eof())
-            {
-                getline(AnswerFile,StrAux);
-                if(StrAux.find("ID:") != string::npos && StrAux == Aux){
-                    while (!StrAux.find("/////////////") != string::npos)
-                    {
-                        getline(AnswerFile,StrAux);
-                        if(StrAux.find("Puntaje:") != string::npos){
-                            if(stoi(Searcher(AnswerFile, StrAux)) != 0)
-                                TopPoint = stoi(Searcher(AnswerFile, StrAux)) + Point;
-                        }
-                    }
-                }
-            }
-            AnswerFile.clear();
-            AnswerFile.seekg (0, ios::beg);*/
-        //}else TopPoint += Point;
         if(MaxPoint > TopPoint){
             NewAnswer.SetPoint(Point);
         }else{
@@ -426,39 +387,6 @@ void TestMenu(int Election){
         TestFile.clear();
         TestFile.seekg (0, ios::beg);
         cin >> Election;
-        NewTest.SetID(Election);
-
-        Aux = "Foreign key Id: "+ to_string(NewTest.GetID());
-        Aux2 = "Foreign key Id: "+ to_string(NewQuestion.GetID());
-        while(getline(QuestionFile,StrAux))
-        {
-            if(StrAux.find("Foreign key Id:") != string::npos && StrAux == Aux) 
-            {
-                getline(QuestionFile,StrAux);
-                if(StrAux.find("Pregunta:") != string::npos)
-                {
-                    cout << StrAux << endl;
-                    while(getline(AnswerFile, StrAux2))
-                    {
-                        cout << "found" << endl;
-                        cout << StrAux2 << endl;
-                        if(StrAux2.find("Foreign key Id:") != string::npos && StrAux2 == Aux2)
-                        {
-                            cout << "found2" << endl;
-                        }
-                        //cout << StrAux2 << endl;
-                    }
-                    AnswerFile.clear();
-                    AnswerFile.seekg (0, ios::beg);                                               
-                }
-            }
-            //cout << "a" << endl;
-        }
-        QuestionFile.clear();
-        AnswerFile.clear();
-        AnswerFile.seekg (0, ios::beg);
-        QuestionFile.seekg (0, ios::beg);
-        
         break;
     default:
         cout << "Ingrese una opcion correcta" << endl;
@@ -508,13 +436,13 @@ string Searcher(fstream &File, string KeyWord){
 
 
 
-void Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id", 1)
+User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id", 1)
 {
     string NameAux, FatherAux; //MotherAux;
     while (getline(UserFile, StrAux))
     {
         if(StrAux != "/////////////"){
-            if((KeyWord + ": " + to_string(NumberKey)) == StrAux)
+            if(StrAux == (KeyWord + ": " + to_string(NumberKey)))
             {
                 check = true;
                 UserRecover.SetID(NumberKey);
@@ -567,13 +495,13 @@ void Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id",
         UserFile.seekg (0, ios::beg);
     }
 }
-void Recovery(Surveyed SurveyedRecover, string KeyWord, int NumberKey)
+Surveyed Recovery(Surveyed SurveyedRecover, string KeyWord, int NumberKey)
 {
     string NameAux, FatherAux;
     while (getline(SurveyFile, StrAux))
     {
         if(StrAux != "/////////////"){
-            if((KeyWord + ": " + to_string(NumberKey)) == StrAux)
+            if(StrAux == (KeyWord + ": " + to_string(NumberKey)))
             {
                 check = true;
                 SurveyedRecover.SetID(NumberKey);
@@ -626,20 +554,27 @@ void Recovery(Surveyed SurveyedRecover, string KeyWord, int NumberKey)
         SurveyFile.seekg (0, ios::beg);
     }
 }
-void Recovery(Test TestRecover, string KeyWord, int NumberKey)
+Test Recovery(Test TestRecover, string KeyWord, int NumberKey)
 {
     while (getline(TestFile, StrAux))
     {
         if(StrAux != "/////////////")
         {
-            if((KeyWord + ": " + to_string(NumberKey)) == StrAux)
+            if(StrAux == (KeyWord + ": " + to_string(NumberKey)))
             {
                 check = true;
                 TestRecover.SetID(NumberKey);
             }
             if(check == true)
             {
-
+                if(StrAux.find("Titulo:") != string::npos)
+                    TestRecover.SetName(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+                else if(StrAux.find("Maximo:") != string::npos)
+                    TestRecover.SetMaxPoint(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
+                else if(StrAux.find("Corte:") != string::npos)
+                    TestRecover.SetCutPoint(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
+                else if(StrAux.find("Observacion:") != string::npos)
+                    TestRecover.SetObservation(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
             }
             
         }else check = false;
@@ -649,34 +584,60 @@ void Recovery(Test TestRecover, string KeyWord, int NumberKey)
         TestFile.seekg (0, ios::beg);
     }
 }
-void Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
+Question Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
 {
     while (getline(QuestionFile, StrAux))
     {
         if(StrAux != "/////////////")
         {
-            if((KeyWord + ": " + to_string(NumberKey)) == StrAux)
+            //cout << "a" << endl;
+            if(StrAux == (KeyWord + ": " + to_string(NumberKey)))
             {
+                //cout << "b" << endl;
                 check = true;
                 QuestionRecover.SetID(NumberKey);
             }
+            if(check == true)
+            {
+                //cout << "c" << endl;
+                if(StrAux.find("Pregunta:") != string::npos)
+                    QuestionRecover.SetQuestion(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+                else if(StrAux.find("Descripcion:") != string::npos)
+                    QuestionRecover.SetDescription(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+            }
 
-        }
+        }else check = false;
     }
     if(QuestionFile.eof()) {
+        return QuestionRecover;
+        //cout << QuestionRecover.GetID() << endl;
         QuestionFile.clear();
         QuestionFile.seekg (0, ios::beg);
     }
 
 }
-void Recovery(Answer AnswerRecover, string KeyWord, int NumberKey)
+Answer Recovery(Answer AnswerRecover, string KeyWord, int NumberKey)
 {
     while (getline(AnswerFile, StrAux))
     {
-        if(StrAux.find(KeyWord) != string::npos)
+        if(StrAux != "/////////////")
         {
-
-        }
+            if(StrAux == (KeyWord + ": " + to_string(NumberKey)))
+            {
+                check = true;
+                AnswerRecover.SetID(NumberKey);
+            }
+            if(check == true)
+            {
+                if(StrAux.find("Puntaje:") != string::npos)
+                    AnswerRecover.SetPoint(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
+                else if(StrAux.find("Respuesta:") != string::npos)
+                    AnswerRecover.SetText(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+                else if(StrAux.find("Observacion:") != string::npos)
+                    AnswerRecover.SetObservation(StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
+            }
+            
+        }else check = false;
     }
     if(AnswerFile.eof()) {
         AnswerFile.clear();

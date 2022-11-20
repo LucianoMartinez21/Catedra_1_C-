@@ -1,7 +1,7 @@
 /////////////
 Id: 1
 Titulo: Test Binario
-Puntaje Máximo: 10
+Puntaje Maximo: 10
 Puntaje de Corte: 2
-Observación: Este test solo usa respuestas binarias, sease si y no, o verdadero y falso.
+Observacion: Este test solo usa respuestas binarias, sease si y no, o verdadero y falso.
 
