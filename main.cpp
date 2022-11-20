@@ -170,7 +170,7 @@ void Menu(int Election){
 }
 
 string QuestionText, Description;
-int MaxPoint, Point, TopPoint;
+int MaxPoint, Point, TopPoint=0;
 void TestMenu(int Election){
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -354,7 +354,11 @@ void TestMenu(int Election){
                 Check = true;
             }
             if(Check == true){
-                
+                if(StrAux.find("key ") != string::npos){
+                    NewTest = Recovery(NewTest, "ID", stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
+                    NewQuestion.AssignedTest(NewTest);
+                    Check = false;
+                }
             }
         }
         Check = false;
@@ -371,12 +375,8 @@ void TestMenu(int Election){
 
         cout << "\nIngrese el puntaje: ";
         cin >> Point;
-        TopPoint += Point;
-        if(MaxPoint > TopPoint){
-            NewAnswer.SetPoint(Point);
-        }else{
-            NewAnswer.SetPoint(MaxPoint-TopPoint);
-        }
+        NewAnswer.SetPoint(Point);
+
         AnswerFile << "/////////////" << endl;
         AnswerFile << "ID: " << NewAnswer.GetID() << endl;
         AnswerFile << "Foreign key Id: " << NewAnswer.GetFkId() << endl;

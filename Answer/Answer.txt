@@ -1,7 +1,14 @@
 /////////////
 ID: 1
 Foreign key Id: 1
-Puntaje: 0
+Puntaje: 1
 Respuesta: Si
 Observacion: Respuesta negativa
+DeleteAt: 
+/////////////
+ID: 2
+Foreign key Id: 1
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva
 DeleteAt: 
