@@ -9,4 +9,9 @@ ID: 2
 Foreign key Id: 1
 Pregunta: Ha_perdido_el_interes_por_las_cosas?
 Descripcion: Pregunta_sacada_de_ABC_revista_cientifica
+DeleteAt: /////////////
+ID: 3
+Foreign key Id: 2
+Pregunta: Calidad de sueno
+Descripcion: Busca saber que tipo de sueno acostumbra el entrevistado.
 DeleteAt: 

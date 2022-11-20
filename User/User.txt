@@ -75,3 +75,14 @@ Genero: Male
 Correo: a@b
 Telefono: 123
 DeleteAt: 
+/////////////
+ID: 1
+Nombre: Henry
+Apellido Paterno: Martinez
+Apellido Materno: Labarthe
+Run: 178945-0
+Fecha de Nacimiento: 22/2/2000
+Genero: Male
+Correo: henry@mail.com
+Telefono: 7855423
+DeleteAt: 

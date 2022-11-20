@@ -8,4 +8,14 @@ Fecha de Nacimiento: 8/5/1950
 Genero: Other
 Correo: a@b.com
 Telefóno: 7894561
-DeleteAt:
+DeleteAt://///////////
+ID: 1
+Nombre: John
+Apellido Paterno: Smith
+Apellido Materno: Johnson
+Run: 789546-k
+Fecha de Nacimiento: 1/5/1985
+Genero: Other
+Correo: JohnJohnson@smith.com
+Telefono: 78456412
+DeleteAt: 

@@ -97,7 +97,6 @@ void Menu(int Election){
             }*/
 
             cout << "\nIngrese su Correo: ";
-            //scanf("%s", Email);
             getline(cin >> ws, Email);
             Pollster.SetEmail(Email);
 
@@ -125,7 +124,7 @@ void Menu(int Election){
         case 2:
             while (Election != 0)
             {
-                Email;
+                Email = "";
                 cout << "\nIngrese su Correo: ";
 
                 getline(cin >> ws, Email);
@@ -344,7 +343,7 @@ void TestMenu(int Election){
         QuestionFile.clear();
         QuestionFile.seekg (0, ios::beg);
 
-        cout << "Ingrese la ID de la prueba a la que va dirigido esta respuesta: ";
+        cout << "Ingrese la ID de la pregunta a la que va dirigido esta respuesta: ";
         cin >> Election;
         NewQuestion = Recovery(NewQuestion, "ID", Election);
         NewAnswer.AssignedQuestion(NewQuestion);
