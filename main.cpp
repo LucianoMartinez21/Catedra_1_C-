@@ -1,9 +1,9 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <fstream>
 #include "source.h"
 #include <string.h>
 #include <string>
-#include <cmath>
+#include <vector>
 using namespace std;
 
 //Functions
@@ -179,15 +179,17 @@ void Menu(int Election)
     }
 }
 
-string QuestionText, Description;
-int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength;
+
 void TestMenu(int Election)
 {
+    string QuestionText, Description;
+    int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength, NumOfAnswers; 
     User UserPerson = User();
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
     Question NewQuestion = Question();
     Answer NewAnswer = Answer();
+    vector<string> AnswerArray;
     switch (Election)
     {
     case 1:
@@ -358,6 +360,7 @@ void TestMenu(int Election)
         cout << "Ingrese la ID de la pregunta a la que va dirigido esta respuesta: ";
         cin >> Election;
         NewQuestion = Recovery(NewQuestion, "ID", Election);
+        NewTest = Recovery(NewTest, "ID", NewQuestion.GetFkId());
         NewAnswer.AssignedQuestion(NewQuestion);
 
         cout << "\nIngrese una respuesta: ";
@@ -370,7 +373,29 @@ void TestMenu(int Election)
 
         cout << "\nIngrese el puntaje: ";
         cin >> Point;
-        NewAnswer.SetPoint(Point);
+        if(stoi(Searcher(AnswerFile, "ID:")) != 0)
+        {
+            /*
+            for (int i = 1; i <= stoi(Searcher(AnswerFile, "ID:")); i++)
+            {
+                if(NewQuestion.GetID() == Recovery(NewAnswer, "ID", i).GetFkId())
+                {
+                    TopPoint += Recovery(NewAnswer, "ID", i).GetPoint();
+                }
+            }*/
+            TopPoint += Point;
+            if(NewTest.GetMaxPoint() > TopPoint)
+            {
+                NewAnswer.SetPoint(Point);
+            }else
+            {
+                NewAnswer.SetPoint(NewTest.GetMaxPoint()-Point);
+            }
+        }else
+        {
+            NewAnswer.SetPoint(Point);
+        }
+        
 
         AnswerFile << "/////////////" << endl;
         AnswerFile << "ID: " << NewAnswer.GetID() << endl;
@@ -393,16 +418,61 @@ void TestMenu(int Election)
         Aux= "0";
         QuestionLength = stoi(Searcher(QuestionFile, "ID:"));
         Aux= "0";
-        AnswerLength = stoi(Searcher(AnswerFile, "ID"));
+        AnswerLength = stoi(Searcher(AnswerFile, "ID:"));
+        //cout << AnswerLength << endl;
         //cout << QuestionLength << endl;
         for(int i = 1; i <= QuestionLength; i++)
         {
             if(NewTest.GetID() == Recovery(NewQuestion, "ID", i).GetFkId())
             {
+                
                 cout << Recovery(NewQuestion, "ID", i).GetQuestion() << endl;
+                NumOfAnswers = 0; 
+                for (int j = 1; j <= AnswerLength; j++)
+                {
+                    if(Recovery(NewQuestion, "ID", i).GetID() == Recovery(NewAnswer, "ID", j).GetFkId())
+                    {
+                        cout << NumOfAnswers+1 << ")" << Recovery(NewAnswer, "ID", j).GetText() << " ";
+                        AnswerArray.push_back(Recovery(NewAnswer, "ID", j).GetText());
+                        NumOfAnswers++;
+                    }
+                }
+                cout << endl;
+                cout << "Elija una respuesta: ";
+                cin >> Point;
+                for (vector<int>::size_type i = 0; i < AnswerArray.size(); i++) {
+                    if(Point == i)
+                    {
+                        for (int j = 1; j <= AnswerLength; j++)
+                        {
+                            if(AnswerArray.at(i) == Recovery(NewAnswer, "ID", j).GetText())
+                            {
+                                TopPoint += Recovery(NewAnswer, "ID", j).GetPoint();
+                            }
+                        }
+                        
+                    }
+                    //cout << AnswerArray.at(i) << endl;
+                }
+                AnswerArray.clear();
             }
-            //cout << Recovery(NewQuestion, "ID", i).GetQuestion() << endl;
-        }       
+            
+        }
+        //cout << TopPoint << endl;
+        cout << "=====Resultados de la encuesta=====" << endl;
+        if(TopPoint >= NewTest.GetMaxPoint())
+        {
+            cout << "Necesitas ayuda." << endl;
+        }else if(TopPoint >= NewTest.GetCutPoint())
+        {
+            cout << "Necesitas tratamiento." << endl;
+        }else if(TopPoint <= NewTest.GetCutPoint() && TopPoint > NewTest.GetCutPoint()*0.5)
+        {
+            cout << "Tendencia a la depresion" << endl;
+        }else if(TopPoint <= 0)
+        {
+            cout << "Puede que sea un mal dia" << endl;
+        }   
         break;
     default:
         cout << "Ingrese una opcion correcta" << endl;
