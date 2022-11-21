@@ -1,5 +1,5 @@
 /////////////
-Id: 1
+ID: 1
 Nombre: a
 Apellido Paterno: b
 Apellido Materno: c
@@ -7,9 +7,11 @@ Run: 12378-9
 Fecha de Nacimiento: 8/5/1950
 Genero: Other
 Correo: a@b.com
-Telefóno: 7894561
-DeleteAt://///////////
-ID: 1
+Telefono: 7894561
+Observacion: -
+DeleteAt:
+/////////////
+ID: 2
 Nombre: John
 Apellido Paterno: Smith
 Apellido Materno: Johnson
@@ -18,4 +20,5 @@ Fecha de Nacimiento: 1/5/1985
 Genero: Other
 Correo: JohnJohnson@smith.com
 Telefono: 78456412
-DeleteAt: 
+Observacion: -
+DeleteAt:

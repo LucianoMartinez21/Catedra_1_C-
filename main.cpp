@@ -133,14 +133,14 @@ void Menu(int Election)
 
                 getline(cin >> ws, Email);
                 int Option = 0;
-                
+
                 while(getline(UserFile,StrAux))
                 {
                     if(StrAux == "Correo: " + Email)
                         Check = true;
                     if(Check == true){
                         if(StrAux.find("ID:") != string::npos){
-                            IdUser = stoi(StrAux.substr(StrAux.find(" ") + 1, StrAux.length())) - 1; 
+                            IdUser = stoi(StrAux.substr(StrAux.find(" ") + 1, StrAux.length())) - 1;
                             Check = false;
                         }
                     }
@@ -183,7 +183,7 @@ void Menu(int Election)
 void TestMenu(int Election)
 {
     string QuestionText, Description;
-    int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength, NumOfAnswers; 
+    int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength, NumOfAnswers;
     User UserPerson = User();
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -250,6 +250,7 @@ void TestMenu(int Election)
         SurveyFile << "Genero: " << SurveyedPerson.GetGender() << endl;
         SurveyFile << "Correo: " << Email << endl;
         SurveyFile << "Telefono: " << Phone << endl;
+        SurveyFile << "Observacion: -" << endl;
         SurveyFile << "DeleteAt: " << endl;
         SurveyFile.clear();
         SurveyFile.seekg (0, ios::beg);
@@ -395,7 +396,7 @@ void TestMenu(int Election)
         {
             NewAnswer.SetPoint(Point);
         }
-        
+
 
         AnswerFile << "/////////////" << endl;
         AnswerFile << "ID: " << NewAnswer.GetID() << endl;
@@ -406,8 +407,16 @@ void TestMenu(int Election)
         AnswerFile << "DeleteAt: " << endl;
         break;
     case 5:
+        cout << "Seleccione al paciente: " << endl;
+        while(getline(SurveyFile, StrAux))
+            if(StrAux.find("ID:") != string::npos || StrAux.find("Nombre:") != string::npos) cout << StrAux << endl;
+        SurveyFile.clear();
+        SurveyFile.seekg (0, ios::beg);
+        cin >> Election;
+        SurveyedPerson = Recovery(SurveyedPerson, "ID", Election);
+
         cout << "Seleccione la prueba a realizar: " << endl;
-        while(getline(TestFile,StrAux))
+        while(getline(TestFile, StrAux))
             if(StrAux.find("ID:") != string::npos || StrAux.find("Titulo:") != string::npos) cout << StrAux << endl;
         TestFile.clear();
         TestFile.seekg (0, ios::beg);
@@ -421,13 +430,14 @@ void TestMenu(int Election)
         AnswerLength = stoi(Searcher(AnswerFile, "ID:"));
         //cout << AnswerLength << endl;
         //cout << QuestionLength << endl;
+        TopPoint = 0;
         for(int i = 1; i <= QuestionLength; i++)
         {
             if(NewTest.GetID() == Recovery(NewQuestion, "ID", i).GetFkId())
             {
-                
+
                 cout << Recovery(NewQuestion, "ID", i).GetQuestion() << endl;
-                NumOfAnswers = 0; 
+                NumOfAnswers = 0;
                 for (int j = 1; j <= AnswerLength; j++)
                 {
                     if(Recovery(NewQuestion, "ID", i).GetID() == Recovery(NewAnswer, "ID", j).GetFkId())
@@ -440,26 +450,36 @@ void TestMenu(int Election)
                 cout << endl;
                 cout << "Elija una respuesta: ";
                 cin >> Point;
-                for (vector<int>::size_type i = 0; i < AnswerArray.size(); i++) {
-                    if(Point == i)
+                for (vector<int>::size_type k = 0; k < AnswerArray.size(); k++) {
+                    //cout << AnswerArray.at(i) << endl;
+                    if(Point-1 == k)
                     {
                         for (int j = 1; j <= AnswerLength; j++)
                         {
-                            if(AnswerArray.at(i) == Recovery(NewAnswer, "ID", j).GetText())
+                            //cout << AnswerArray.at(k) << endl;
+                            //cout << Recovery(NewAnswer, "ID", j).GetText() << endl;
+                            if(AnswerArray.at(k) == Recovery(NewAnswer, "ID", j).GetText())
                             {
-                                TopPoint += Recovery(NewAnswer, "ID", j).GetPoint();
+                                if(Recovery(NewQuestion, "ID", i).GetID() == Recovery(NewAnswer, "ID", j).GetFkId())
+                                {
+                                    //cout << Recovery(NewAnswer, "ID", j).GetPoint() << "a" << endl;
+                                    TopPoint += Recovery(NewAnswer, "ID", j).GetPoint();
+                                }
                             }
                         }
-                        
+
                     }
                     //cout << AnswerArray.at(i) << endl;
                 }
                 AnswerArray.clear();
             }
-            
+
         }
-        //cout << TopPoint << endl;
+        cout << TopPoint << endl;
         cout << "=====Resultados de la encuesta=====" << endl;
+        cout << "Paciente: " << SurveyedPerson.GetFullName() << endl;
+        cout << "Puntaje obtenido: " << TopPoint << endl;
+        cout << "Conclusion: ";
         if(TopPoint >= NewTest.GetMaxPoint())
         {
             cout << "Necesitas ayuda." << endl;
@@ -472,7 +492,8 @@ void TestMenu(int Election)
         }else if(TopPoint <= 0)
         {
             cout << "Puede que sea un mal dia" << endl;
-        }   
+        }
+        cout << "Encuesta realizada por: " << UserPerson.GetFullName() << endl;
         break;
     default:
         cout << "Ingrese una opcion correcta" << endl;
@@ -495,8 +516,8 @@ bool EmailChecker(string CheckEmail, fstream &File){
     if(File.eof()){
         File.clear();
         File.seekg (0, ios::beg);
-        return false; 
-    }   
+        return false;
+    }
 }
 
 string Searcher(fstream &File, string KeyWord){
@@ -511,7 +532,7 @@ string Searcher(fstream &File, string KeyWord){
             }
         }
     }
-    if(File.eof()) {  
+    if(File.eof()) {
         File.clear();
         File.seekg (0, ios::beg);
         return Aux;
@@ -542,10 +563,10 @@ User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id",
 
                 else if(StrAux.find("Apellido Materno:") != string::npos)
                     UserRecover.SetFullName(NameAux, FatherAux, StrAux.substr(StrAux.rfind(" ")+1,StrAux.length()));
-                
+
                 else if(StrAux.find("Run:") != string::npos)
                 {
-                    UserRecover.SetRun(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length()-2))); // :(espacio) run-DV; desde el espacio hasta el final menos el dv y el -  
+                    UserRecover.SetRun(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length()-2))); // :(espacio) run-DV; desde el espacio hasta el final menos el dv y el -
                     UserRecover.SetDV(StrAux[StrAux.length()]);
 
                 }else if(StrAux.find("Fecha de Nacimiento:") != string::npos)
@@ -602,19 +623,19 @@ Surveyed Recovery(Surveyed SurveyedRecover, string KeyWord, int NumberKey)
                     NameAux = StrAux.substr(StrAux.find(" ")+1,StrAux.length());
 
                 else if(StrAux.find("Apellido Paterno:") != string::npos)
-                    FatherAux = StrAux.substr(StrAux.find(" ")+1,StrAux.length());
+                    FatherAux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());
 
                 else if(StrAux.find("Apellido Materno:") != string::npos)
-                    SurveyedRecover.SetFullName(NameAux, FatherAux, StrAux.substr(StrAux.find(" ")+1,StrAux.length()));
-                
+                    SurveyedRecover.SetFullName(NameAux, FatherAux, StrAux.substr(StrAux.rfind(" ")+1,StrAux.length()));
+
                 else if(StrAux.find("Run:") != string::npos)
                 {
-                    SurveyedRecover.SetRun(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length()-2))); // :(espacio) run-DV; desde el espacio hasta el final menos el dv y el -  
+                    SurveyedRecover.SetRun(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length()-2))); // :(espacio) run-DV; desde el espacio hasta el final menos el dv y el -
                     SurveyedRecover.SetDV(StrAux[StrAux.length()]);
 
                 }else if(StrAux.find("Fecha de Nacimiento:") != string::npos)
                 {
-                    NameAux = StrAux.substr(StrAux.find(" ")+1,StrAux.length());
+                    NameAux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());
                     if(NameAux.substr(0, NameAux.find("/")).length() == 2)
                         FatherAux = NameAux.substr(NameAux.find_first_of("/")+1, NameAux.rfind("/")-3);
                     else
@@ -639,7 +660,6 @@ Surveyed Recovery(Surveyed SurveyedRecover, string KeyWord, int NumberKey)
                     SurveyedRecover.SetPhone(stoi(StrAux.substr(StrAux.find(" ")+1,StrAux.length())));
                     Check = false;
                 }
-                    
             }
         }else Check = false;
     }
@@ -668,16 +688,16 @@ Test Recovery(Test TestRecover, string KeyWord, int NumberKey)
                 else if(StrAux.find("Maximo:") != string::npos)
                     TestRecover.SetMaxPoint(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));
                 else if(StrAux.find("de Corte:") != string::npos)
-                    TestRecover.SetCutPoint(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));                    
+                    TestRecover.SetCutPoint(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));
                 else if(StrAux.find("Observacion:") != string::npos)
                 {
                     TestRecover.SetObservation(StrAux.substr(StrAux.find(" ") + 1, StrAux.length()));
                     Check = false;
                 }
-                    
+
                 //cout << "hola" << endl;
             }
-            
+
         }else Check = false;
     }
     if(TestFile.eof())
@@ -706,8 +726,8 @@ Question Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
                 if(StrAux.find("key ") != string::npos)
                 {
                     AuxTest.SetID(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));
-                    QuestionRecover.AssignedTest(AuxTest);    
-                }                                           
+                    QuestionRecover.AssignedTest(AuxTest);
+                }
                 else if(StrAux.find("Pregunta:") != string::npos)
                     QuestionRecover.SetQuestion(StrAux.substr(StrAux.find(" ") + 1,StrAux.length()));
                 else if(StrAux.find("Descripcion:") != string::npos)
@@ -715,7 +735,7 @@ Question Recovery(Question QuestionRecover, string KeyWord, int NumberKey)
                     QuestionRecover.SetDescription(StrAux.substr(StrAux.find(" ") + 1,StrAux.length()));
                     Check = false;
                 }
-                    
+
             }
 
         }else Check = false;
@@ -744,8 +764,8 @@ Answer Recovery(Answer AnswerRecover, string KeyWord, int NumberKey)
                 if(StrAux.find("key ") != string::npos)
                 {
                     AuxQuestion.SetID(stoi(StrAux.substr(StrAux.rfind(" ") + 1, StrAux.length())));
-                    AnswerRecover.AssignedQuestion(AuxQuestion);    
-                } 
+                    AnswerRecover.AssignedQuestion(AuxQuestion);
+                }
                 else if(StrAux.find("Puntaje:") != string::npos)
                     AnswerRecover.SetPoint(stoi(StrAux.substr(StrAux.find(" ") + 1,StrAux.length())));
                 else if(StrAux.find("Respuesta:") != string::npos)
@@ -755,16 +775,16 @@ Answer Recovery(Answer AnswerRecover, string KeyWord, int NumberKey)
                     AnswerRecover.SetObservation(StrAux.substr(StrAux.find(" ") + 1,StrAux.length()));
                     Check = false;
                 }
-                    
+
             }
-            
+
         }else Check = false;
     }
-    if(AnswerFile.eof()) 
+    if(AnswerFile.eof())
     {
         AnswerFile.clear();
         AnswerFile.seekg (0, ios::beg);
-        return AnswerRecover;        
+        return AnswerRecover;
     }
 
 }
