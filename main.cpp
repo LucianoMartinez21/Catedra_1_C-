@@ -494,6 +494,11 @@ void TestMenu(int Election)
             cout << "Puede que sea un mal dia" << endl;
         }
         cout << "Encuesta realizada por: " << UserPerson.GetFullName() << endl;
+        /*
+        * Por limitaciones de tiempo
+        * El archivo Surveyed no podra cambiar
+        * su observacion. :(
+        */
         break;
     default:
         cout << "Ingrese una opcion correcta" << endl;
