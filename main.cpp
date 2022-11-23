@@ -1,19 +1,12 @@
 #include <bits/stdc++.h>
 #include <fstream>
 #include "source.h"
-#include <string.h>
 #include <string>
 #include <vector>
 using namespace std;
 
 //Functions
 /*PascalCase*/
-fstream UserFile("User/User.txt", ios::out | ios::in | ios::app);
-fstream SurveyFile("Surveyed/Surveyed.txt", ios::out | ios::in | ios::app);
-fstream TestFile("Test/Test.txt", ios::out | ios::in | ios::app);
-fstream QuestionFile("Question/Question.txt", ios::out | ios::in | ios::app);
-fstream AnswerFile("Answer/Answer.txt", ios::out | ios::in | ios::app);
-int IdCouter = 0;
 string Searcher(fstream&, string);
 bool EmailChecker(string, fstream&);
 void Menu(int);
@@ -25,7 +18,14 @@ Test Recovery(Test, string, int);
 Question Recovery(Question, string, int);
 Answer Recovery(Answer, string, int);
 //Global Variables
-string StrAux, StrAux2, Aux, Aux2;
+fstream UserFile("User/User.txt", ios::out | ios::in | ios::app);
+fstream SurveyFile("Surveyed/Surveyed.txt", ios::out | ios::in | ios::app);
+fstream TestFile("Test/Test.txt", ios::out | ios::in | ios::app);
+fstream QuestionFile("Question/Question.txt", ios::out | ios::in | ios::app);
+fstream AnswerFile("Answer/Answer.txt", ios::out | ios::in | ios::app);
+int IdCouter = 0, Run, Day, Month, Year, GenderNumber, Phone, IdUser;
+string StrAux, StrAux2, Aux, Aux2, Name, FatherName, MotherName, Email;
+char Dv;
 bool Check = false;
 
 int main(){
@@ -39,11 +39,6 @@ int main(){
         Menu(Option);
     }
 }
-
-
-string Name, FatherName, MotherName, Email;
-char Dv;
-int Run, Day, Month, Year, GenderNumber, Phone, IdUser;
 
 void Menu(int Election)
 {
@@ -59,13 +54,10 @@ void Menu(int Election)
             Pollster.SetID(IdCouter);
 
             cout << "Ingrese su nombre: ";
-            //scanf("%s", Name);
             getline(cin >> ws, Name);
             cout << "\nIngrese su Apellido Paterno: ";
-            //scanf("%s", FatherName);
             getline(cin >> ws, FatherName);
             cout << "\nIngrese su Apellido Materno: ";
-            //scanf("%s", MotherName);
             getline(cin >> ws, MotherName);
             Pollster.SetFullName(Name, FatherName, MotherName);
 
@@ -74,9 +66,7 @@ void Menu(int Election)
             Pollster.SetRun(Run);
 
             cout << "\nIngrese su digito verificador: ";
-            //scanf("%c", Dv);
             cin >> Dv;
-            //cout << "Funciona" << endl;
             Pollster.SetDV(Dv);
 
             cout << "\nIngrese su Fecha de Nacimiento: \nDia:";
@@ -90,13 +80,6 @@ void Menu(int Election)
             cout << "\nElija su genero:\n1)Hombre\n2)Mujer\n3)Otros" << endl;
             cin >> GenderNumber;
             Pollster.SetGender(GenderNumber);
-            //GenderNumber = 0;
-            /*
-            while (GenderNumber < 1 && GenderNumber > 3)
-            {
-                cin >> GenderNumber;
-                Pollster.SetGender(GenderNumber);
-            }*/
 
             cout << "\nIngrese su Correo: ";
             getline(cin >> ws, Email);
@@ -122,8 +105,8 @@ void Menu(int Election)
             //UserFile << "Contraseña: " << Password << endl;
             UserFile << "DeleteAt: " << endl;
             cout << "Registro completado!" << endl;
-            SurveyFile.clear();
-            SurveyFile.seekg (0, ios::beg);
+            UserFile.clear();
+            UserFile.seekg (0, ios::beg);
             break;
         case 2:
             while (Election != 0)
@@ -179,7 +162,6 @@ void Menu(int Election)
     }
 }
 
-
 void TestMenu(int Election)
 {
     string QuestionText, Description;
@@ -201,13 +183,10 @@ void TestMenu(int Election)
         SurveyedPerson.SetID(IdCouter);
 
         cout << "Ingrese el nombre del entrevistado: ";
-        //scanf("%s", Name);
         getline(cin >> ws, Name);
         cout << "\nIngrese el Apellido Paterno del entrevistado: ";
-        //scanf("%s", FatherName);
         getline(cin >> ws, FatherName);
         cout << "\nIngrese el Apellido Materno del entrevistado: ";
-        //scanf("%s", MotherName);
         getline(cin >> ws, MotherName);
         SurveyedPerson.SetFullName(Name, FatherName, MotherName);
 
@@ -232,7 +211,6 @@ void TestMenu(int Election)
         SurveyedPerson.SetGender(GenderNumber);
 
         cout << "\nIngrese el Correo del entrevistado: ";
-        //scanf("%s", Email);
         getline(cin >> ws, Email);
         SurveyedPerson.SetEmail(Email);
 
@@ -256,7 +234,6 @@ void TestMenu(int Election)
         SurveyFile.seekg (0, ios::beg);
         break;
     case 2:
-        //IdVerifier(NewTest, TestFile);
         Aux= "0";
         IdCouter = stoi(Searcher(TestFile, "ID:"))+1;
         NewTest.SetID(IdCouter);
@@ -376,14 +353,6 @@ void TestMenu(int Election)
         cin >> Point;
         if(stoi(Searcher(AnswerFile, "ID:")) != 0)
         {
-            /*
-            for (int i = 1; i <= stoi(Searcher(AnswerFile, "ID:")); i++)
-            {
-                if(NewQuestion.GetID() == Recovery(NewAnswer, "ID", i).GetFkId())
-                {
-                    TopPoint += Recovery(NewAnswer, "ID", i).GetPoint();
-                }
-            }*/
             TopPoint += Point;
             if(NewTest.GetMaxPoint() > TopPoint)
             {
@@ -428,14 +397,11 @@ void TestMenu(int Election)
         QuestionLength = stoi(Searcher(QuestionFile, "ID:"));
         Aux= "0";
         AnswerLength = stoi(Searcher(AnswerFile, "ID:"));
-        //cout << AnswerLength << endl;
-        //cout << QuestionLength << endl;
         TopPoint = 0;
         for(int i = 1; i <= QuestionLength; i++)
         {
             if(NewTest.GetID() == Recovery(NewQuestion, "ID", i).GetFkId())
             {
-
                 cout << Recovery(NewQuestion, "ID", i).GetQuestion() << endl;
                 NumOfAnswers = 0;
                 for (int j = 1; j <= AnswerLength; j++)
@@ -447,49 +413,43 @@ void TestMenu(int Election)
                         NumOfAnswers++;
                     }
                 }
-                cout << endl;
-                cout << "Elija una respuesta: ";
-                cin >> Point;
+                cout << "\nElija una respuesta: ";
+                cin >> Point; //1)Si 2)NO index 0: Si index 1: No
                 for (vector<int>::size_type k = 0; k < AnswerArray.size(); k++) {
-                    //cout << AnswerArray.at(i) << endl;
                     if(Point-1 == k)
                     {
                         for (int j = 1; j <= AnswerLength; j++)
                         {
-                            //cout << AnswerArray.at(k) << endl;
-                            //cout << Recovery(NewAnswer, "ID", j).GetText() << endl;
                             if(AnswerArray.at(k) == Recovery(NewAnswer, "ID", j).GetText())
                             {
                                 if(Recovery(NewQuestion, "ID", i).GetID() == Recovery(NewAnswer, "ID", j).GetFkId())
                                 {
-                                    //cout << Recovery(NewAnswer, "ID", j).GetPoint() << "a" << endl;
                                     TopPoint += Recovery(NewAnswer, "ID", j).GetPoint();
                                 }
                             }
                         }
 
                     }
-                    //cout << AnswerArray.at(i) << endl;
                 }
                 AnswerArray.clear();
             }
 
         }
-        cout << TopPoint << endl;
+        //cout << TopPoint << endl;
         cout << "=====Resultados de la encuesta=====" << endl;
         cout << "Paciente: " << SurveyedPerson.GetFullName() << endl;
         cout << "Puntaje obtenido: " << TopPoint << endl;
         cout << "Conclusion: ";
         if(TopPoint >= NewTest.GetMaxPoint())
         {
-            cout << "Necesitas ayuda." << endl;
+            cout << "Necesitas ayuda urgente!" << endl;
         }else if(TopPoint >= NewTest.GetCutPoint())
         {
-            cout << "Necesitas tratamiento." << endl;
-        }else if(TopPoint <= NewTest.GetCutPoint() && TopPoint > NewTest.GetCutPoint()*0.5)
+            cout << "Necesitas tratamiento." << endl; // x < 2 y x > 2*50%
+        }else if(TopPoint < NewTest.GetCutPoint() && TopPoint > NewTest.GetCutPoint()*0.5)
         {
             cout << "Tendencia a la depresion" << endl;
-        }else if(TopPoint <= 0)
+        }else if(TopPoint < NewTest.GetCutPoint()*0.5)
         {
             cout << "Puede que sea un mal dia" << endl;
         }
@@ -510,10 +470,7 @@ bool EmailChecker(string CheckEmail, fstream &File){
     while(getline(File, StrAux))
     {
         if(StrAux.find("Correo:") != string::npos){
-            //cout << StrAux.substr(StrAux.find(" ")+1,StrAux.length());
             if(CheckEmail == StrAux.substr(StrAux.find(" ")+1,StrAux.length())){
-                File.clear();
-                File.seekg (0, ios::beg);
                 return true;
             }
         }
@@ -545,8 +502,6 @@ string Searcher(fstream &File, string KeyWord){
     return Searcher(File, KeyWord);
 }
 
-
-
 User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id", 1)
 {
     string NameAux, FatherAux; //MotherAux;
@@ -576,7 +531,7 @@ User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id",
 
                 }else if(StrAux.find("Fecha de Nacimiento:") != string::npos)
                 {
-                    NameAux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());
+                    NameAux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());// 10/1/2022
                     if(NameAux.substr(0, NameAux.find("/")).length() == 2)
                         FatherAux = NameAux.substr(NameAux.find_first_of("/")+1, NameAux.rfind("/")-3);
                     else

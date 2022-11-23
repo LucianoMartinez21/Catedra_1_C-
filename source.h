@@ -33,9 +33,6 @@ public:
     bool SetPhone(int);
     bool SetDV(char);
     bool SetFullName(std::string, std::string, std::string);
-    //bool SetNames(char[255]);
-    //bool SetFather(char[255]);
-    //bool SetMother(char[255]);
     bool SetEmail(std::string);
     bool SetBirthday(int, int, int);
     bool SetGender(int);
@@ -88,6 +85,7 @@ public:
     bool SetMaxPoint(int);
     bool SetName(std::string);
     bool SetObservation(std::string); // Se escribe el objetivo o motivo tipo automemoria o observacion interna del objetivo del test
+    
     //Getters
     int GetID();
     int GetCutPoint();

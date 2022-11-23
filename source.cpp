@@ -5,18 +5,9 @@ Birthday::Birthday(int Dd, int Mm, int Year){
     Month = Mm;
     this->Year = Year;
 }
-//char AuxStr1[10], AuxStr2[10], AuxStr3[10]; // Mas cinta americana
 std::string Birthday::GetBirthday(){
     return std::to_string(Day) + "/" + std::to_string(Month) +
     "/" + std::to_string(Year);
-    /*
-    sprintf(AuxStr1, "%d", Day);
-    sprintf(AuxStr2, "%d", Month);
-    sprintf(AuxStr3, "%d", Year);
-    strcat(AuxStr1,"/");
-    strcat(AuxStr1, AuxStr2);
-    strcat(AuxStr1,"/");
-    strcat(AuxStr1, AuxStr3);*/
 }
 
 //Clase Persona
@@ -32,7 +23,6 @@ Person::Person(int Dd, int Mm, int Year){
     ID = 0;
     Run = 0;
     Phone = 0;
-    //DV = '\0';// '\0' ese una forma de asignar un caracter nulo
     DeleteAt = 0;
     Birth = new Birthday(Dd, Mm, Year);
 }
@@ -85,15 +75,9 @@ int Person::GetID(){
 //char RunAux[30]; //Pegado con cinta americana
 std::string Person::GetRun(){
     return std::to_string(Run) + "-" + DV;
-    /*
-    sprintf(RunAux, "%d", Run);
-    strcat(RunAux,"-");
-    //strcat(RunAux, DV);
-    strncat(RunAux, &DV, 1);*/
 }
 std::string Person::GetNames(){
     return Names;
-    //std::cout << Names << std::endl;
 }
 std::string Person::GetFather(){
     return FatherName;
@@ -103,12 +87,6 @@ std::string Person::GetMother(){
 }
 //char FullName[765]; // Un desperdicio de espacio para un desliz
 std::string Person::GetFullName(){ 
-
-    /*strcat(FullName, Names);
-    strcat(FullName, " ");
-    strcat(FullName, FatherName);
-    strcat(FullName, " ");
-    strcat(FullName, MotherName);*/
     return Names + " " + FatherName + " " + MotherName;
 }
 std::string Person::GetGender(){
@@ -141,13 +119,12 @@ bool Person::Borrar(){
     }       
 }
 void Person::GetDeleteAt(){
-    struct tm ts;
-    char buf[80];
-    ts = *localtime(&DeleteAt);
+    struct tm Ts;
+    char Buf[80];
+    Ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
-    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    //printf("Delete at: %s\n", buf);
-    std::cout << "Delete at: " << buf << std::endl;
+    strftime(Buf, sizeof(Buf), "%a %d/%m/%Y %Z", &Ts);
+    std::cout << "Delete at: " << Buf << std::endl;
 }
 //Clase Usuario
 User::User(){
@@ -172,7 +149,6 @@ bool Surveyed::SetObservation(std::string Observation){
 }
 std::string Surveyed::GetObservation(){
     return Observation;
-    //std::cout << Observation << std::endl;
 }
 //Clase Examen
 Test::Test(){
@@ -209,7 +185,6 @@ int Test::GetMaxPoint(){
     return MaxPoint;
 }
 std::string Test::GetName(){
-    //std::cout << Name << std::endl;
     return Name;
 }
 std::string Test::GetObservation(){
@@ -225,12 +200,12 @@ bool Test::Borrar(){
     }       
 }
 void Test::GetDeleteAt(){
-    struct tm ts;
-    char buf[80];
-    ts = *localtime(&DeleteAt);
+    struct tm Ts;
+    char Buf[80];
+    Ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
-    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    std::cout << "Delete at: " << buf << std::endl;
+    strftime(Buf, sizeof(Buf), "%a %d/%m/%Y %Z", &Ts);
+    std::cout << "Delete at: " << Buf << std::endl;
 }
 //Clase Pregunta
 Question::Question(){
@@ -278,13 +253,12 @@ bool Question::Borrar(){
     }       
 }
 void Question::GetDeleteAt(){
-    struct tm ts;
-    char buf[80];
-    ts = *localtime(&DeleteAt);
+    struct tm Ts;
+    char Buf[80];
+    Ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
-    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    //printf("Delete at: %s\n", buf);
-    std::cout << "Delete at: " << buf << std::endl;
+    strftime(Buf, sizeof(Buf), "%a %d/%m/%Y %Z", &Ts);
+    std::cout << "Delete at: " << Buf << std::endl;
 }
 
 // ASSIGNEDTEST(TEST){FKID == TEST.GETID()}
@@ -340,10 +314,10 @@ bool Answer::Borrar(){
     }       
 }
 void Answer::GetDeleteAt(){
-    struct tm ts;
-    char buf[80];
-    ts = *localtime(&DeleteAt);
+    struct tm Ts;
+    char Buf[80];
+    Ts = *localtime(&DeleteAt);
     // Format time, "ddd dd/mm/yyyy zzz"
-    strftime(buf, sizeof(buf), "%a %d/%m/%Y %Z", &ts);
-    std::cout << "Delete at: " << buf << std::endl;
+    strftime(Buf, sizeof(Buf), "%a %d/%m/%Y %Z", &Ts);
+    std::cout << "Delete at: " << Buf << std::endl;
 }
