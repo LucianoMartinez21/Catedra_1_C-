@@ -138,3 +138,353 @@ Puntaje: -1
 Respuesta: No
 Observacion: Respuesta positiva.
 DeleteAt: 
+/////////////
+ID: 21
+Foreign key Id: 11
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert
+DeleteAt: 
+/////////////
+ID: 22
+Foreign key Id: 11
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 23
+Foreign key Id: 11
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert
+DeleteAt: 
+/////////////
+ID: 24
+Foreign key Id: 11
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 25
+Foreign key Id: 11
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 26
+Foreign key Id: 12
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 27
+Foreign key Id: 12
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 28
+Foreign key Id: 12
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 29
+Foreign key Id: 12
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 30
+Foreign key Id: 12
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 31
+Foreign key Id: 13
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 32
+Foreign key Id: 13
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 33
+Foreign key Id: 13
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 34
+Foreign key Id: 13
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 35
+Foreign key Id: 13
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 36
+Foreign key Id: 14
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 37
+Foreign key Id: 14
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 38
+Foreign key Id: 14
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 39
+Foreign key Id: 14
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 40
+Foreign key Id: 14
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 41
+Foreign key Id: 15
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 42
+Foreign key Id: 15
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 43
+Foreign key Id: 15
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 44
+Foreign key Id: 15
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 45
+Foreign key Id: 15
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 46
+Foreign key Id: 16
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 47
+Foreign key Id: 16
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 48
+Foreign key Id: 16
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 49
+Foreign key Id: 16
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 50
+Foreign key Id: 16
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 51
+Foreign key Id: 17
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 52
+Foreign key Id: 17
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 53
+Foreign key Id: 17
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 54
+Foreign key Id: 17
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 55
+Foreign key Id: 17
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 56
+Foreign key Id: 18
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 57
+Foreign key Id: 18
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert. 
+DeleteAt: 
+/////////////
+ID: 58
+Foreign key Id: 18
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 59
+Foreign key Id: 18
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 60
+Foreign key Id: 18
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 61
+Foreign key Id: 19
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 62
+Foreign key Id: 19
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 63
+Foreign key Id: 19
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 64
+Foreign key Id: 19
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 65
+Foreign key Id: 19
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 66
+Foreign key Id: 20
+Puntaje: 1
+Respuesta: Muy en desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 67
+Foreign key Id: 20
+Puntaje: 2
+Respuesta: En desacuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 68
+Foreign key Id: 20
+Puntaje: 3
+Respuesta: Neutro
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 69
+Foreign key Id: 20
+Puntaje: 4
+Respuesta: De acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 
+/////////////
+ID: 70
+Foreign key Id: 20
+Puntaje: 5
+Respuesta: Muy de acuerdo
+Observacion: Respuesta siguiendo la escala likert.
+DeleteAt: 

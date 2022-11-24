@@ -167,7 +167,7 @@ void Menu(int Election)
 void TestMenu(int Election)
 {
     string QuestionText, Description;
-    int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength, NumOfAnswers;
+    int MaxPoint, Point, TopPoint=0, QuestionLength, AnswerLength, NumOfAnswers, Option = 1;
     User UserPerson = User();
     Surveyed SurveyedPerson = Surveyed();
     Test NewTest = Test();
@@ -331,56 +331,50 @@ void TestMenu(int Election)
         break;
     case 4:
         //IdVerifier(NewAnswer, AnswerFile);
-        Aux= "0";
-        IdCouter = stoi(Searcher(AnswerFile, "ID:"))+1;
-        NewAnswer.SetID(IdCouter);
 
-        while(getline(QuestionFile,StrAux))
-            if(StrAux.find("ID:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
-        QuestionFile.clear();
-        QuestionFile.seekg (0, ios::beg);
-
-        cout << "Ingrese la ID de la pregunta a la que va dirigido esta respuesta: ";
-        cin >> Election;
-        NewQuestion = Recovery(NewQuestion, "ID", Election);
-        NewTest = Recovery(NewTest, "ID", NewQuestion.GetFkId());
-        NewAnswer.AssignedQuestion(NewQuestion);
-
-        cout << "\nIngrese una respuesta: ";
-        getline(cin >> ws, QuestionText);
-        NewAnswer.SetText(QuestionText);
-
-        cout << "\nIngrese una observacion a la respuesta: ";
-        getline(cin >> ws, Description);
-        NewAnswer.SetObservation(Description);
-
-        cout << "\nIngrese el puntaje: ";
-        cin >> Point;
-        if(stoi(Searcher(AnswerFile, "ID:")) != 0)
+        while (Option != 0)
         {
-            TopPoint += Point;
-            if(NewTest.GetMaxPoint() > TopPoint)
-            {
-                NewAnswer.SetPoint(Point);
-            }else
-            {
-                NewAnswer.SetPoint(NewTest.GetMaxPoint()-Point);
-            }
-        }else
-        {
+            Option = 1;
+            Aux= "0";
+            IdCouter = stoi(Searcher(AnswerFile, "ID:"))+1;
+            NewAnswer.SetID(IdCouter);
+
+            while(getline(QuestionFile,StrAux))
+                if(StrAux.find("ID:") != string::npos || StrAux.find("Pregunta:") != string::npos) cout << StrAux << endl;
+            QuestionFile.clear();
+            QuestionFile.seekg (0, ios::beg);
+
+            cout << "Ingrese la ID de la pregunta a la que va dirigido esta respuesta: ";
+            cin >> Election;
+            NewQuestion = Recovery(NewQuestion, "ID", Election);
+            NewTest = Recovery(NewTest, "ID", NewQuestion.GetFkId());
+            NewAnswer.AssignedQuestion(NewQuestion);
+
+            cout << "\nIngrese una respuesta: ";
+            getline(cin >> ws, QuestionText);
+            NewAnswer.SetText(QuestionText);
+
+            cout << "\nIngrese una observacion a la respuesta: ";
+            getline(cin >> ws, Description);
+            NewAnswer.SetObservation(Description);
+
+            cout << "\nIngrese el puntaje: ";
+            cin >> Point;
             NewAnswer.SetPoint(Point);
+
+
+            AnswerFile << "/////////////" << endl;
+            AnswerFile << "ID: " << NewAnswer.GetID() << endl;
+            AnswerFile << "Foreign key Id: " << NewAnswer.GetFkId() << endl;
+            AnswerFile << "Puntaje: " << NewAnswer.GetPoint() << endl;
+            AnswerFile << "Respuesta: " << NewAnswer.GetText() << endl;
+            AnswerFile << "Observacion: " << NewAnswer.GetObservation() << endl;
+            AnswerFile << "DeleteAt: " << endl;
+            AnswerFile.clear();
+            AnswerFile.seekg (0, ios::beg);
+            cout << "Digite '0' para cancelar\nDigite cualquier numero para continuar" << endl;
+            cin >> Option;
         }
-
-
-        AnswerFile << "/////////////" << endl;
-        AnswerFile << "ID: " << NewAnswer.GetID() << endl;
-        AnswerFile << "Foreign key Id: " << NewAnswer.GetFkId() << endl;
-        AnswerFile << "Puntaje: " << NewAnswer.GetPoint() << endl;
-        AnswerFile << "Respuesta: " << NewAnswer.GetText() << endl;
-        AnswerFile << "Observacion: " << NewAnswer.GetObservation() << endl;
-        AnswerFile << "DeleteAt: " << endl;
-        AnswerFile.clear();
-        AnswerFile.seekg (0, ios::beg);
         break;
     case 5:
         cout << "Seleccione al paciente: " << endl;
@@ -400,8 +394,7 @@ void TestMenu(int Election)
 
         NewTest = Recovery(NewTest, "ID", Election);
         UserPerson = Recovery(UserPerson, "ID", IdUser);
-        cout << IdUser << endl;
-        cout << UserPerson.GetID() << endl;
+        
         Aux= "0";
         QuestionLength = stoi(Searcher(QuestionFile, "ID:"));
         Aux= "0";
