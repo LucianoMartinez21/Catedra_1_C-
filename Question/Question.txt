@@ -118,9 +118,3 @@ Foreign key Id: 2
 Pregunta: "Frecuentemente tengo pensamientos suicidas".
 Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
 DeleteAt: 
-/////////////
-ID: 21
-Foreign key Id: 2
-Pregunta: "Tengo mucha falta de apetito".
-Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
-DeleteAt: 
