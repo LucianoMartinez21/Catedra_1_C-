@@ -4,3 +4,9 @@ Titulo: Test Binario
 Puntaje Maximo: 10
 Puntaje de Corte: 2
 Observacion: Medir si el encuestado entra como candidato para ser revisado por un especialista
+/////////////
+ID: 2
+Titulo: Test Likert
+Puntaje Maximo: 50
+Puntaje de Corte: 25
+Observacion: Test que usara la escala de likert, se podra inferir mejor de las respuestas del encuestado.

@@ -109,7 +109,7 @@ std::string Person::GetBirthday(){
 std::string Person::GetEmail(){
     return Email;
 }
-bool Person::Borrar(){
+bool Person::Erase(){
     if(DeleteAt != 0){
         return false;
     }else{
@@ -190,7 +190,7 @@ std::string Test::GetName(){
 std::string Test::GetObservation(){
     return Observation;
 }
-bool Test::Borrar(){
+bool Test::Erase(){
     if(DeleteAt != 0){
         return false;
     }else{
@@ -243,7 +243,7 @@ std::string Question::GetDescription(){
     //std::cout << Description << std::endl;
     return Description;
 }
-bool Question::Borrar(){
+bool Question::Erase(){
     if(DeleteAt != 0){
         return false;
     }else{
@@ -304,7 +304,7 @@ std::string Answer::GetText(){
     //std::cout << Text << std::endl;
     return Text;
 }
-bool Answer::Borrar(){
+bool Answer::Erase(){
     if(DeleteAt != 0){
         return false;
     }else{

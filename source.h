@@ -49,7 +49,7 @@ public:
     std::string GetGender();
     std::string GetBirthday();
     std::string GetEmail();
-    bool Borrar();
+    bool Erase();
     void GetDeleteAt();
 
 };
@@ -92,7 +92,7 @@ public:
     int GetMaxPoint();
     std::string GetName();
     std::string GetObservation();
-    bool Borrar();
+    bool Erase();
     void GetDeleteAt();
 }; 
 
@@ -113,7 +113,7 @@ public:
     int GetFkId();
     std::string GetQuestion();
     std::string GetDescription();
-    bool Borrar();
+    bool Erase();
     void GetDeleteAt();
 };
 
@@ -136,7 +136,7 @@ public:
     int GetFkId();
     std::string GetObservation();
     std::string GetText();
-    bool Borrar();
+    bool Erase();
     void GetDeleteAt();
 };
 #endif

@@ -58,3 +58,69 @@ Foreign key Id: 1
 Pregunta: Sensacion de cansancio o de tener poca energia?
 Descripcion: Pregunta realizada por la revista ABC.
 DeleteAt: 
+/////////////
+ID: 11
+Foreign key Id: 2
+Pregunta: Tienes mala calidad de sueno?
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 12
+Foreign key Id: 2
+Pregunta: Su forma de ver la vida es mala?
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 13
+Foreign key Id: 2
+Pregunta: "Me cuesta disfrutar de las actividades que normalmente me gusta realizar"
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 14
+Foreign key Id: 2
+Pregunta: Su nivel de energia es bajo?
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 15
+Foreign key Id: 2
+Pregunta: "En los ultimos dias he comido en exeso"
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 16
+Foreign key Id: 2
+Pregunta: "Mi autoestima es muy baja".
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 17
+Foreign key Id: 2
+Pregunta: "Me distraigo demasiado cuando realizo mis responsabilidades".
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 18
+Foreign key Id: 2
+Pregunta: "Siento que mi familia no me apoya".
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 19
+Foreign key Id: 2
+Pregunta: "Durante las ultimas semanas he tenido poca actividad fisica".
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 20
+Foreign key Id: 2
+Pregunta: "Frecuentemente tengo pensamientos suicidas".
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
+/////////////
+ID: 21
+Foreign key Id: 2
+Pregunta: "Tengo mucha falta de apetito".
+Descripcion: Realizado por el centro de atencion psicologica Chile psicologos.
+DeleteAt: 
