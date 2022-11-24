@@ -123,14 +123,16 @@ void Menu(int Election)
                         Check = true;
                     if(Check == true){
                         if(StrAux.find("ID:") != string::npos){
+                            cout << "A" << endl;
                             IdUser = stoi(StrAux.substr(StrAux.find(" ") + 1, StrAux.length())) - 1;
                             Check = false;
                         }
                     }
                 }
+                if(IdUser == 0) IdUser = 1;
                 Check = false;
                 UserFile.clear();
-                UserFile.seekg (0, ios::beg);
+                UserFile.seekg(0, ios::beg);
                 /*
                 cout << "\nIngrese su Contraseña: ";
                 scanf("%s", Password);*/
@@ -290,9 +292,10 @@ void TestMenu(int Election)
             cout << "Desea salir?" << "\nPresione 0 para cerrar" <<
             "\nPresione cualquier numero para continuar"<< endl;
             cin >> Election;
+            QuestionFile.clear();
+            QuestionFile.seekg(0, ios::beg);
         }
-        QuestionFile.clear();
-        QuestionFile.seekg (0, ios::beg);
+        
         break;
     case 3:
         Aux= "0";
@@ -306,7 +309,7 @@ void TestMenu(int Election)
 
         cout << "Ingrese la ID de la prueba a la que va dirigido esta pregunta: " << endl;
         cin >> Election;
-        NewTest = Recovery(NewTest, "Id", Election);
+        NewTest = Recovery(NewTest, "ID", Election);
         NewQuestion.AssignedTest(NewTest);
 
         cout << "\nIngrese una pregunta: ";
@@ -323,6 +326,8 @@ void TestMenu(int Election)
         QuestionFile << "Pregunta: " << NewQuestion.GetQuestion() << endl;
         QuestionFile << "Descripcion: " << NewQuestion.GetDescription() << endl;
         QuestionFile << "DeleteAt: " << endl;
+        QuestionFile.clear();
+        QuestionFile.seekg (0, ios::beg);
         break;
     case 4:
         //IdVerifier(NewAnswer, AnswerFile);
@@ -374,6 +379,8 @@ void TestMenu(int Election)
         AnswerFile << "Respuesta: " << NewAnswer.GetText() << endl;
         AnswerFile << "Observacion: " << NewAnswer.GetObservation() << endl;
         AnswerFile << "DeleteAt: " << endl;
+        AnswerFile.clear();
+        AnswerFile.seekg (0, ios::beg);
         break;
     case 5:
         cout << "Seleccione al paciente: " << endl;
@@ -393,6 +400,8 @@ void TestMenu(int Election)
 
         NewTest = Recovery(NewTest, "ID", Election);
         UserPerson = Recovery(UserPerson, "ID", IdUser);
+        cout << IdUser << endl;
+        cout << UserPerson.GetID() << endl;
         Aux= "0";
         QuestionLength = stoi(Searcher(QuestionFile, "ID:"));
         Aux= "0";
@@ -487,16 +496,22 @@ string Searcher(fstream &File, string KeyWord){
     if(StrAux.find(KeyWord) != string::npos){
         for (size_t i = 0; i < StrAux.length(); i++)
         {
+            if(stoi(StrAux.substr(StrAux.rfind(" ")+1,StrAux.length())) > stoi(Aux))
+            {
+                Aux = StrAux.substr(StrAux.rfind(" ")+1,StrAux.length());
+            }
+            
+            /*
             if (isdigit(StrAux[i]) == 1){
                 if(StrAux[i] > stoi(Aux)){
                     Aux = StrAux[i];
                 }
-            }
+            }*/
         }
     }
     if(File.eof()) {
         File.clear();
-        File.seekg (0, ios::beg);
+        File.seekg(0, ios::beg);
         return Aux;
     }
     return Searcher(File, KeyWord);
@@ -505,10 +520,12 @@ string Searcher(fstream &File, string KeyWord){
 User Recovery(User UserRecover, string KeyWord, int NumberKey) // Id: 1 (, "Id", 1)
 {
     string NameAux, FatherAux; //MotherAux;
+    UserFile.clear();
+    UserFile.seekg(0, ios::beg);
     while (getline(UserFile, StrAux))
     {
         if(StrAux != "/////////////"){
-            if(StrAux == (KeyWord + ": " + to_string(NumberKey)))
+            if(StrAux == KeyWord + ": " + to_string(NumberKey))
             {
                 Check = true;
                 UserRecover.SetID(NumberKey);
@@ -743,7 +760,7 @@ Answer Recovery(Answer AnswerRecover, string KeyWord, int NumberKey)
     if(AnswerFile.eof())
     {
         AnswerFile.clear();
-        AnswerFile.seekg (0, ios::beg);
+        AnswerFile.seekg(0, ios::beg);
         return AnswerRecover;
     }
 

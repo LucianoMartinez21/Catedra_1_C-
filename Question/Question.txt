@@ -1,17 +1,60 @@
 /////////////
 ID: 1
 Foreign key Id: 1
-Pregunta: Se_ha_sentido_con_poca_energia_ultimamente?
-Descripcion: Pregunta_sacada_de_ABC_revista_cientifica.
+Pregunta: Se ha sentido con poca energia ultimamente?
+Descripcion: La respuesta a esta pregunta podria inferir algunos habitos del encuestado.
 DeleteAt: 
 /////////////
 ID: 2
 Foreign key Id: 1
-Pregunta: Ha_perdido_el_interes_por_las_cosas?
-Descripcion: Pregunta_sacada_de_ABC_revista_cientifica
-DeleteAt: /////////////
+Pregunta: Ha perdido el interes por las cosas?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
 ID: 3
-Foreign key Id: 2
-Pregunta: Calidad de sueno
-Descripcion: Busca saber que tipo de sueno acostumbra el entrevistado.
+Foreign key Id: 1
+Pregunta: He perdido la confianza en si mismo?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 4
+Foreign key Id: 1
+Pregunta: Se ha sentido desesperanzado?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 5
+Foreign key Id: 1
+Pregunta: Ha tenido dificultades para concentrarse?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 6
+Foreign key Id: 1
+Pregunta: Ha perdido peso a causa de una falta de apetito recientemente?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 7
+Foreign key Id: 1
+Pregunta: Se despierta demasiado temprano?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 8
+Foreign key Id: 1
+Pregunta: Se nota mas lento de lo habitual?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 9
+Foreign key Id: 1
+Pregunta: Tiene pensamientos de querer hacerse daño de algun modo?
+Descripcion: Pregunta realizada por la revista ABC.
+DeleteAt: 
+/////////////
+ID: 10
+Foreign key Id: 1
+Pregunta: Sensacion de cansancio o de tener poca energia?
+Descripcion: Pregunta realizada por la revista ABC.
 DeleteAt: 

@@ -3,10 +3,4 @@ ID: 1
 Titulo: Test Binario
 Puntaje Maximo: 10
 Puntaje de Corte: 2
-Observacion: Este test solo usa respuestas binarias, sease si y no, o verdadero y falso.
-/////////////
-ID: 2
-Titulo: Test Multiple
-Puntaje Maximo: 50
-Puntaje de Corte: 30
-Observacion: Test con multiples opciones desde la mas negativa hasta la mas positiva
+Observacion: Medir si el encuestado entra como candidato para ser revisado por un especialista

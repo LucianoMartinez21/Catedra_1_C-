@@ -1,24 +1,12 @@
 /////////////
 ID: 1
-Nombre: a
-Apellido Paterno: b
-Apellido Materno: c
-Run: 12378-9
-Fecha de Nacimiento: 8/5/1950
-Genero: Other
-Correo: a@b.com
-Telefono: 7894561
+Nombre: Matias
+Apellido Paterno: Diaz
+Apellido Materno: Moreno
+Run: 789456-7
+Fecha de Nacimiento: 23/1/2000
+Genero: Male
+Correo: matias@mail.com
+Telefono: 777888999
 Observacion: -
-DeleteAt:
-/////////////
-ID: 2
-Nombre: John
-Apellido Paterno: Smith
-Apellido Materno: Johnson
-Run: 789546-k
-Fecha de Nacimiento: 1/5/1985
-Genero: Other
-Correo: JohnJohnson@smith.com
-Telefono: 78456412
-Observacion: -
-DeleteAt:
+DeleteAt: 

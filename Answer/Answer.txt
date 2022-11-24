@@ -3,14 +3,14 @@ ID: 1
 Foreign key Id: 1
 Puntaje: 1
 Respuesta: Si
-Observacion: Respuesta negativa
+Observacion: Respuesta negativa.
 DeleteAt: 
 /////////////
 ID: 2
 Foreign key Id: 1
 Puntaje: -1
 Respuesta: No
-Observacion: Respuesta positiva
+Observacion: Respuesta positiva.
 DeleteAt: 
 /////////////
 ID: 3
@@ -22,6 +22,118 @@ DeleteAt:
 /////////////
 ID: 4
 Foreign key Id: 2
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 5
+Foreign key Id: 3
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 6
+Foreign key Id: 3
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 7
+Foreign key Id: 4
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 8
+Foreign key Id: 4
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 9
+Foreign key Id: 5
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 10
+Foreign key Id: 5
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 11
+Foreign key Id: 6
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 12
+Foreign key Id: 6
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 13
+Foreign key Id: 7
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 14
+Foreign key Id: 7
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 15
+Foreign key Id: 8
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 16
+Foreign key Id: 8
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 17
+Foreign key Id: 9
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 18
+Foreign key Id: 9
+Puntaje: -1
+Respuesta: No
+Observacion: Respuesta positiva.
+DeleteAt: 
+/////////////
+ID: 19
+Foreign key Id: 10
+Puntaje: 1
+Respuesta: Si
+Observacion: Respuesta negativa.
+DeleteAt: 
+/////////////
+ID: 20
+Foreign key Id: 10
 Puntaje: -1
 Respuesta: No
 Observacion: Respuesta positiva.
