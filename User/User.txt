@@ -3,64 +3,9 @@ ID: 1
 Nombre: Luciano
 Apellido Paterno: Martinez
 Apellido Materno: Labarthe
-Run: 12345-0
+Run: 123456-0
 Fecha de Nacimiento: 9/7/2001
 Genero: Male
 Correo: luciano@mail.com
 Telefono: 123456
-DeleteAt: 
-/////////////
-ID: 2
-Nombre: Gerson
-Apellido Paterno: Choque
-Apellido Materno: Rodriguez
-Run: 12785-k
-Fecha de Nacimiento: 24/4/2000
-Genero: Male
-Correo: a@b.com
-Telefono: 789456
-DeleteAt: 
-/////////////
-ID: 3
-Nombre: Juaquin
-Apellido Paterno: Rojas
-Apellido Materno: Ordonez
-Run: 798456-5
-Fecha de Nacimiento: 1/2/2002
-Genero: Male
-Correo: otro@otro.cl
-Telefono: 7774449
-DeleteAt: 
-/////////////
-ID: 4
-Nombre: Fernando
-Apellido Paterno: Carmino
-Apellido Materno: Rodriguez
-Run: 7785422-0
-Fecha de Nacimiento: 22/11/1990
-Genero: Male
-Correo: fernandoCarmino@gmail.com
-Telefono: 123456789
-DeleteAt: 
-/////////////
-ID: 5
-Nombre: Felipe
-Apellido Paterno: Urrutia
-Apellido Materno: Popo
-Run: 85964-2
-Fecha de Nacimiento: 1/2/2002
-Genero: Other
-Correo: mingw@gmail.com
-Telefono: 985457541
-DeleteAt: 
-/////////////
-ID: 6
-Nombre: a
-Apellido Paterno: a
-Apellido Materno: a
-Run: 
-Fecha de Nacimiento: 1/1/1
-Genero: Male
-Correo: a@b
-Telefono: 1
 DeleteAt: 

@@ -3,10 +3,10 @@ ID: 1
 Titulo: Test Binario
 Puntaje Maximo: 10
 Puntaje de Corte: 2
-Observacion: Este test solo usa respuestas binarias, sease si y no, o verdadero y falso.
+Observacion: Medir si el encuestado entra como candidato para ser revisado por un especialista
 /////////////
 ID: 2
-Titulo: Test Multiple
+Titulo: Test Likert
 Puntaje Maximo: 50
-Puntaje de Corte: 30
-Observacion: Test con multiples opciones desde la mas negativa hasta la mas positiva
+Puntaje de Corte: 25
+Observacion: Test que usara la escala de likert, se podra inferir mejor de las respuestas del encuestado.
